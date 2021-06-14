@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Rent4u_BackEnd:war">
+    <output-path>$PROJECT_DIR$/Rent4u_BackEnd/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Rent4u_BackEnd</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Rent4u_BackEnd-1.0.0.war">
+      <element id="artifact" artifact-name="Rent4u_BackEnd:war exploded" />
+    </root>
+  </artifact>
+</component>

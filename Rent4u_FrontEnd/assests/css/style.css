@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.content,.adminContent {
+    background: #fafafa;
+
+}
+
+.sticky {
+    top: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.sticky + main {
+    padding-top: 60px;
+}
+
+#header {
+    height: 100px;
+    box-shadow: 0 4px 10px -3px rgba(191, 191, 191, 0.5);
+
+}
+
+.navbar {
+    height: 100px;
+    /*background: rgba(189, 0, 0, 0.8) top;*/
+    background: white;
+    overflow: hidden;
+}
+
+#navSection {
+    box-shadow: 0 4px 10px -3px rgba(191, 191, 191, 0.5);
+
+}
+
+.navbar li {
+    font-size: 15px;
+    padding: 10px;
+    text-transform: uppercase;
+    justify-content: space-around;
+
+}
+
+.navbar li .nav-link {
+    color: #8a8a8a;
+}
+
+.navbar li .nav-link:hover {
+    color: #eeb200;
+}
+
+/*admin.........*/
+
+#comName {
+    overflow: hidden;
+    font-family: 'Rock Salt', cursive;
+    font-weight: 900;
+    padding: 20px;
+    text-shadow: #a2a2a2 5px 4px 5px;
+}
+
+#comName .l4 {
+    color: #d70011;
+}
+
+.adminContent .adminPic {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background: url("../images/admin.png");
+    background-size: cover;
+    padding: 15px;
+}
+
+.adminContent #v-tabs-dash-tab,#v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab {
+    padding: 25px;
+    font-size: 15px;
+
+}
+
+#leftDash {
+    border-right: 3px solid #777bff;
+}
+
+#c1,#c2,#c3,#c4{
+    box-shadow: #dfdfdf 5px 5px 5px
+}
+
+/*............*/
+.topPage {
+    overflow: hidden;
+}
+
+.topPage > .cover {
+    width: 100vw;
+    height: 100vh;
+    background: url("../images/dp8KiD.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 2s ease;
+
+
+}
+
+.topPage > .cover:hover {
+
+    transform: scale(1.04);
+    transition: 2s ease;
+
+}
+
+#topPageCol {
+
+    position: absolute;
+    display: grid;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    justify-items: center;
+    transform: translate(-50%, -50%);
+}
+
+#welcomeTop {
+    font-family: "Dancing Script SemiBold";
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.menu_button {
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+#title {
+    font-size: 7rem;
+    color: white;
+    font-weight: 600;
+    font-family: "Dancing Script SemiBold";
+}
+
+.card {
+    background-color: #1a1a1a;
+    transition: .3s ease;
+
+}
+
+.card:hover {
+    transform: scale(1.02);
+    transition: .3s ease;
+    box-shadow: #d8d8d8 3px -1px 15px;
+
+}
+
+#catalouge1 > div, #catalouge2 > div, #catalouge3 > div {
+    overflow: hidden;
+}
+
+#card1, #card2, #card3, #card4, #card5, #card6, #card7, #card8, #card9, #card10, #card11, #card12 {
+    /*box-shadow: #d8d8d8 3px -1px 15px;*/
+    overflow: hidden;
+}
+
+.pricePerKm {
+    color: #ff1a5f;
+}
+
+.cardFooth6 {
+    color: #a5a5a5;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+#cardFRL {
+    /*border-top: #ff9941 solid 4px;*/
+
+    color: white;
+
+}
+
+.lineL {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(-45deg, #ff1f08, #fdff4f, #f33adc, #84fcf6);
+    animation: changeColour 5s ease-in-out infinite;
+    background-size: 200% 200%;
+}
+
+.lineP {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(-45deg, #329652, #58ff59, #fff8d9, #d01aab);
+    animation: changeColour 5s ease-in-out infinite;
+    background-size: 200% 200%;
+}
+
+.lineG {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(-45deg, #c521ff, #f32b9e, #3addf3, #d88fff);
+    animation: changeColour 5s ease-in-out infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes changeColour {
+    0% {
+        background-position: 0 50%;
+
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+
+    }
+}
