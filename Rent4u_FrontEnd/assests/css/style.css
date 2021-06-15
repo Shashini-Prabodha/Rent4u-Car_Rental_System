@@ -4,7 +4,7 @@
     overflow-x: hidden;
 }
 
-.content,.adminContent {
+.content, .adminContent {
     background: #fafafa;
 
 }
@@ -20,13 +20,13 @@
 }
 
 #header {
-    height: 100px;
+    height: 80px;
     box-shadow: 0 4px 10px -3px rgba(191, 191, 191, 0.5);
 
 }
 
 .navbar {
-    height: 100px;
+    height: 80px;
     /*background: rgba(189, 0, 0, 0.8) top;*/
     background: white;
     overflow: hidden;
@@ -54,6 +54,27 @@
 }
 
 /*admin.........*/
+.lpack {
+    position: absolute;
+    animation: infinite 20s ridecar;
+}
+
+@keyframes ridecar {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+    30% {
+        opacity: 1
+    }
+    70% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        left: 80%;
+    }
+}
 
 #comName {
     overflow: hidden;
@@ -74,45 +95,76 @@
     background: url("../images/admin.png");
     background-size: cover;
     padding: 15px;
+    border: #b4fdc9 15px solid;
+
 }
 
-.adminContent #v-tabs-dash-tab,#v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab {
+.adminPic {
+    animation: infinite 4s ease piczoom;
+}
+
+@keyframes piczoom {
+    0% {
+        transform: scale(1);
+        border: #b4fdc9 15px solid;
+
+    }
+    50% {
+        transform: scale(1.15);
+        border: #b4fdc9 0px solid;
+
+    }
+    100% {
+        transform: scale(1);
+        border: #b4fdc9 15px solid;
+
+    }
+}
+
+.adminContent #v-tabs-dash-tab, #v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab {
     padding: 25px;
     font-size: 15px;
+    text-shadow: #c7c7c7 5px 5px 5px;
 
+}
+
+#v-tabs-dash > div > h1, #v-tabs-car > div > h1, #v-tabs-customer > div > h1, #v-tabs-driver > div > h1, #v-tabs-order > div > h1, #v-tabs-payment > div > h1 {
+    text-shadow: #c0c0c0 5px 5px 5px;
 }
 
 #leftDash {
+    padding-right: 0;
     border-right: 3px solid #777bff;
 }
 
-#c1,#c2,#c3,#c4{
-    box-shadow: #dfdfdf 5px 5px 5px
+#c1, #c2, #c3, #c4 {
+    padding: 10px;
+}
+
+#c1 > .card, #c2 > .card, #c3 > .card, #c4 > .card {
+    box-shadow: #e0e0e0 0px 2px 10px;
+}
+
+#c1 > .card {
+    border-bottom: 5px #b23cfd solid;
+}
+
+#c2 > .card {
+    border-bottom: 5px #00b74a solid;
+}
+
+#c3 > .card {
+    border-bottom: 5px #ffa900 solid;
+}
+
+#c4 > .card {
+    border-bottom: 5px #1266f1 solid;
 }
 
 /*............*/
-.topPage {
+.topPage{
     overflow: hidden;
 }
-
-.topPage > .cover {
-    width: 100vw;
-    height: 100vh;
-    background: url("../images/dp8KiD.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    transition: 2s ease;
-
-
-}
-
-.topPage > .cover:hover {
-
-    transform: scale(1.04);
-    transition: 2s ease;
-
-}
-
 #topPageCol {
 
     position: absolute;
@@ -124,10 +176,41 @@
     transform: translate(-50%, -50%);
 }
 
+.mainLogo {
+    width: 200px;
+    height: 218px;
+
+}
+
+
 #welcomeTop {
     font-family: "Dancing Script SemiBold";
     font-weight: 600;
-    color: #ffffff;
+    color: #fff;
+}
+
+
+.cover {
+    width: 100vw;
+    height: 100vh;
+    background: url("../images/dp8KiD.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+    transition: 2s ease;
+
+
+}
+#wallTxt{
+    text-align: center;
+    position: absolute;
+    top: 6%;
+}
+.topPage > .cover:hover {
+
+    transform: scale(1.04);
+    transition: 2s ease;
+
 }
 
 .menu_button {
@@ -219,4 +302,23 @@
         background-position: 0 50%;
 
     }
+}
+
+/*login form styling*/
+.loginBody{
+    background: url("../images/lbackwall.png");
+    background-size: cover
+}
+#loginHome{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: auto;
+    transform: translate(-50%,-50%);
+}
+.svgimg{
+    width: 100%;
+    height: 100%;
+    background: url("../images/undraw_off_road_9oae.svg");
+    background-size: cover;
 }

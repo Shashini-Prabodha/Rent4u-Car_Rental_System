@@ -40,10 +40,12 @@
                 <div class="collapse navbar-collapse  "
                      id="navbarNavDropdown">
                     <ul class="nav  ">
-                        <li class="nav-item"><img src="assests/images/lg.png" alt="" width="120" height="64"
-                                                  class="d-inline-block align-text-top"></li>
+                        <div class="lpack d-inline-flex">
+                            <li class="nav-item"><img src="assests/images/lg.png" alt="" width="120" height="64"
+                                                      class="d-inline-block align-text-top" id="comLogo"></li>
 
-                        <h4 class="h4 align-self-center" id="comName">Rent<span class="l4"> 4</span> u</h4>
+                            <h4 class="h4 align-self-center" id="comName">Rent<span class="l4"> 4</span> u</h4>
+                        </div>
                         <li class="nav-item"><a class="nav-link " aria-current="page" href="#topPage">Home</a></li>
 
 
@@ -60,9 +62,10 @@
 
     </section>
 </header>
+
 <main class="adminContent">
     <div class="row">
-        <div class="col-3 " id="leftDash">
+        <div class="col-2 " id="leftDash">
             <div class="row justify-content-around p-5">
                 <div class="adminPic"></div>
             </div>
@@ -71,97 +74,199 @@
                  aria-orientation="vertical">
                 <a class="nav-link active" id="v-tabs-dash-tab" data-mdb-toggle="tab" href="#v-tabs-dash" role="tab"
                    aria-controls="v-tabs-dash" aria-selected="true">
-                    <i class="fas fa-home"></i> DashBoard</a>
+                    <i class="fas fa-home"></i> DASHBOARD</a>
                 <a class="nav-link" id="v-tabs-car-tab" data-mdb-toggle="tab" href="#v-tabs-car" role="tab"
                    aria-controls="v-tabs-car" aria-selected="false">
-                    <i class="fas fa-car"></i> Car</a>
+                    <i class="fas fa-car"></i> CAR</a>
                 <a class="nav-link" id="v-tabs-customer-tab" data-mdb-toggle="tab" href="#v-tabs-customer" role="tab"
                    aria-controls="v-tabs-customer" aria-selected="false">
-                    <i class="fas fa-user"></i> Customer</a>
+                    <i class="fas fa-user"></i> CUSTOMER</a>
                 <a class="nav-link" id="v-tabs-driver-tab" data-mdb-toggle="tab" href="#v-tabs-driver" role="tab"
                    aria-controls="v-tabs-driver" aria-selected="false">
-                    <i class="fas fa-user"></i> Drivers</a>
+                    <i class="fas fa-user"></i> DRIVER</a>
                 <a class="nav-link" id="v-tabs-order-tab" data-mdb-toggle="tab" href="#v-tabs-order" role="tab"
                    aria-controls="v-tabs-order" aria-selected="false">
-                    <i class="fas fa-list-ul"></i> Orders</a>
+                    <i class="fas fa-list-ul"></i> OREDER</a>
                 <a class="nav-link" id="v-tabs-payment-tab" data-mdb-toggle="tab" href="#v-tabs-payment" role="tab"
                    aria-controls="v-tabs-payment" aria-selected="false">
-                    <i class="fas fa-money-bill-wave"></i> Payments</a>
+                    <i class="fas fa-money-bill-wave"></i> PAYMENT</a>
             </div>
             <!-- Tab navs -->
         </div>
-
-        <div class="col-9 p-3">
+        <div class="col-10 p-3">
             <!-- Tab content -->
-            <div class="tab-content" id="v-tabs-tabContent">
-                <div class="tab-pane fade show active" id="v-tabs-dash" role="tabpanel"
-                     aria-labelledby="v-tabs-dash-tab">
-                    <div class="row text-center"><h1 class="h1 display-5">DashBoard</h1></div>
-                    <div class="row p-3">
-                        <div class="col-lg-3 col-6 overflow-hidden " id="c1">
-                            <div class="card " style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-secondary text-center"><i class="fas fa-user"></i>
-                                        Registered Customers</h5>
-                                    <h6 class="card-subtitle display-3 mb-2 text-center">50</h6>
+            <div class="container-fluid">
+                <div class="tab-content" id="v-tabs-tabContent">
+                    <!--        Dashboard content start-->
+
+                    <div class="tab-pane fade show active" id="v-tabs-dash" role="tabpanel"
+                         aria-labelledby="v-tabs-dash-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">DashBoard</h1></div>
+                        <div class="row p-3">
+                            <div class="col-lg-3 col-6 overflow-hidden " id="c1">
+                                <div class="card " style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-secondary text-center"><i class="fas fa-user"></i>
+                                            REGISTERED CUSTOMERS</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center">50</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6 overflow-hidden " id="c2">
+                                <div class="card " style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-success text-center"><i class="fas fa-car"></i>
+                                            AVAILABLE CARS</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center">08</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6 overflow-hidden " id="c3">
+                                <div class="card " style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-warning text-center"><i class="fas fa-user"></i>
+                                            AVAILABLE DRIVERS</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center">23</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6 overflow-hidden " id="c4">
+                                <div class="card " style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-primary text-center"><i class="fas fa-car"></i>
+                                            MAINTENANCE CAR</h6>
+                                        <h6 class="card-subtitle display-6 mb-2 text-center">08</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row"></div>
+                        <!--                        charts-->
+                        <div class="row">
+                            <div class="col-lg-7 col-xl-8">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary font-weight-bold m-0">Earnings Overview</h6>
+                                        <div class="dropdown no-arrow">
+                                            <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false" type="button"><i
+                                                    class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                                 role="menu">
+                                                <p class="text-center dropdown-header">dropdown header:</p><a
+                                                    class="dropdown-item" role="presentation"
+                                                    href="#">&nbsp;Action</a><a
+                                                    class="dropdown-item" role="presentation" href="#">&nbsp;Another
+                                                action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" role="presentation" href="#">&nbsp;Something
+                                                    else
+                                                    here</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-xl-4">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary font-weight-bold m-0">Weekly Income</h6>
+                                        <div class="dropdown no-arrow">
+                                            <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false" type="button"><i
+                                                    class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                                                 role="menu">
+                                                <p class="text-center dropdown-header">dropdown header:</p><a
+                                                    class="dropdown-item" role="presentation"
+                                                    href="#">&nbsp;Action</a><a
+                                                    class="dropdown-item" role="presentation" href="#">&nbsp;Another
+                                                action</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" role="presentation" href="#">&nbsp;Something
+                                                    else
+                                                    here</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-area overflow-hidden">
+                                            <canvas id="myChart" style="width:100%;height: 20rem"></canvas>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-6 overflow-hidden " id="c2">
-                            <div class="card " style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success text-center"><i class="fas fa-car"></i> Available
-                                        Cars</h5>
-                                    <h6 class="card-subtitle display-3 mb-2 text-center">08</h6>
+                    </div>
+                    <!--    Dashboard content end-->
+
+
+                    <div class="tab-pane fade" id="v-tabs-car" role="tabpanel" aria-labelledby="v-tabs-car-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Car Details</h1></div>
+                        <div class="row "><h2 class="h2 btn-secondary p-2 m-3">Car Details</h2>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="carRegNo" placeholder="Reg No : ">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-6 overflow-hidden " id="c3">
-                            <div class="card " style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-warning text-center"><i class="fas fa-user"></i>
-                                        Available Drivers</h5>
-                                    <h6 class="card-subtitle display-3 mb-2 text-center">23</h6>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="brand" placeholder="Brand">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-6 overflow-hidden " id="c4">
-                            <div class="card " style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary text-center"><i class="fas fa-car"></i>
-                                        Maintenance Cars</h5>
-                                    <h6 class="card-subtitle display-3 mb-2 text-center">08</h6>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="Default select example" id="type">
+                                    <option selected>- Car Type -</option>
+                                    <option value="1">General</option>
+                                    <option value="2">Premium</option>
+                                    <option value="3">Luxury</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="noofpsg" placeholder="No of Passengers">
                                 </div>
                             </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="Default select example" id="transmissionType">
+                                    <option selected>- Transmi: Type -</option>
+                                    <option value="1">Manual</option>
+                                    <option value="2">Auto</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="Default select example" id="FuelType">
+                                    <option selected>- Fuel Type -</option>
+                                    <option value="1">Petrol</option>
+                                    <option value="2">Diesel</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-tabs-customer" role="tabpanel"
+                         aria-labelledby="v-tabs-customer-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Customer Details</h1></div>
+                    </div>
+                    <div class="tab-pane fade" id="v-tabs-driver" role="tabpanel" aria-labelledby="v-tabs-driver-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Driver Details</h1></div>
+                    </div>
+                    <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Order Details</h1></div>
 
                     </div>
-                    <div class="row">
+                    <div class="tab-pane fade" id="v-tabs-payment" role="tabpanel" aria-labelledby="v-tabs-payment-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
+
                     </div>
-
-
-
                 </div>
-                <div class="tab-pane fade" id="v-tabs-car" role="tabpanel" aria-labelledby="v-tabs-car-tab">
-                    Profile content
-                </div>
-                <div class="tab-pane fade" id="v-tabs-customer" role="tabpanel" aria-labelledby="v-tabs-customer-tab">
-                    Profile content
-                </div>
-                <div class="tab-pane fade" id="v-tabs-driver" role="tabpanel" aria-labelledby="v-tabs-driver-tab">
-                    driver content
-                </div>
-                <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
-                    order content
-                </div>
-                <div class="tab-pane fade" id="v-tabs-payment" role="tabpanel" aria-labelledby="v-tabs-payment-tab">
-                    payment content
-                </div>
-            </div>
-            <!-- Tab content -->
+            </div>            <!-- Tab content -->
         </div>
     </div>
-
 
 </main>
 
@@ -194,6 +299,8 @@
 
 </script>
 <script src="assests/js/script.js"></script>
+<script src="assests/js/chart.min.js"></script>
+<script src="assests/bs-init.js"></script>
 
 </body>
 </html>
