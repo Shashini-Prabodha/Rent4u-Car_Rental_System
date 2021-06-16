@@ -27,8 +27,10 @@
     <!-- MDB -->
 </head>
 <body class="loginBody">
-<section class="container-fluid w-100 h-100">
-    <div class="row container bg-light">
+
+<div class="container">
+
+    <div class="row">
         <div class="card mb-3 w-75 h-75" style="" id="loginHome">
             <div class="row w-100 h-100 g-0">
                 <div class="col-md-6">
@@ -36,7 +38,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card-body">
-                        <div class="row align-self-center"><h3 class="h3 text-center p-3">Login / Sign Up</h3></div>
+                        <div class="row align-self-center"><h3 class="h3 text-center p-3">Login </h3></div>
                         <div>
                             <form action="" class="p-4">
                                 <div>
@@ -51,22 +53,139 @@
                                     <button class="btn btn-primary " id="btnSave" type="button">Login</button>
                                 </div>
                                 <div class="row text-center resetpw p-4">
-                                    <a href="" ><i>forgotten password?</i></a>
+                                    <a href=""><i>forgotten password?</i></a>
                                 </div>
                                 <hr>
-                                <div class="btn-group mt-3 " style="display: flex">
-                                    <button class="btn btn-success " id="btnSignup" type="button">Sign Up</button>
-                                </div>
-
                             </form>
                         </div>
+                        <button class="btn btn-success mt-3 " style="left: 12vw;position: absolute" id="btnSignup" data-toggle="modal"
+                                data-target="#exampleModalCenter">Create New Account
+                        </button>
                     </div>
+
                 </div>
             </div>
         </div>
-
     </div>
-</section>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" id="inputName"
+                                       placeholder="Kamal Manamperi" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputContactNo">Contact No</label>
+                                <input type="text" class="form-control"
+                                       id="inputContactNo"
+                                       placeholder="0712345678" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress"
+                                   placeholder="No:32/67, Matara" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control" id="inputEmail"
+                                   placeholder="Email"
+                                   required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputDrivingLicence">Driving Licence No</label>
+                                <input type="number" class="form-control"
+                                       id="inputDrivingLicence"
+                                       placeholder="" required>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputNIC">NIC No</label>
+                                <input type="number" class="form-control" id="inputNIC"
+                                       placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputUserName">Username</label>
+                                <input type="text" class="form-control" id="inputUserName"
+                                       placeholder="kamal" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" class="form-control"
+                                       id="inputPassword"
+                                       placeholder="" required>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              id="inputGroupFileAddon01">Upload NIC (Front)</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input"
+                                       id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                    file</label>
+                                <input class="form-control bg-dark" id="formFile" type="file">
+
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              id="inputGroupFileAddon02">Upload NIC (Back)</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input"
+                                       id="inputGroupFile02"
+                                       aria-describedby="inputGroupFileAddon02">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                    file</label>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 12px">By clicking Sign Up, you agree to our
+                            Terms, Data Policy and
+                            Cookie Policy. You may
+                            receive SMS notifications from us and can opt out at any
+                            time.</p>
+                        <div class="modal-footer">
+                            <div style="width: 100%; text-align: center">
+                                <button type="button" class="btn btn-success"
+                                        id="btncreate">Create Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
 
 <script src="assests/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>

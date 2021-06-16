@@ -2,6 +2,7 @@ package lk.rent4u.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -19,7 +20,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "lk.rent4u.repo")
+@PropertySource("classpath:application.properties")
 public class JPAConfig {
+
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter jv) {
@@ -40,7 +44,7 @@ public class JPAConfig {
     @Bean
     public JpaVendorAdapter vendorAdapter() {
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        va.setDatabasePlatform("org.hibernate.dialect.MYSQL57Dialect");
+        va.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
         va.setDatabase(Database.MYSQL);
         va.setGenerateDdl(true);
         va.setShowSql(true);

@@ -1,4 +1,7 @@
 package lk.rent4u.repo;
 
-public interface PaymentRepo {
+import lk.rent4u.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentRepo extends JpaRepository<Payment,String> {
 }

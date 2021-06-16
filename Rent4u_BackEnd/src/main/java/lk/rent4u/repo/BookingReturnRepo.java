@@ -1,4 +1,7 @@
 package lk.rent4u.repo;
 
-public interface BookingReturnRepo {
+import lk.rent4u.entity.BookingReturn;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookingReturnRepo extends JpaRepository<BookingReturn,String> {
 }
