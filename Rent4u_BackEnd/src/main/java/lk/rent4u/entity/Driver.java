@@ -26,8 +26,8 @@ public class Driver {
     private String nic;
     private String userName;
     private String password;
-    private String available;
-
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
-    private List<Booking> bookings = new ArrayList<Booking>();
+    private boolean available;
+//
+//    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+//    private List<Booking> bookings = new ArrayList<Booking>();
 }

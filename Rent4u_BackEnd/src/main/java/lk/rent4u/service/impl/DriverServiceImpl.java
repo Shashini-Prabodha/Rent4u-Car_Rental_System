@@ -65,6 +65,7 @@ public class DriverServiceImpl implements DriverService {
         }.getType());
     }
 
+
     @Override
     public void updateDriver(DriverDTO dto) {
         if (driverRepo.existsById(dto.getDriverID())) {

@@ -11,6 +11,8 @@
     <script src="assests/aos/aos.js"></script>
     <link href="assests/mdb/css/mdb.min.css" rel="stylesheet">
     <script src="assests/mdb/js/mdb.min.js"></script>
+    <link href="assests/sweetalert/sweetalert2.min.css" rel="stylesheet">
+
     <script>
         AOS.init({
             duration: 1200,
@@ -46,7 +48,8 @@
     <div class="container">
         <h2>Modal Example</h2>
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="btn">Open Modal</button>
+        <button type="button" class="btn btn-info btn-lg" id="btncli">erwer</button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -62,7 +65,7 @@
                         <p>Some text in the modal.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                     </div>
                 </div>
 
@@ -95,11 +98,29 @@
             console.log(sticky);
 
         }
+$('#btncli').click(function (){
+    alertProsDone("test");
+
+});
+        function alertProsDone(text) {
+
+            Swal.fire({
+                position: 'top',
+                icon: 'success', size:'25px',
+                text: text,
+                title: 'Succsess',
+                showConfirmButton: false,
+                timer: 5000
+            });
+        }
+
 
     }
 
 
 </script>
+<script src="assests/sweetalert/sweetalert2.all.min.js"></script>
+
 <script src="assests/js/script.js"></script>
 
 </body>
