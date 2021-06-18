@@ -22,4 +22,5 @@ public class CarDTO {
     private double freeMillagePrice;
     private String freeMillageDuration;
     private double lossDamageWaiver;
+    private String status;
 }

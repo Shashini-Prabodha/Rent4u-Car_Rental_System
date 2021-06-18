@@ -32,6 +32,8 @@ public class Car {
     private double freeMillagePrice;
     private String freeMillageDuration;
     private double lossDamageWaiver;
+    private String status;
+
 
     @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<Booking>();

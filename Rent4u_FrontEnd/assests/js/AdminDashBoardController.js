@@ -1,11 +1,262 @@
-// // ..............Driver section..........//
-//
-// // loadAllDrivers();
-//
-// import {get} from "../mdb/src/js/mdb/perfect-scrollbar/lib/css";
-//
+// ..............Car section..........//
+
+//check carID
+$('#carRegNo').on('keyup', function (event) {
+    checkCarID();
+});
+
+function checkCarID() {
+    if (/^[A-z ]{1,3}(-)[0-9]{4}$/.test($('#carRegNo').val())) {
+        $('#carRegNo').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#carRegNo').css('border', '3px solid red');
+    }
+    return false;
+}
+
+$('#brand').on('keyup', function (event) {
+    checkBrand();
+});
+
+//check brand
+function checkBrand() {
+    if (/^[A-z, |0-9:./]*\b$/.test($('#brand').val())) {
+        $('#brand').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#brand').css('border', '3px solid red');
+    }
+    return false;
+}
+
+$('#type').click(function () {
+    getSelectedCType();
+});
+
+
+function getSelectedCType() {
+    let type = ($('#type option:selected').text());
+    if (type != "- Car Type -") {
+        $('#type').css('border', '3px solid green').focus();
+        return type;
+
+    } else {
+        $('#type').css('border', '3px solid red').focus();
+        return null;
+
+    }
+}
+
+
+//check no of passengers
+$('#noofpsg').on('keyup', function (event) {
+    checkNoOfPassenger();
+});
+
+$("#noofpsg").bind('keyup input', function(){
+    checkNoOfPassenger();
+
+});
+
+function checkNoOfPassenger() {
+    console.log($('#noofpsg').val());
+    if ($('#noofpsg').val() > 0 & $('#noofpsg').val() != "") {
+        $('#noofpsg').css('border', '3px solid green').focus();
+        console.log("if")
+        return true;
+    } else {
+        $('#noofpsg').css('border', '3px solid red').focus();
+        console.log("else")
+
+        return false;
+    }
+}
+
+//check transmition type
+$('#transmissionType').click(function () {
+    checkTranstype();
+});
+
+function checkTranstype() {
+    let type = ($('#transmissionType option:selected').text());
+    if (type != "- Transmi: Type -") {
+        $('#transmissionType').css('border', '3px solid green').focus();
+        return type;
+
+    } else {
+        $('#transmissionType').css('border', '3px solid red').focus();
+        return null;
+
+    }
+}
+
+//check fuel type
+$('#fuelType').click(function () {
+    checkFueltype();
+});
+
+function checkFueltype() {
+    let type = ($('#fuelType option:selected').text());
+    if (type != "- Fuel Type -") {
+        $('#fuelType').css('border', '3px solid green').focus();
+        return type;
+
+    } else {
+        $('#fuelType').css('border', '3px solid red').focus();
+        return null;
+
+    }
+}
+
+
+//check color
+$('#color').click(function () {
+    checkColor();
+});
+
+function checkColor() {
+    let type = ($('#color option:selected').text());
+    if (type != "- Choose colour -") {
+        $('#color').css('border', '3px solid green').focus();
+        return type;
+
+    } else {
+        $('#color').css('border', '3px solid red').focus();
+        return null;
+    }
+}
+
+//check daily rate
+$('#dailyrate').on('keyup', function (event) {
+    checkDRate();
+});
+
+function checkDRate() {
+    if (/^[0-9.]{1,}$/.test($('#dailyrate').val())) {
+        $('#dailyrate').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#dailyrate').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//check monthly rate
+$('#monthlyrate').on('keyup', function (event) {
+    checkMRate();
+});
+
+function checkMRate() {
+    if (/^[0-9.]{1,}$/.test($('#monthlyrate').val())) {
+        $('#monthlyrate').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#monthlyrate').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//loose damage waiver
+$('#lossdamage').on('keyup', function (event) {
+    checkLossDm();
+});
+
+function checkLossDm() {
+    if (/^[1-9.]{1,}$/.test($('#lossdamage').val())) {
+        $('#lossdamage').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#lossdamage').css('border', '3px solid red');
+    }
+    return false;
+}
+
+//for day free millage
+$('#lossdamage').on('keyup', function (event) {
+    checkLossDm();
+});
+
+function checkLossDm() {
+    if (/^[1-9.]{1,}$/.test($('#lossdamage').val())) {
+        $('#lossdamage').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#lossdamage').css('border', '3px solid red');
+    }
+    return false;
+}
+
+//for day free millage
+$('#fdprice').on('keyup', function (event) {
+    checkFMforDay();
+});
+
+function checkFMforDay() {
+    if (/^[1-9.]{1,}$/.test($('#fdprice').val())) {
+        $('#fdprice').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#fdprice').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//for month free millage
+$('#fmprice').on('keyup', function (event) {
+    checkFMforMonth();
+});
+
+function checkFMforMonth() {
+    if (/^[1-9.]{1,}$/.test($('#fmprice').val())) {
+        $('#fmprice').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#fmprice').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//check price for extra km
+$('#priceforextrakm').on('keyup', function (event) {
+    checkExtraPforkm();
+});
+
+function checkExtraPforkm() {
+    if (/^[0-9.]{1,}$/.test($('#priceforextrakm').val())) {
+        $('#priceforextrakm').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#priceforextrakm').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+
+//clear function
+function clearCarTextFields() {
+    console.log("run")
+    $('#fuelType')[0].selected = 'selected'
+}
+$('#clearCar').click(function () {
+    clearCarTextFields();
+});
+
+
+
+
+
+// ..............Driver section..........//
+
+// loadAllDrivers();
 loadAllDrivers();
 
+//load driver
 function loadAllDrivers() {
     $('#driverTbody').empty();
     $.ajax({
@@ -25,7 +276,7 @@ function loadAllDrivers() {
                 var row = `<tr><td>${id}</td><td>${name}</td><td>${contactNo}</td><td>${nic}</td><td>${userName}</td><td>${password}</td><td>${available}</td></tr>`;
                 $('#driverTbody').append(row);
 
-                $('#tblDriver #driverTbody tr').css("cursor", "pointer");
+                $('#tblDriver #driverTbody tr').css({"cursor": "pointer"});
                 $('#tblDriver #driverTbody tr').click(function () {
 
                     let id = $(this).children('td:eq(0)').text();
@@ -53,6 +304,7 @@ function loadAllDrivers() {
     });
 }
 
+//set radio btn
 function setRadiobtn(avalabilty) {
     console.log(avalabilty);
 
@@ -73,6 +325,7 @@ function setRadiobtn(avalabilty) {
     }
 }
 
+//check driverID
 function checkDriverID() {
     if (/^(D)[0-9]{1,3}$/.test($('#driverID').val())) {
         $('#driverID').css('border', '3px solid #0eab34');
@@ -87,6 +340,7 @@ $('#driverID').on('keyup', function (event) {
     checkDriverID();
 });
 
+//check driver name
 function checkDriverName() {
     if (/^[A-z ]{1,}$/.test($('#drivername').val())) {
         $('#drivername').css('border', '3px solid #0eab34');
@@ -97,12 +351,11 @@ function checkDriverName() {
     return false;
 }
 
-
 $('#drivername').on('keyup', function (event) {
     checkDriverName();
 });
 
-
+//check contact
 function checkDriverContact() {
     if (/^[0-9]{10}$/.test($('#driverContact').val())) {//  ("^\\d{10}$")
         $('#driverContact').css('border', '3px solid #0eab34');
@@ -118,6 +371,7 @@ $('#driverContact').on('keyup', function (event) {
     checkDriverContact();
 });
 
+//check user nic
 function checkDriverNic() {
     if (/^[0-9]{9}(V)$/.test($('#dnic').val())) {
         $('#dnic').css('border', '3px solid #0eab34');
@@ -133,6 +387,7 @@ $('#dnic').on('keyup', function (event) {
     checkDriverNic();
 });
 
+//check user name
 function checkDuserName() {
     if (/^[A-z ]{1,}$/.test($('#duserName').val())) {
         $('#duserName').css('border', '3px solid #0eab34');
@@ -148,6 +403,7 @@ $('#duserName').on('keyup', function (event) {
     checkDuserName();
 });
 
+// rbtn process
 let Avail;
 $('#rbtnExit').click(function () {
     Avail = false;
@@ -217,7 +473,7 @@ $("#saveDriver").click(function () {
                                                     showConfirmButton: false,
                                                     timer: 1500
                                                 })
-                                                clearTextFields();
+                                                clearDriverTextFields();
 
                                             }
                                         });
@@ -305,11 +561,10 @@ $('#delDriver').click(function () {
                     async: true,
                     success: function (response) {
                         loadAllDrivers();
-                        alertProsDone("Driver Delete Successfully...!");
-                        clearTextFields();
+                        clearDriverTextFields();
                         Swal.fire(
                             'Deleted!',
-                            'Your file has been deleted.',
+                            'Driver Delete Successfully...',
                             'success'
                         )
                     },
@@ -383,7 +638,7 @@ $("#updateDriver").click(function () {
                                                     showConfirmButton: false,
                                                     timer: 1500
                                                 })
-                                                clearTextFields();
+                                                clearDriverTextFields();
 
                                             }
                                         });
@@ -415,26 +670,13 @@ $("#updateDriver").click(function () {
     })
 });
 
-
-
-
-// function checkCustomerFill() {
-//     let customer = searchCustomer($('#cmbCustID option:selected').text());
-//     if (customer == null) {
-//         $('#cmbCustID').css('border', '3pxsolid red').focus();
-//         $("#lblCustomerID").text("Select Customer ID");
-//         return false;
-//     }
-//     $('#cmbCustID').css('border', '3px solid #0eab34').focus();
-//     $("#lblCustomerID").text("");
-//     return true;
-// }
 //clear
 $('#clearDriver').click(function () {
-    clearTextFields();
+    clearDriverTextFields();
 });
 
-function clearTextFields() {
+//clear function
+function clearDriverTextFields() {
     $('#driverID').val("");
     $('#drivername').val("");
     $('#driverContact').val("");
