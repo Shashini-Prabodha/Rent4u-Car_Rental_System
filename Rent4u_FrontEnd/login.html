@@ -11,12 +11,17 @@
     <script src="assests/aos/aos.js"></script>
     <link href="assests/mdb/css/mdb.min.css" rel="stylesheet">
     <script src="assests/mdb/js/mdb.min.js"></script>
+    <link href="assests/alertjs/alertify.min.css" rel="stylesheet">
+    <link href="assests/sweetalert/sweetalert2.min.css" rel="stylesheet">
+
+
     <script>
         AOS.init({
             duration: 1200,
             once: true,
         });
     </script>
+    <script src="assests/alertjs/alertify.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <!--
@@ -42,15 +47,15 @@
                         <div>
                             <form action="" class="p-4">
                                 <div>
-                                    <label class="form-label" for="customerID">User Name</label>
-                                    <input class="form-control" id="customerID" name="username" type="text">
+                                    <label class="form-label" for="userName">User Name</label>
+                                    <input class="form-control" id="userName" name="username" type="text">
                                 </div>
                                 <div>
-                                    <label class="form-label" for="customerName">Password</label>
-                                    <input class="form-control" id="customerName" name="password" type="password">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input class="form-control" id="password" name="password" type="password">
                                 </div>
                                 <div class="btn-group mt-3 " style="display: flex">
-                                    <button class="btn btn-primary " id="btnSave" type="button">Login</button>
+                                    <button class="btn btn-primary " id="btnLogin" type="button">Login</button>
                                 </div>
                                 <div class="row text-center resetpw p-4">
                                     <a href=""><i>forgotten password?</i></a>
@@ -58,7 +63,8 @@
                                 <hr>
                             </form>
                         </div>
-                        <button class="btn btn-success mt-3 " style="left: 12vw;position: absolute" id="btnSignup" data-toggle="modal"
+                        <button class="btn btn-success mt-3 " style="left: 12vw;position: absolute" id="btnSignup"
+                                data-toggle="modal"
                                 data-target="#exampleModalCenter">Create New Account
                         </button>
                     </div>
@@ -73,6 +79,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>
+                    <div class="form-row align-content-end">
+                        <input type="text" class="form-control" id="custID" hidden>
+                    </div>
                     <button type="button" class="close" data-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -82,6 +91,7 @@
                     <form>
 
                         <div class="form-row">
+
                             <div class="form-group col-md-6">
                                 <label for="inputName">Name</label>
                                 <input type="text" class="form-control" id="inputName"
@@ -94,13 +104,13 @@
                                        placeholder="0712345678" required>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div class="form-row m-0">
                             <label for="inputAddress">Address</label>
                             <input type="text" class="form-control" id="inputAddress"
                                    placeholder="No:32/67, Matara" required>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row m-0 mt-1">
                             <label for="inputEmail">Email</label>
                             <input type="email" class="form-control" id="inputEmail"
                                    placeholder="Email"
@@ -110,15 +120,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputDrivingLicence">Driving Licence No</label>
-                                <input type="number" class="form-control"
+                                <input type="text" class="form-control"
                                        id="inputDrivingLicence"
-                                       placeholder="" required>
+                                       placeholder="B1234567" required>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="inputNIC">NIC No</label>
-                                <input type="number" class="form-control" id="inputNIC"
-                                       placeholder="" required>
+                                <input type="text" class="form-control" id="inputNIC"
+                                       placeholder="984545415V" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -139,36 +149,38 @@
                                         <span class="input-group-text"
                                               id="inputGroupFileAddon01">Upload NIC (Front)</span>
                             </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input"
-                                       id="inputGroupFile01"
-                                       aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose
-                                    file</label>
-                                <input class="form-control bg-dark" id="formFile" type="file">
+<!--                            <div class="custom-file">-->
+<!--                                <input type="file" class="custom-file-input"-->
+<!--                                       id="inputfile1"-->
+<!--                                       aria-describedby="inputGroupFileAddon01">-->
+<!--                                <label class="custom-file-label" for="inputfile1">Choose-->
+<!--                                    file</label>-->
 
+<!--                            </div>-->
+                            <div>
+                                <input class="form-control w-100" id="inputfile1" type="file">
                             </div>
                         </div>
 
                         <div class="input-group mb-3">
+
                             <div class="input-group-prepend">
                                         <span class="input-group-text"
                                               id="inputGroupFileAddon02">Upload NIC (Back)</span>
                             </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input"
-                                       id="inputGroupFile02"
-                                       aria-describedby="inputGroupFileAddon02">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose
-                                    file</label>
+<!--                            <div class="custom-file">-->
+<!--                                <input type="file" class="custom-file-input"-->
+<!--                                       id="inputfile2"-->
+<!--                                       aria-describedby="inputGroupFileAddon02">-->
+<!--                                <label class="custom-file-label" for="inputfile2">Choose file</label>-->
+
+<!--                            </div>-->
+                            <div>
+                                <input class="form-control w-100" id="inputfile2" type="file">
                             </div>
                         </div>
 
-                        <p style="font-size: 12px">By clicking Sign Up, you agree to our
-                            Terms, Data Policy and
-                            Cookie Policy. You may
-                            receive SMS notifications from us and can opt out at any
-                            time.</p>
+
                         <div class="modal-footer">
                             <div style="width: 100%; text-align: center">
                                 <button type="button" class="btn btn-success"
@@ -186,10 +198,11 @@
 </div>
 
 </div>
-
+<script src="assests/sweetalert/sweetalert2.all.min.js"></script>
 <script src="assests/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 <script src="assests/js/bootstrap.min.js"></script>
+<script src="assests/js/LoginController.js"></script>
 
 </body>
 </html>

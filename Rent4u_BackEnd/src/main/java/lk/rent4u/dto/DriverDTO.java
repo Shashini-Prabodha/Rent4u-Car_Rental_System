@@ -8,7 +8,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
 public class DriverDTO {
     private String driverID;
     private String name;

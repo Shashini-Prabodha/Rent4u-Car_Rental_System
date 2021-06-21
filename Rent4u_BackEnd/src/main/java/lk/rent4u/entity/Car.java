@@ -1,6 +1,6 @@
 package lk.rent4u.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lk.rent4u.dto.MaintainceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,16 +25,22 @@ public class Car {
     private int numberOfPassengers;
     private String transmissionType;
     private String fuelType;
-    private double priceForExtraKM;
     private String colour;
     private double dailyRate;
     private double monthlyRate;
-    private double freeMillagePrice;
-    private String freeMillageDuration;
+    //    private double freeMillagePrice;
+//    private String freeMillageDuration;
+    private double freeKmforMonth;
+    private double freeKmforDay;
     private double lossDamageWaiver;
+    private double priceForExtraKM;
     private String status;
+    private double completeKm;
 
 
-    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<Booking>();
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Maintaince> maintainance = new ArrayList<>();
 }

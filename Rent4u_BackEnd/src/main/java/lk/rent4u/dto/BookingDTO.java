@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class BookingDTO {
     private String bookingID;
     private String date;
-    private String pickupdate;
-    private String status;
+    private String pickupDate;
     private String  returnDate;
+    private String status;
     private CustomerDTO customerDTO;
     private CarDTO carDTO;
     private DriverDTO driverDTO;

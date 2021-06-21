@@ -28,7 +28,6 @@ public class Customer{
     private String password;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
-
     private List<Booking> bookings=new ArrayList<Booking>();
 
 }

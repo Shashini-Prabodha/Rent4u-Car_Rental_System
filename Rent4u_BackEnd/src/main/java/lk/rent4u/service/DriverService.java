@@ -17,4 +17,9 @@ public interface DriverService {
     ArrayList<DriverDTO> getAllDrivers();
 
     void updateDriver(DriverDTO dto);
+
+    boolean findByUserName(String userName);
+
+    boolean findByUserNameAndPassword(String userName, String password);
+
 }

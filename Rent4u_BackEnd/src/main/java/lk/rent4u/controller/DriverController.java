@@ -24,9 +24,7 @@ public class DriverController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAllDrivers() {
         ArrayList<DriverDTO> allDrivers = service.getAllDrivers();
-        System.out.println(allDrivers);
         return new ResponseEntity(new StandardResponse("200", "Done", allDrivers), HttpStatus.OK);
-//        return service.getAllDrivers();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

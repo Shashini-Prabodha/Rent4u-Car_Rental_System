@@ -2,6 +2,7 @@ package lk.rent4u.service.impl;
 
 import lk.rent4u.dto.CustomerDTO;
 import lk.rent4u.entity.Customer;
+import lk.rent4u.entity.Driver;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.CustomerRepo;
 import lk.rent4u.service.CustomerService;
@@ -57,5 +58,36 @@ public class CustomerServiceImpl implements CustomerService {
         if (repo.existsById(dto.getCustomerID())) {
             repo.save(mapper.map(dto, Customer.class));
         }
+    }
+
+    @Override
+    public boolean findByUserName(String userName) {
+        Optional<Customer> byUserName = repo.findByUserName(userName);
+        return byUserName.isPresent();
+    }
+
+    @Override
+    public boolean findByUserNameAndPassword(String userName, String password) {
+        Optional<Customer> byUserNameAndPassword = repo.findByUserNameAndPassword(userName, password);
+        return byUserNameAndPassword.isPresent();
+    }
+
+    @Override
+    public String getLastID() {
+        String lastID = repo.getLastID();
+        if (lastID!=null){
+            String[] s = lastID.split("C");
+            int value= Integer.parseInt(s[1]);
+            value++;
+            return "C"+value;
+        }else{
+            return "C1";
+        }
+    }
+
+    @Override
+    public int countByCustomerID() {
+        System.out.println(repo.countByCustomerID());
+        return repo.countByCustomerID();
     }
 }

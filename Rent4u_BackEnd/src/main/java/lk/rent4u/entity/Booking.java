@@ -1,6 +1,9 @@
 package lk.rent4u.entity;
 
 
+import lk.rent4u.dto.CarDTO;
+import lk.rent4u.dto.CustomerDTO;
+import lk.rent4u.dto.DriverDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +18,9 @@ public class Booking {
     @Id
     private String bookingID;
     private String date;
-    private String pickupdate;
-    private String status;
+    private String pickupDate;
     private String  returnDate;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "custId", referencedColumnName = "customerID",nullable = false)

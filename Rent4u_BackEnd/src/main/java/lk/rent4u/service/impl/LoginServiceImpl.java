@@ -1,4 +1,11 @@
 package lk.rent4u.service.impl;
 
-public class LoginServiceImpl {
+import lk.rent4u.service.LoginService;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+
+@Service
+@Transactional
+public class LoginServiceImpl implements LoginService {
 }

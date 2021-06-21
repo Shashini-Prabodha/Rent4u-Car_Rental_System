@@ -114,7 +114,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title text-secondary text-center"><i class="fas fa-user"></i>
                                             REGISTERED CUSTOMERS</h6>
-                                        <h6 class="card-subtitle  display-6 mb-2 text-center">50</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center" id="countCust">00</h6>
                                     </div>
                                 </div>
                             </div>
@@ -329,7 +329,7 @@
                                     <button type="button" class="btn btn-danger mt-3" id="delCar">Delete</button>
                                     <button type="button" class="btn btn-warning mt-3" id="updateCar">Update</button>
                                     <button type="button" class="btn btn-secondary mt-3" id="clearCar">Clear</button>
-                                    <button type="button" class="btn btn-info mt-3 disabled" id="addToMaintaince">Add To Maintaince</button>
+                                    <button type="button" class="btn btn-info mt-3 " id="addToMaintaince">Add To Maintaince</button>
 
                                 </div>
                             </div>
@@ -354,15 +354,14 @@
                         </div>
                         <!--                        car table-->
                         <div class="row overflow-scroll" style="height: 200px">
-                            <table id="dtHorizontalVerticalExample" class="table table-striped table-bordered table-sm "
-                                   cellspacing="0" width="100%" id="tblCar">
+                            <table id="tblCar" class="table table-hover table-striped table-bordered table-sm" cellspacing="0" width="100%"  >
                                 <thead>
                                 <tr class="border-bottom-secondary">
                                     <th>Reg No.</th>
                                     <th>Brand</th>
                                     <th>Car Type</th>
-                                    <th>Transmission</th>
                                     <th>No of Passengers</th>
+                                    <th>Transmission</th>
                                     <th>Fuel Type</th>
                                     <th>Colour</th>
                                     <th>Monthly Rate(Rs.)</th>
@@ -370,6 +369,7 @@
                                     <th>Loss Damage Waiver</th>
                                     <th>Free Km for a Day</th>
                                     <th>Free Km for a Month</th>
+                                    <th>Price for Extra Km</th>
                                     <th>Status</th>
                                     <th>Complete Km</th>
                                 </tr>
@@ -519,7 +519,7 @@
                         <div class="row overflow-scroll">
 
                             <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblDriver">
-                                <thead class="bg-secondary text-light">
+                                <thead class="text-light" style="background: #2d35ff">
                                 <tr class="border-bottom-secondary" >
                                     <th>Driver ID</th>
                                     <th>Name</th>
@@ -546,6 +546,23 @@
 
                     <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Order Details</h1></div>
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblBooking">
+                            <thead class="text-light bg-success">
+                            <tr class="border-bottom-secondary" >
+                                <th>Booking ID</th>
+                                <th>Order Date</th>
+                                <th>Customer ID</th>
+                                <th>Car ID</th>
+                                <th>Pickup Date</th>
+                                <th>Return Date</th>
+                                <th>Driver ID</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="bookingTBody">
+
+                            </tbody>
+                        </table>
                     </div>
                     <!-- Order details section end-->
 

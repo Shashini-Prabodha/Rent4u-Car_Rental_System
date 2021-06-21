@@ -28,6 +28,6 @@ public class Driver {
     private String password;
     private boolean available;
 //
-//    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
-//    private List<Booking> bookings = new ArrayList<Booking>();
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+    private List<Booking> bookings = new ArrayList<Booking>();
 }

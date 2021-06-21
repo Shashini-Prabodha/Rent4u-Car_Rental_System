@@ -1,6 +1,7 @@
 package lk.rent4u.service.impl;
 
 import lk.rent4u.dto.DriverDTO;
+import lk.rent4u.entity.Customer;
 import lk.rent4u.entity.Driver;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.DriverRepo;
@@ -28,17 +29,11 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public void addDriver(DriverDTO dto) {
-//        if (driverRepo.existsById(dto.getDriverID())) {
-//            throw new ValidateException("Driver already exist");
-//        }
-//        driverRepo.save(mapper.map(dto, Driver.class));
+
         if (driverRepo.existsById(dto.getDriverID())){
             throw new ValidateException("Driver Already Exist");
         }
-        System.out.println(dto);
-        driverRepo.save(
-                mapper.map(dto, Driver.class)
-        );
+        driverRepo.save(mapper.map(dto, Driver.class));
     }
 
     @Override
@@ -71,5 +66,17 @@ public class DriverServiceImpl implements DriverService {
         if (driverRepo.existsById(dto.getDriverID())) {
             driverRepo.save(mapper.map(dto, Driver.class));
         }
+    }
+
+    @Override
+    public boolean findByUserName(String userName) {
+        Optional<Driver> byUserName = driverRepo.findByUserName(userName);
+        return byUserName.isPresent();
+    }
+
+    @Override
+    public boolean findByUserNameAndPassword(String userName,String password) {
+        Optional<Driver> byUserNameAndPassword = driverRepo.findByUserNameAndPassword(userName, password);
+        return byUserNameAndPassword.isPresent();
     }
 }
