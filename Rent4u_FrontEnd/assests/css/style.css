@@ -53,7 +53,9 @@
     color: #eeb200;
 }
 
-/*admin.........*/
+
+/*......................................Admin DashBoard styling start........................................*/
+
 .lpack {
     position: absolute;
     animation: infinite 20s ridecar;
@@ -100,10 +102,10 @@
 }
 
 .adminPic {
-    animation: infinite 4s ease piczoom;
+    animation: infinite 4s ease adminpiczoom;
 }
 
-@keyframes piczoom {
+@keyframes adminpiczoom {
     0% {
         transform: scale(1);
         border: #b4fdc9 15px solid;
@@ -121,14 +123,16 @@
     }
 }
 
-.adminContent #v-tabs-dash-tab, #v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab ,#v-tabs-request-tab {
+.adminContent #v-tabs-dash-tab, #v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab ,#v-tabs-request-tab ,
+#v-tabs-profile-tab,#v-tabs-setting-tab{
     padding: 25px;
     font-size: 15px;
     text-shadow: #c7c7c7 5px 5px 5px;
 
 }
 
-#v-tabs-dash > div > h1, #v-tabs-car > div > h1, #v-tabs-customer > div > h1, #v-tabs-driver > div > h1, #v-tabs-order > div > h1, #v-tabs-payment > div > h1 ,#v-tabs-request > div > h1 {
+#v-tabs-dash > div > h1, #v-tabs-car > div > h1, #v-tabs-customer > div > h1, #v-tabs-driver > div > h1, #v-tabs-order > div > h1, #v-tabs-payment > div > h1 ,#v-tabs-request > div > h1 ,
+#v-tabs-profile > div > h1, #v-tabs-setting > div > h1{
     text-shadow: #c0c0c0 5px 5px 5px;
 }
 
@@ -182,7 +186,10 @@
     color: #d90000;
 }
 
-/*............*/
+/*......................................Admin DashBoard styling end........................................*/
+
+/*.............................................Index form styling start...............................*/
+
 .topPage{
     overflow: hidden;
 }
@@ -325,7 +332,10 @@
     }
 }
 
-/*login form styling*/
+/*.............................................Index form styling end...............................*/
+
+/*....................................Login form styling start.................................*/
+
 .loginBody{
     background: url("../images/lbackwall.png");
     background-size: cover
@@ -343,3 +353,66 @@
     background: url("../images/undraw_off_road_9oae.svg");
     background-size: cover;
 }
+/*....................................Login form styling end.................................*/
+
+/*................................customer dashboard start..................................*/
+
+.customerContent .custPic {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background: url("../images/customer.png");
+    background-size: cover;
+    padding: 15px;
+    border: #abedfd 15px solid;
+
+}
+
+.custPic {
+    animation: infinite 4s ease custpiczoom;
+}
+
+@keyframes custpiczoom {
+    0% {
+        transform: scale(1);
+        border: #abedfd 15px solid;
+
+    }
+    50% {
+        transform: scale(1.15);
+        border: #abedfd 0px solid;
+
+    }
+    100% {
+        transform: scale(1);
+        border: #abedfd 15px solid;
+
+    }
+}
+
+.custTitle{
+    font-family: Dancing Script SemiBold;
+    border-radius: 20px 0 0px;
+    background: #0080db;
+    box-shadow: #bcbcbc 5px 0px 13px;
+    color: white;
+}
+.bookingReqTitle{
+    font-family: Dancing Script SemiBold;
+    border-radius: 20px 0 0px;
+    background: #d700c1;
+    box-shadow: #bcbcbc 5px 0px 13px;
+    color: white;
+}
+/*.carPic{*/
+/*    width: 368px;*/
+/*    height: 280px;*/
+/*    right: 50px;*/
+/*    bottom: -16px;*/
+/*    border: solid black 3px;*/
+/*    border-radius: 15px;*/
+/*}*/
+
+
+
+/*................................customer dashboard end..................................*/

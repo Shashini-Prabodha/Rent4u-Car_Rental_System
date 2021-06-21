@@ -19,7 +19,7 @@ $('#btnLogin').click(function () {
                     location.replace("DriverDashBoard.html");
                 } else if (role == "Customer") {
                     alertify.success('Customer Login', 'success', 2);
-                    location.replace("customer.html");
+                    location.replace("CustomerDashBoard.html");
                 } else {
                     Swal.fire({
                         icon: 'warning',
