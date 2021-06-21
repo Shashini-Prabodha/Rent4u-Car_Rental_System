@@ -69,4 +69,11 @@ public class CustomerController {
         return new ResponseEntity(new StandardResponse("200","Done",count),HttpStatus.OK);
     }
 
+    @GetMapping(path = "/get/{userName}")
+    public ResponseEntity getCustomer(@PathVariable String userName){
+        System.out.println("cust 74"+ userName);
+        CustomerDTO dto = service.getuCustomer(userName);
+        System.out.println(dto.getCustomerID());
+        return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
+    }
 }

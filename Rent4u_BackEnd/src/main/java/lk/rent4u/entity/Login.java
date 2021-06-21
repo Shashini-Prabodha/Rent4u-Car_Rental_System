@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Entity
 public class Login {
     @Id
-    private String userID;
+    private String loginID;
     private String userName;
     private String password;
     private String role;

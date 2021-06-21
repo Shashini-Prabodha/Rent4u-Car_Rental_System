@@ -7,19 +7,24 @@ $('#btnLogin').click(function () {
         $.ajax({
             method: "get",
             url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/login/' + userName + '/' + password,
-            async: true,
+            async: false,
             success: function (response) {
                 var role = response.data;
                 console.log(role);
                 if (role == "Admin") {
+                    loginSave("Admin");
                     alertify.success('Admin Login', 'success', 2);
                     location.replace("AdminDashBoard.html");
                 } else if (role == "Driver") {
                     alertify.success('Driver Login', 'success', 2);
                     location.replace("DriverDashBoard.html");
+                    loginSave("Driver");
+
                 } else if (role == "Customer") {
                     alertify.success('Customer Login', 'success', 2);
                     location.replace("CustomerDashBoard.html");
+                    loginSave("Customer");
+
                 } else {
                     Swal.fire({
                         icon: 'warning',
@@ -34,6 +39,44 @@ $('#btnLogin').click(function () {
         // $('#driverID').css('border', '3px solid red');
     }
 });
+//getLastId
+getNewLogID();
+function getNewLogID() {
+    let LastLoginID=1;
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/login/newLogId',
+        async: false,
+        success: function (response) {
+            LastLoginID = response.data;
+            console.log(LastLoginID+" login 52");
+        }
+    });
+    return LastLoginID;
+}
+
+function loginSave(role) {
+    let userName = $('#userName').val();
+    let password = $('#password').val();
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/login",
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(
+            {
+                loginID:getNewLogID(),
+                userName:userName,
+                password:password,
+               role:role
+            }
+        ),
+        success: function (response) {
+            console.log("login save method done");
+
+        }});
+}
+
 
 $('#userName').on('keyup', function (event) {
     checkInputField();
@@ -347,3 +390,17 @@ function checkCustomerUserNameValidity() {
 
 }
 
+//model text clear
+$("#btnClose").click(function () {
+    $("#custID").val("");
+    $("#inputName").val("");
+    $("#inputContactNo").val("");
+    $("#inputAddress").val("");
+    $("#inputEmail").val("");
+    $("#inputDrivingLicence").val("");
+    $("#inputNIC").val("");
+    $("#inputUserName").val("");
+    $("#inputPassword").val("");
+    $("#inputfile1").val("");
+    $("#inputfile2").val("");
+});

@@ -28,5 +28,6 @@ public interface CustomerService {
 
     int countByCustomerID();
 
+    CustomerDTO getuCustomer(String userName);
 
 }

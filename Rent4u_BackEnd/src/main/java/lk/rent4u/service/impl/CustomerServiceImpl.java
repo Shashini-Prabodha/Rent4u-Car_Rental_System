@@ -87,7 +87,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int countByCustomerID() {
-        System.out.println(repo.countByCustomerID());
         return repo.countByCustomerID();
+    }
+
+    @Override
+    public CustomerDTO getuCustomer(String userName) {
+        System.out.println("c ser 95"+userName);
+        Customer customer = repo.getuCustomer(userName);
+        System.out.println("c ser 97"+customer.getCustomerID());
+
+        return mapper.map(customer,CustomerDTO.class);
     }
 }

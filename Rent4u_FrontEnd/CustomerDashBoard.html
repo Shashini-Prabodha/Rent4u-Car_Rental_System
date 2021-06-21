@@ -332,7 +332,8 @@
                         <div class="row ml-0 mr-0 m-3">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
 
-                                <button type="button" class="btn btn-danger mt-3 " id="sendBookingReq" style="font-size:15px "><i
+                                <button type="button" class="btn btn-danger mt-3 " id="sendBookingReq"
+                                        style="font-size:15px "><i
                                         class="fas fa-paper-plane"></i> Send Booking Request
                                 </button>
                             </div>
@@ -351,9 +352,10 @@
                     <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Order Details</h1></div>
 
-                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblBooking">
-                            <thead class="text-light bg-success">
-                            <tr class="border-bottom-secondary" >
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                               width="100%" id="tblBooking">
+                            <thead class="text-light bg-primary">
+                            <tr class="border-bottom-secondary">
                                 <th>Booking ID</th>
                                 <th>Order Date</th>
                                 <th>Customer ID</th>
@@ -368,7 +370,31 @@
 
                             </tbody>
                         </table>
+                        <div class="row ml-0 mr-0 m-3">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
 
+                                <button type="button" class="btn btn-success mt-3 " id="btnRent" style="font-size:15px"
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                    <i class="fas fa-car"></i> Paid for Car
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row ml-0 mr-0 m-3">
+                            <div class="col-1">
+                                <button
+                                       id="msg"
+                                       type="button"
+                                        class="btn btn-lg btn-danger"
+                                        data-mdb-toggle="popover"
+                                        title="Popover title"
+                                        data-mdb-content="And here's some amazing content. It's very engaging. Right?"
+                                >
+                                    <i class="fas fa-envelope fa-2x"></i>
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
                     <!-- Order details section end-->
 
@@ -378,14 +404,7 @@
                          aria-labelledby="v-tabs-payment-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
 
-                        <div class="row ml-0 mr-0 m-3">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
 
-                                <button type="button" class="btn btn-success mt-3 " id="btnRent" style="font-size:15px "><i
-                                        class="fas fa-paper-plane"></i> Send Booking Request
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Payment details section end-->
@@ -401,6 +420,128 @@
                     <!-- Setting section end-->
 
                 </div>
+                <!--                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"-->
+                <!--                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+                <!--                    <div class="modal-dialog modal-dialog-centered" role="document">-->
+                <!--                        <div class="modal-content">-->
+                <!--                            <div class="modal-header">-->
+                <!--                                <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>-->
+                <!--                                <div class="form-row align-content-end">-->
+                <!--                                    <input type="text" class="form-control" id="custID" hidden>-->
+                <!--                                </div>-->
+                <!--                                <button type="button" class="close" data-dismiss="modal"-->
+                <!--                                        aria-label="Close">-->
+                <!--                                    <span aria-hidden="true">&times;</span>-->
+                <!--                                </button>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-body">-->
+                <!--                                <form>-->
+
+                <!--                                    <div class="form-row">-->
+
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputName">Name</label>-->
+                <!--                                            <input type="text" class="form-control" id="inputName"-->
+                <!--                                                   placeholder="Kamal Manamperi" required>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputContactNo">Contact No</label>-->
+                <!--                                            <input type="text" class="form-control"-->
+                <!--                                                   id="inputContactNo"-->
+                <!--                                                   placeholder="0712345678" required>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="form-row m-0">-->
+                <!--                                        <label for="inputAddress">Address</label>-->
+                <!--                                        <input type="text" class="form-control" id="inputAddress"-->
+                <!--                                               placeholder="No:32/67, Matara" required>-->
+                <!--                                    </div>-->
+
+                <!--                                    <div class="form-row m-0 mt-1">-->
+                <!--                                        <label for="inputEmail">Email</label>-->
+                <!--                                        <input type="email" class="form-control" id="inputEmail"-->
+                <!--                                               placeholder="Email"-->
+                <!--                                               required>-->
+                <!--                                    </div>-->
+
+                <!--                                    <div class="form-row">-->
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputDrivingLicence">Driving Licence No</label>-->
+                <!--                                            <input type="text" class="form-control"-->
+                <!--                                                   id="inputDrivingLicence"-->
+                <!--                                                   placeholder="B1234567" required>-->
+                <!--                                        </div>-->
+
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputNIC">NIC No</label>-->
+                <!--                                            <input type="text" class="form-control" id="inputNIC"-->
+                <!--                                                   placeholder="984545415V" required>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="form-row">-->
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputUserName">Username</label>-->
+                <!--                                            <input type="text" class="form-control" id="inputUserName"-->
+                <!--                                                   placeholder="kamal" required>-->
+                <!--                                        </div>-->
+                <!--                                        <div class="form-group col-md-6">-->
+                <!--                                            <label for="inputPassword">Password</label>-->
+                <!--                                            <input type="password" class="form-control"-->
+                <!--                                                   id="inputPassword"-->
+                <!--                                                   placeholder="" required>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="input-group mb-3">-->
+                <!--                                        <div class="input-group-prepend">-->
+                <!--                                        <span class="input-group-text"-->
+                <!--                                              id="inputGroupFileAddon01">Upload NIC (Front)</span>-->
+                <!--                                        </div>-->
+                <!--                                        &lt;!&ndash;                            <div class="custom-file">&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                <input type="file" class="custom-file-input"&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                       id="inputfile1"&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                       aria-describedby="inputGroupFileAddon01">&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                <label class="custom-file-label" for="inputfile1">Choose&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                    file</label>&ndash;&gt;-->
+
+                <!--                                        &lt;!&ndash;                            </div>&ndash;&gt;-->
+                <!--                                        <div>-->
+                <!--                                            <input class="form-control w-100" id="inputfile1" type="file">-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+
+                <!--                                    <div class="input-group mb-3">-->
+
+                <!--                                        <div class="input-group-prepend">-->
+                <!--                                        <span class="input-group-text"-->
+                <!--                                              id="inputGroupFileAddon02">Upload NIC (Back)</span>-->
+                <!--                                        </div>-->
+                <!--                                        &lt;!&ndash;                            <div class="custom-file">&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                <input type="file" class="custom-file-input"&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                       id="inputfile2"&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                       aria-describedby="inputGroupFileAddon02">&ndash;&gt;-->
+                <!--                                        &lt;!&ndash;                                <label class="custom-file-label" for="inputfile2">Choose file</label>&ndash;&gt;-->
+
+                <!--                                        &lt;!&ndash;                            </div>&ndash;&gt;-->
+                <!--                                        <div>-->
+                <!--                                            <input class="form-control w-100" id="inputfile2" type="file">-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+
+
+                <!--                                    <div class="modal-footer">-->
+                <!--                                        <div style="width: 100%; text-align: center">-->
+                <!--                                            <button type="button" class="btn btn-success"-->
+                <!--                                                    id="btncreate">Create Account-->
+                <!--                                            </button>-->
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </form>-->
+                <!--                            </div>-->
+
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
             </div>            <!-- Tab content -->
         </div>
     </div>
