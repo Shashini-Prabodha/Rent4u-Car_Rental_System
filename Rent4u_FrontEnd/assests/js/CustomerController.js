@@ -1,3 +1,20 @@
+$('#custOrderTab').click(function () {
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 getLastLoginData();
 
 function getLastLoginData() {
@@ -331,8 +348,9 @@ $('#sendBookingReq').click(function () {
                         ),
                         success: function (response) {
                             let data = response.data;
+                            $('#cbookingID').val(data.bookingID);
                             console.log(data);
-                            loadCustBooking(data);
+                            // loadCustBooking(data);
 
 
                             Swal.fire({
@@ -363,10 +381,12 @@ $('#sendBookingReq').click(function () {
 
 });
 
+loadCustBooking()
 //load customer booking req
 function loadCustBooking(response) {
     $('#cbookingTBody').empty();
-console.log("(response.bookingID); - "+(response.bookingID));
+
+    $('#cbookingID').val(response.bookingID);
     let bookingID = (response.bookingID);
     let date = (response.date);
     let customer = response.customer.customerID;
@@ -375,8 +395,8 @@ console.log("(response.bookingID); - "+(response.bookingID));
     let returnDate = response.returnDate;
     let driver = response.driver.driverID;
     let driverID = response[i].driver.driverID;
-    if(driverID=="D0"){
-        driverID="No Need Driver";
+    if (driverID == "D0") {
+        driverID = "No Need Driver";
     }
     let status = response.status;
 
@@ -384,6 +404,34 @@ console.log("(response.bookingID); - "+(response.bookingID));
     $('#cbookingTBody').append(row);
     driverID = response[i].driver.driverID;
 }
+
+
+function getBookingUpdateResp() {
+    let bookingID = $('#cbookingID').val();
+console.log(bookingID);
+if(bookingID!="") {
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking' +bookingID,
+        async: false,
+        dataType: 'json',
+        success: function (response) {
+            let booking = response.data;
+            loadCustBooking(booking);
+        }
+    });
+}
+}
+
+
+
+
+
+
+
+
+
+
 
 
 //
@@ -409,3 +457,5 @@ console.log("(response.bookingID); - "+(response.bookingID));
 //         }
 //     });
 // }
+
+

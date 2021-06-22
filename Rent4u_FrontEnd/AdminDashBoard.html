@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css" rel="stylesheet"/>
     <link href="assests/sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="assests/alertjs/alertify.min.css" rel="stylesheet">
 
     <!--    <script src="assests/js/script.js"></script>-->
 
@@ -31,6 +32,9 @@
 
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
+
+    <script src="assests/alertjs/alertify.min.js"></script>
+
 </head>
 <body onscroll="myFunction()">
 <header id="header" class="d-flex justify-content-center ">
@@ -86,7 +90,7 @@
                    aria-controls="v-tabs-driver" aria-selected="false">
                     <i class="fas fa-user"></i> DRIVER</a>
                 <a class="nav-link" id="v-tabs-order-tab" data-mdb-toggle="tab" href="#v-tabs-order" role="tab"
-                   aria-controls="v-tabs-order" aria-selected="false">
+                   aria-controls="v-tabs-order" aria-selected="false" id="adminOrdTab">
                     <i class="fas fa-list-ul"></i> ORDER</a>
                 <a class="nav-link" id="v-tabs-payment-tab" data-mdb-toggle="tab" href="#v-tabs-payment" role="tab"
                    aria-controls="v-tabs-payment" aria-selected="false">
@@ -588,7 +592,8 @@
                                 <th>Return Date</th>
                                 <th>Driver ID</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Accept</th>
+                                <th>Reject</th>
                             </tr>
                             </thead>
                             <tbody id="bookingReqTBody">

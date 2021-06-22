@@ -3,6 +3,10 @@ $(document).ready(function () {
     getCountRegCust();
 });
 
+$('#adminOrdTab').click(function () {
+    loadAllBooking();
+});
+
 
 function getCountRegCust() {
     $.ajax({
@@ -849,8 +853,8 @@ function loadAllBooking() {
                 let pickupDate = response[i].pickupDate;
                 let returnDate = response[i].returnDate
                 let driverID = response[i].driver.driverID;
-                if(driverID=="D0"){
-                    driverID="No Need Driver";
+                if (driverID == "D0") {
+                    driverID = "No Need Driver";
                 }
                 let status = response[i].status;
 
@@ -867,9 +871,10 @@ function loadAllBooking() {
 // loadAllbooking
 loadAllRBooking();
 
-//load customers
+//load all req booking
 function loadAllRBooking() {
     $('#bookingReqTBody').empty();
+
     $.ajax({
         method: 'GET',
         url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking/get/pending",
@@ -886,39 +891,175 @@ function loadAllRBooking() {
                 let returnDate = response[i].returnDate
                 let driverID = response[i].driver.driverID;
                 let status = response[i].status;
-                if(driverID=="D0"){
-                    driverID="No Need Driver";
+                if (driverID == "D0") {
+                    driverID = "No Need Driver";
                 }
 
                 var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driverID}</td><td>${status}</td>
-                            <td><button type="button" class="btn btn-success rounded-pill" ><i class="far fa-check-circle fa-2x"></i></button>
-                                <button type="button" class="btn btn-danger rounded-pill" id="reject"><i class="fas fa-trash-alt fa-2x"></i></button></td></tr>`;
+                            <td><button type="button" class="btn btn-success rounded-pill btn-sm px-3" id="accept"><i class="far fa-check-circle fa-2x"></i></button>
+                                </td><td><button type="button" class="btn btn-danger rounded-pill btn-sm px-3"" id="reject"><i class="fas fa-trash-alt fa-2x"></i></button></td></tr>`;
                 $('#bookingReqTBody').append(row);
                 driverID = response[i].driver.driverID;
 
-                $('#tblReqBooking #bookingReqTBody tr').css({"cursor": "pointer"});
-                $('#tblReqBooking #bookingReqTBody tr').click(function () {
 
+                $('#tblReqBooking #bookingReqTBody').on('click', "#accept", function () {
+                    let closest = $(this).closest('tr');
 
-                    let status = $(this).children('td:eq(7)').text();
-                    let id = $(this).children('td:eq(0)').text();
-                    let cid = $(this).children('td:eq(2)').text();
-                    $(this).children('td:eq(8)').children(1).click(function () {
-                        console.log(id);
-                    });
-                    // $(this).children('td:eq(8)').children(2).click(function () {
-                    //     console.log(cid);
-                    // });
-
-
+                    let bookingId = closest.find('td:eq(0)').text();
+                    let ordDate = closest.find('td:eq(1)').text();
+                    let cid = closest.find('td:eq(2)').text();
+                    let carid = closest.find('td:eq(3)').text();
+                    let pickupdate = closest.find('td:eq(4)').text();
+                    let returnDate = closest.find('td:eq(5)').text();
+                    let driverId = closest.find('td:eq(6)').text();
+                    let status = "Accept";
+                    updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, driverId, status);
 
                 });
+
+                $('#tblReqBooking #bookingReqTBody').on('click', "#reject", function () {
+                    let closest = $(this).closest('tr');
+
+                    let bookingId = closest.find('td:eq(0)').text();
+                    let ordDate = closest.find('td:eq(1)').text();
+                    let cid = closest.find('td:eq(2)').text();
+                    let carid = closest.find('td:eq(3)').text();
+                    let pickupdate = closest.find('td:eq(4)').text();
+                    let returnDate = closest.find('td:eq(5)').text();
+                    let driverId = closest.find('td:eq(6)').text();
+                    let status = "Reject";
+                    updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, driverId, status);
+                });
+
 
             }
         }
     });
 }
 
+function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, driverId, status) {
+    console.log("bookingId "+bookingId+" "+cid+" "+driverId+" "+carid);
+
+    let car;
+    let driver;
+    let customer;
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
+        async: false,
+        dataType: 'json',
+        success: function (response) {
+            car = response.data;
+            console.log("car "+car);
+            // car.status="Booking";
+            updateCarAjax(car);
+        }
+    });
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer/' + cid,
+        async: false,
+        dataType: 'json',
+        success: function (response) {
+            customer = response.data;
+            console.log("cust "+customer);
+
+        }
+    });
+
+    if (driverId != "D0") {
+        $.ajax({
+            method: "get",
+            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/'+driverId,
+            async: false,
+            dataType: 'json',
+            success: function (response) {
+                driver = response.data;
+                updateDriverAjax(driver);
+                console.log("driver "+driver);
+            }
+        });
+
+    } else {
+        $.ajax({
+            method: "get",
+            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/' + "D0",
+            async: false,
+            dataType: 'json',
+            success: function (response) {
+                driver = response.data;
+
+            }
+        });
+    }
+
+    $.ajax({
+        method: "put",
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking",
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(
+            {
+                bookingID: bookingId,
+                date: ordDate,
+                pickupDate: pickupdate,
+                returnDate: returnDate,
+                status: status,
+                customer: customer,
+                car: car,
+                driver: driver
+            }
+        ),
+        success: function (data) {
+            loadAllRBooking();
+            // Swal.fire({
+            //     position: 'top-end',
+            //     icon: 'success',
+            //     title: 'Upadeted !',
+            //     showConfirmButton: false,
+            //     timer: 1500
+            // })
+
+            alertify.success('Request Sent', 'success', 2);
+            clearDriverTextFields();
+
+        }
+    });
+}
+
+function updateCarAjax(car) {
+    $.ajax({
+        method: "put",
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car",
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(
+            {
+                carID: car.carID,
+                brand: car.brand,
+                type: car.cType,
+                numberOfPassengers: car.noofpsg,
+                transmissionType: car.transtype,
+                fuelType: car.fueltype,
+                colour: car.color,
+                dailyRate: car.dailyrate,
+                monthlyRate: car.monthlyrate,
+                freeKmforMonth: car.fmprice,
+                freeKmforDay: car.fdprice,
+                lossDamageWaiver: car.lossdamage,
+                priceForExtraKM: car.priceforexkm,
+                status: "Booking",
+                completeKm: car.completeKm
+            }
+        ),
+        success: function (data) {
+            loadAllCars();
+
+            clearCarTextFields();
+        }
+    });
+
+}
 
 // ..............Driver section..........//
 
@@ -1307,7 +1448,7 @@ $("#updateDriver").click(function () {
                                                     timer: 1500
                                                 })
                                                 clearDriverTextFields();
-
+                                                return true;
                                             }
                                         });
                                     } else {
@@ -1337,6 +1478,31 @@ $("#updateDriver").click(function () {
         }
     })
 });
+
+function updateDriverAjax(driver) {
+    $.ajax({
+        method: "put",
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver",
+        contentType: "application/json",
+        async: true,
+        data: JSON.stringify(
+            {
+                driverID: driver.driverID,
+                name: driver.name,
+                contactNo: driver.contactNo,
+                nic: driver.nic,
+                userName: driver.userName,
+                password: driver.password,
+                available: false
+            }
+        ),
+        success: function (data) {
+            loadAllDrivers();
+            clearDriverTextFields();
+            return true;
+        }
+    });
+}
 
 //clear
 $('#clearDriver').click(function () {

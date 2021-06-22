@@ -85,32 +85,33 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = driverRepo.getDriver(userName);
         return mapper.map(driver, DriverDTO.class);
     }
-//
-//    @Override
-//    public List<DriverDTO> readByAvailable(boolean available) {
-//        List<Driver> drivers = driverRepo.readByAvailable(true);
-//        return mapper.map(drivers,new TypeToken<List<DriverDTO>>(){}.getType());
-//    }
+
+    //
+    @Override
+    public List<DriverDTO> readByAvailable(boolean available) {
+        List<Driver> drivers = driverRepo.readByAvailable(true);
+        return mapper.map(drivers, new TypeToken<List<DriverDTO>>() {
+        }.getType());
+    }
 
     @Override
     public DriverDTO getRandomDriver() {
 
+        List<DriverDTO> driverDTOS = readByAvailable(true);
         Random random = new Random();
-        int i = random.nextInt(50);
-
-        DriverDTO dto = searchDriver("D" + i);
-        System.out.println("DTO " + dto);
-        while (true) {
-            if (dto == null || dto.isAvailable() == false) {
-                i = random.nextInt(50);
-                dto = searchDriver("D" + i);
-                System.out.println("if in ");
-
-            } else {
-                return dto;
-
-            }
-        }
+        int i = random.nextInt(driverDTOS.size());
+        System.out.println( driverDTOS.get(i)+" Random dri");
+        return driverDTOS.get(i);
+//        DriverDTO dto = searchDriver("D" + i);
+//        System.out.println("DTO " + dto);
+//
+//            if (dto == null || dto.isAvailable() == false) {
+//                i = random.nextInt(50);
+//                dto = searchDriver("D" + i);
+//                System.out.println("if in ");
+//
+//
+//        }
     }
 
 }
