@@ -5,6 +5,9 @@ import lk.rent4u.dto.CarDTO;
 import lk.rent4u.dto.CustomerDTO;
 import lk.rent4u.dto.DriverDTO;
 import lk.rent4u.entity.Booking;
+import lk.rent4u.entity.Car;
+import lk.rent4u.entity.Customer;
+import lk.rent4u.entity.Driver;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.BookingRepo;
 import lk.rent4u.repo.CarRepo;
@@ -46,16 +49,24 @@ public class BookingServiceImpl implements BookingService {
         }
         dto.setBookingID(getNewID());
 
-        CarDTO carDTO = dto.getCarDTO();
-        CustomerDTO customerDTO = dto.getCustomerDTO();
-        DriverDTO driverDTO = dto.getDriverDTO();
+        System.out.println(dto.getBookingID()+" Seriml");
+        bookingRepo.save(mapper.map(dto,Booking.class));
+        System.out.println("After save booking");
 
-        if(driverDTO==true){
-            
-        }else {}
-
-
-        bookingRepo.save(mapper.map(dto, Booking.class));
+//
+//        CarDTO carDTO = dto.getCarDTO();
+//        CustomerDTO customerDTO = dto.getCustomerDTO();
+//        DriverDTO driverDTO = dto.getDriverDTO();
+//
+//
+//        Car car = mapper.map(carDTO, Car.class);
+//        Customer customer = mapper.map(customerDTO, Customer.class);
+//        Driver driver = mapper.map(driverDTO, Driver.class);
+//
+//        Booking booking = new Booking(
+//
+//        );
+//        bookingRepo.save();
     }
 
     @Override
@@ -95,14 +106,30 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public String getNewID() {
+
         String lastID = getLastID();
-        if (lastID!=null){
+        if (lastID != null) {
             String[] s = lastID.split("B");
-            int value= Integer.parseInt(s[1]);
+            int value = Integer.parseInt(s[1]);
             value++;
-            return "B"+value;
-        }else{
-            return "B1";
+            if (value < 10) {
+                return "B00" + value;
+            } else if (value < 100) {
+                return "B0" + value;
+            } else {
+                return "B" + value;
+            }
+        } else {
+            return "B001";
         }
+
     }
+
+    @Override
+    public List<Booking> readByStatus(String status) {
+        List<Booking> bookings = bookingRepo.readByStatus(status);
+        return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+    }
+
+
 }

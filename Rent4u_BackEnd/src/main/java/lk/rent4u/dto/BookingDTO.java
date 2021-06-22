@@ -13,7 +13,7 @@ public class BookingDTO {
     private String pickupDate;
     private String  returnDate;
     private String status;
-    private CustomerDTO customerDTO;
-    private CarDTO carDTO;
-    private DriverDTO driverDTO;
+    private CustomerDTO customer;
+    private CarDTO car;
+    private DriverDTO driver;
 }

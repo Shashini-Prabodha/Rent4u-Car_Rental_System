@@ -27,7 +27,7 @@ public class Driver {
     private String userName;
     private String password;
     private boolean available;
-//
+
     @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
     private List<Booking> bookings = new ArrayList<Booking>();
 }

@@ -31,6 +31,8 @@ public class BookingController {
         if (bookingDTO.getBookingID().trim().length() <= 0) {
             throw new NotFoundException("Booking ID cannot be empty");
         }
+        System.out.println(bookingDTO.getBookingID()+" contr book");
+
         service.addBooking(bookingDTO);
         return new ResponseEntity(new StandardResponse("201", "Done", bookingDTO), HttpStatus.CREATED);
     }
@@ -63,6 +65,12 @@ public class BookingController {
         String newID = service.getNewID();
 
         return new ResponseEntity(new StandardResponse("200","Done",newID),HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/get/{status}")
+    public ResponseEntity getAllBookingsinstatus(@PathVariable String status) {
+        ArrayList<BookingDTO> allBookings = service.getAllBookings();
+        return new ResponseEntity(new StandardResponse("200", "Done", allBookings), HttpStatus.OK);
     }
 
 }

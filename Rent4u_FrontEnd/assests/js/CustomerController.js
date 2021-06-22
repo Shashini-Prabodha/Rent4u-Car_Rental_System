@@ -30,6 +30,7 @@ function getAllCustomerData(userName) {
             $('#userName').val(data.userName);
             // $('#userName').val(data.password);
 
+
         }
     });
 }
@@ -230,19 +231,23 @@ function checkingReturnDate() {
 $('#pickupDate').on('change', function () {
     checkingPickupDate();
 });
+
 $('#returnDate').on('change', function () {
     checkingReturnDate();
 });
 
 function checkDriverNeed() {
 
-    if ($('#needDriver').checked == true) {
+    if ($("#needDriver").prop('checked') == true) {
+        console.log('tick');
         return true;
     } else {
+        console.log('no');
         return false;
     }
 }
 
+console.log("$('#custID').val() - " + $('#custID').val());
 
 //send req btn
 $('#sendBookingReq').click(function () {
@@ -256,9 +261,8 @@ $('#sendBookingReq').click(function () {
     let carid = checkSelectedcmbId();
 
     let car;
-    let driver;
+    let driver = null;
     let customer;
-    let driverNeed = checkDriverNeed();
 
     if (cType != null) {
         if (carid != null) {
@@ -284,7 +288,30 @@ $('#sendBookingReq').click(function () {
                             customer = response.data;
                         }
                     });
+                    console.log(checkDriverNeed() + " - checkDriverNeed()");
 
+                    if (checkDriverNeed()) {
+                        $.ajax({
+                            method: "get",
+                            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/read/randomDriver',
+                            async: false,
+                            dataType: 'json',
+                            success: function (response) {
+                                driver = response.data;
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            method: "get",
+                            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/' + "D0",
+                            async: false,
+                            dataType: 'json',
+                            success: function (response) {
+                                driver = response.data;
+                            }
+                        });
+                    }
+                    console.log("did " + driver + " car " + car + " cust " + customer);
                     $.ajax({
                         method: "post",
                         url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking",
@@ -297,13 +324,17 @@ $('#sendBookingReq').click(function () {
                                 pickupDate: pickupDate,
                                 returnDate: returnDate,
                                 status: "pending",
-                                customer:customer,
-                                car:car,
-                                driver:driverNeed
+                                customer: customer,
+                                car: car,
+                                driver: driver
                             }
                         ),
-                        success: function (data) {
-                            loadAllCars();
+                        success: function (response) {
+                            let data = response.data;
+                            console.log(data);
+                            loadCustBooking(data);
+
+
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -311,7 +342,6 @@ $('#sendBookingReq').click(function () {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            clearCarTextFields();
                         }
                     });
 
@@ -332,3 +362,50 @@ $('#sendBookingReq').click(function () {
     }
 
 });
+
+//load customer booking req
+function loadCustBooking(response) {
+    $('#cbookingTBody').empty();
+console.log("(response.bookingID); - "+(response.bookingID));
+    let bookingID = (response.bookingID);
+    let date = (response.date);
+    let customer = response.customer.customerID;
+    let car = response.car.carID;
+    let pickupDate = response.pickupDate;
+    let returnDate = response.returnDate;
+    let driver = response.driver.driverID;
+    let driverID = response[i].driver.driverID;
+    if(driverID=="D0"){
+        driverID="No Need Driver";
+    }
+    let status = response.status;
+
+    var row = `<tr><td>${bookingID}</td><td>${date}</td><td>${customer}</td><td>${car}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driver}</td><td>${status}</td></tr>`;
+    $('#cbookingTBody').append(row);
+    driverID = response[i].driver.driverID;
+}
+
+
+//
+// saveDefaultDriver();
+// function saveDefaultDriver() {
+//     $.ajax({
+//         method: "post",
+//         url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver",
+//         contentType: "application/json",
+//         async: false,
+//         data: JSON.stringify(
+//             {
+//                 driverID: "D0",
+//                 name: null,
+//                 contactNo: 0,
+//                 nic: null,
+//                 userName: null,
+//                 password: null,
+//                 available: false
+//             }
+//         ),
+//         success: function (data) {
+//         }
+//     });
+// }

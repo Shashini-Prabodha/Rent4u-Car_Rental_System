@@ -1,5 +1,5 @@
 // ..............DashBoard section..........//
-$(document).ready(function() {
+$(document).ready(function () {
     getCountRegCust();
 });
 
@@ -12,38 +12,11 @@ function getCountRegCust() {
         success: function (response) {
             var resp = response.data;
             console.log(resp);
-           $('#countCust').text(resp);
+            $('#countCust').text(resp);
         }
 
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // ..............Car section..........//
@@ -399,7 +372,7 @@ function setCarType(type) {
 
 //set transmition type
 function setTransType(type) {
-    type=type.trim();
+    type = type.trim();
 
     if (type == "Manual") {
         console.log("type");
@@ -853,10 +826,9 @@ $('#btnSearchCust').click(function () {
 });
 
 
-
 // ..............Booking section..........//
 
-// loadAllCustomers
+// loadAllbooking
 loadAllBooking();
 
 //load customers
@@ -866,21 +838,25 @@ function loadAllBooking() {
         method: 'GET',
         url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking",
         dataType: 'json',
+        async: false,
         success: function (resp) {
             let response = resp.data;
             for (var i in response) {
                 let bookingID = (response[i].bookingID);
                 let orddate = (response[i].date);
-                let customerID = response[i].customerID;
-                let carID = response[i].carID;
+                let customerID = response[i].customer.customerID;
+                let carID = response[i].car.carID;
                 let pickupDate = response[i].pickupDate;
                 let returnDate = response[i].returnDate
-                let driverID = response[i].driverID;
+                let driverID = response[i].driver.driverID;
+                if(driverID=="D0"){
+                    driverID="No Need Driver";
+                }
                 let status = response[i].status;
 
                 var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driverID}</td><td>${status}</td></tr>`;
-                $('.customerTbody').append(row);
-
+                $('#bookingTBody').append(row);
+                driverID = response[i].driver.driverID;
 
             }
         }
@@ -888,20 +864,60 @@ function loadAllBooking() {
 }
 
 
+// loadAllbooking
+loadAllRBooking();
+
+//load customers
+function loadAllRBooking() {
+    $('#bookingReqTBody').empty();
+    $.ajax({
+        method: 'GET',
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking/get/pending",
+        dataType: 'json',
+        async: false,
+        success: function (resp) {
+            let response = resp.data;
+            for (var i in response) {
+                let bookingID = (response[i].bookingID);
+                let orddate = (response[i].date);
+                let customerID = response[i].customer.customerID;
+                let carID = response[i].car.carID;
+                let pickupDate = response[i].pickupDate;
+                let returnDate = response[i].returnDate
+                let driverID = response[i].driver.driverID;
+                let status = response[i].status;
+                if(driverID=="D0"){
+                    driverID="No Need Driver";
+                }
+
+                var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driverID}</td><td>${status}</td>
+                            <td><button type="button" class="btn btn-success rounded-pill" ><i class="far fa-check-circle fa-2x"></i></button>
+                                <button type="button" class="btn btn-danger rounded-pill" id="reject"><i class="fas fa-trash-alt fa-2x"></i></button></td></tr>`;
+                $('#bookingReqTBody').append(row);
+                driverID = response[i].driver.driverID;
+
+                $('#tblReqBooking #bookingReqTBody tr').css({"cursor": "pointer"});
+                $('#tblReqBooking #bookingReqTBody tr').click(function () {
+
+
+                    let status = $(this).children('td:eq(7)').text();
+                    let id = $(this).children('td:eq(0)').text();
+                    let cid = $(this).children('td:eq(2)').text();
+                    $(this).children('td:eq(8)').children(1).click(function () {
+                        console.log(id);
+                    });
+                    // $(this).children('td:eq(8)').children(2).click(function () {
+                    //     console.log(cid);
+                    // });
 
 
 
+                });
 
-
-
-
-
-
-
-
-
-
-
+            }
+        }
+    });
+}
 
 
 // ..............Driver section..........//
@@ -926,30 +942,32 @@ function loadAllDrivers() {
                 let userName = response[i].userName;
                 let password = response[i].password;
                 let available = response[i].available;
-                var row = `<tr><td>${id}</td><td>${name}</td><td>${contactNo}</td><td>${nic}</td><td>${userName}</td><td>${password}</td><td>${available}</td></tr>`;
-                $('#driverTbody').append(row);
+                if (id != "D0") {
+                    var row = `<tr><td>${id}</td><td>${name}</td><td>${contactNo}</td><td>${nic}</td><td>${userName}</td><td>${password}</td><td>${available}</td></tr>`;
+                    $('#driverTbody').append(row);
 
-                $('#tblDriver #driverTbody tr').css({"cursor": "pointer"});
-                $('#tblDriver #driverTbody tr').click(function () {
+                    $('#tblDriver #driverTbody tr').css({"cursor": "pointer"});
+                    $('#tblDriver #driverTbody tr').click(function () {
 
-                    let id = $(this).children('td:eq(0)').text();
-                    let name = $(this).children('td:eq(1)').text();
-                    let contact = $(this).children('td:eq(2)').text();
-                    let nic = $(this).children('td:eq(3)').text();
-                    let username = $(this).children('td:eq(4)').text();
-                    let psw = $(this).children('td:eq(5)').text();
-                    let rbtn = $(this).children('td:eq(6)').text();
+                        let id = $(this).children('td:eq(0)').text();
+                        let name = $(this).children('td:eq(1)').text();
+                        let contact = $(this).children('td:eq(2)').text();
+                        let nic = $(this).children('td:eq(3)').text();
+                        let username = $(this).children('td:eq(4)').text();
+                        let psw = $(this).children('td:eq(5)').text();
+                        let rbtn = $(this).children('td:eq(6)').text();
 
-                    $('#driverID').val(id);
-                    $('#drivername').val(name);
-                    $('#driverContact').val(contact);
-                    $('#dnic').val(nic);
-                    $('#duserName').val(username);
-                    $('#dPassword').val(psw);
-                    setRadiobtn(rbtn + "");
-                    console.log("RBTN " + rbtn);
+                        $('#driverID').val(id);
+                        $('#drivername').val(name);
+                        $('#driverContact').val(contact);
+                        $('#dnic').val(nic);
+                        $('#duserName').val(username);
+                        $('#dPassword').val(psw);
+                        setRadiobtn(rbtn + "");
+                        console.log("RBTN " + rbtn);
 
-                });
+                    });
+                }
 
 
             }

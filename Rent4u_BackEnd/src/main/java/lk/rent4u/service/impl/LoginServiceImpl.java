@@ -46,19 +46,25 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String getLastID() {
         String lastID = repo.getLastID();
-       return lastID;
+        return lastID;
     }
 
     @Override
     public String genarateLogID() {
         String lastID = getLastID();
-        if (lastID!=null){
+        if (lastID != null) {
             String[] s = lastID.split("L");
-            int value= Integer.parseInt(s[1]);
+            int value = Integer.parseInt(s[1]);
             value++;
-            return "L"+value;
-        }else{
-            return "L1";
+            if (value < 10) {
+                return "L00" + value;
+            } else if (value < 100) {
+                return "L0" + value;
+            } else {
+                return "L" + value;
+            }
+        } else {
+            return "L001";
         }
     }
 

@@ -1,7 +1,6 @@
 package lk.rent4u.service.impl;
 
 import lk.rent4u.dto.DriverDTO;
-import lk.rent4u.entity.Customer;
 import lk.rent4u.entity.Driver;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.DriverRepo;
@@ -31,7 +30,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public void addDriver(DriverDTO dto) {
 
-        if (driverRepo.existsById(dto.getDriverID())){
+        if (driverRepo.existsById(dto.getDriverID())) {
             throw new ValidateException("Driver Already Exist");
         }
         driverRepo.save(mapper.map(dto, Driver.class));
@@ -76,7 +75,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public boolean findByUserNameAndPassword(String userName,String password) {
+    public boolean findByUserNameAndPassword(String userName, String password) {
         Optional<Driver> byUserNameAndPassword = driverRepo.findByUserNameAndPassword(userName, password);
         return byUserNameAndPassword.isPresent();
     }
@@ -84,14 +83,14 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDTO getDriver(String userName) {
         Driver driver = driverRepo.getDriver(userName);
-        return mapper.map(driver,DriverDTO.class);
+        return mapper.map(driver, DriverDTO.class);
     }
-
-    @Override
-    public List<DriverDTO> readByAvailable(boolean available) {
-        List<Driver> drivers = driverRepo.readByAvailable(true);
-        return mapper.map(drivers,new TypeToken<List<DriverDTO>>(){}.getType());
-    }
+//
+//    @Override
+//    public List<DriverDTO> readByAvailable(boolean available) {
+//        List<Driver> drivers = driverRepo.readByAvailable(true);
+//        return mapper.map(drivers,new TypeToken<List<DriverDTO>>(){}.getType());
+//    }
 
     @Override
     public DriverDTO getRandomDriver() {
@@ -99,12 +98,19 @@ public class DriverServiceImpl implements DriverService {
         Random random = new Random();
         int i = random.nextInt(50);
 
-        DriverDTO dto = searchDriver("L" + i);
-        while (dto==null){
-            i = random.nextInt(50);
-            dto = searchDriver("L" + i);
+        DriverDTO dto = searchDriver("D" + i);
+        System.out.println("DTO " + dto);
+        while (true) {
+            if (dto == null || dto.isAvailable() == false) {
+                i = random.nextInt(50);
+                dto = searchDriver("D" + i);
+                System.out.println("if in ");
+
+            } else {
+                return dto;
+
+            }
         }
-        return dto;
     }
 
 }

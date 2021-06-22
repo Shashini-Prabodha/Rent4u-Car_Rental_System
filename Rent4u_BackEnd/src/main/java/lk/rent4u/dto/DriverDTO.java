@@ -16,4 +16,6 @@ public class DriverDTO {
     private String userName;
     private String password;
     private boolean available;
+
+
 }
