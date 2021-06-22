@@ -65,4 +65,11 @@ public class CarServiceImpl implements CarService {
 
         }
     }
+
+    @Override
+    public List<CarDTO> readByType(String type) {
+        List<Car> all = repo.readByType(type);
+        return mapper.map(all, new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
 }

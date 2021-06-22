@@ -1,9 +1,15 @@
 package lk.rent4u.service.impl;
 
 import lk.rent4u.dto.BookingDTO;
+import lk.rent4u.dto.CarDTO;
+import lk.rent4u.dto.CustomerDTO;
+import lk.rent4u.dto.DriverDTO;
 import lk.rent4u.entity.Booking;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.BookingRepo;
+import lk.rent4u.repo.CarRepo;
+import lk.rent4u.repo.CustomerRepo;
+import lk.rent4u.repo.DriverRepo;
 import lk.rent4u.service.BookingService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -19,30 +25,50 @@ import java.util.Optional;
 @Transactional
 public class BookingServiceImpl implements BookingService {
     @Autowired
-    BookingRepo repo;
+    BookingRepo bookingRepo;
+
+    @Autowired
+    CustomerRepo customerbooking;
+    
+    @Autowired
+    DriverRepo driverRepo;
+    
+    @Autowired
+    CarRepo carRepo;
 
     @Autowired
     ModelMapper mapper;
 
     @Override
     public void addBooking(BookingDTO dto) {
-        if (repo.existsById(dto.getBookingID())) {
+        if (bookingRepo.existsById(dto.getBookingID())) {
             throw new ValidateException("Booking ID Already Exists");
         }
-        repo.save(mapper.map(dto, Booking.class));
+        dto.setBookingID(getNewID());
+
+        CarDTO carDTO = dto.getCarDTO();
+        CustomerDTO customerDTO = dto.getCustomerDTO();
+        DriverDTO driverDTO = dto.getDriverDTO();
+
+        if(driverDTO==true){
+            
+        }else {}
+
+
+        bookingRepo.save(mapper.map(dto, Booking.class));
     }
 
     @Override
     public void deleteBooking(String id) {
-        if (!repo.existsById(id)) {
+        if (!bookingRepo.existsById(id)) {
             throw new ValidateException("No Customer for Delete");
         }
-        repo.deleteById(id);
+        bookingRepo.deleteById(id);
     }
 
     @Override
     public BookingDTO searchBooking(String id) {
-        Optional<Booking> booking = repo.findById(id);
+        Optional<Booking> booking = bookingRepo.findById(id);
         if (booking.isPresent()) {
             return mapper.map(booking.get(), BookingDTO.class);
         }
@@ -51,14 +77,32 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public ArrayList<BookingDTO> getAllBookings() {
-        List<Booking> all = repo.findAll();
+        List<Booking> all = bookingRepo.findAll();
         return mapper.map(all,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
     }
 
     @Override
     public void updateBooking(BookingDTO dto) {
-        if(repo.existsById(dto.getBookingID())){
-            repo.save(mapper.map(dto,Booking.class));
+        if(bookingRepo.existsById(dto.getBookingID())){
+            bookingRepo.save(mapper.map(dto,Booking.class));
         };
+    }
+
+    @Override
+    public String getLastID() {
+        return bookingRepo.getLastID();
+    }
+
+    @Override
+    public String getNewID() {
+        String lastID = getLastID();
+        if (lastID!=null){
+            String[] s = lastID.split("B");
+            int value= Integer.parseInt(s[1]);
+            value++;
+            return "B"+value;
+        }else{
+            return "B1";
+        }
     }
 }

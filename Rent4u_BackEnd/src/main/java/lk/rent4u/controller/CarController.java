@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/car")
@@ -56,4 +57,11 @@ public class CarController {
         return new ResponseEntity(new StandardResponse("200", "Done", carDTO), HttpStatus.OK);
 
     }
+
+    @GetMapping(path = "/get/{type}")
+    public ResponseEntity getCarsByType(@PathVariable String type) {
+        List<CarDTO> allCars = service.readByType(type);
+        return new ResponseEntity(new StandardResponse("200", "Done", allCars), HttpStatus.OK);
+    }
+
 }

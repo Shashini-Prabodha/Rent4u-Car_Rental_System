@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -79,4 +80,31 @@ public class DriverServiceImpl implements DriverService {
         Optional<Driver> byUserNameAndPassword = driverRepo.findByUserNameAndPassword(userName, password);
         return byUserNameAndPassword.isPresent();
     }
+
+    @Override
+    public DriverDTO getDriver(String userName) {
+        Driver driver = driverRepo.getDriver(userName);
+        return mapper.map(driver,DriverDTO.class);
+    }
+
+    @Override
+    public List<DriverDTO> readByAvailable(boolean available) {
+        List<Driver> drivers = driverRepo.readByAvailable(true);
+        return mapper.map(drivers,new TypeToken<List<DriverDTO>>(){}.getType());
+    }
+
+    @Override
+    public DriverDTO getRandomDriver() {
+
+        Random random = new Random();
+        int i = random.nextInt(50);
+
+        DriverDTO dto = searchDriver("L" + i);
+        while (dto==null){
+            i = random.nextInt(50);
+            dto = searchDriver("L" + i);
+        }
+        return dto;
+    }
+
 }

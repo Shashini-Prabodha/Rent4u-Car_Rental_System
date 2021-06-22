@@ -14,4 +14,8 @@ public interface BookingService {
     ArrayList<BookingDTO> getAllBookings();
 
     void updateBooking(BookingDTO dto);
+
+    String getLastID();
+
+    String getNewID();
 }

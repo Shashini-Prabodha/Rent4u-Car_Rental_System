@@ -56,4 +56,13 @@ public class BookingController {
         return new ResponseEntity(new StandardResponse("200", "Done", bookingDTO), HttpStatus.OK);
 
     }
+
+
+    @GetMapping(path = "/newBookingId")
+    public ResponseEntity getNewBookingID(){
+        String newID = service.getNewID();
+
+        return new ResponseEntity(new StandardResponse("200","Done",newID),HttpStatus.OK);
+    }
+
 }

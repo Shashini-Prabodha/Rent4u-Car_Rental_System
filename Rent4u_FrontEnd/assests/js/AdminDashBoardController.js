@@ -96,7 +96,6 @@ function getSelectedCType() {
     }
 }
 
-
 //check no of passengers
 $('#noofpsg').on('keyup', function (event) {
     checkNoOfPassenger();
@@ -190,7 +189,6 @@ function checkDRate() {
     }
     return false;
 }
-
 
 //check monthly rate
 $('#monthlyrate').on('keyup', function (event) {
@@ -1071,7 +1069,6 @@ function checkAvailability() {
     } else if ($("#rbtnExit").prop("checked")) {
         return "false";
     }
-    return null;
 }
 
 // save driver

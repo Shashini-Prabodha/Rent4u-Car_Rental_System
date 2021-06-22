@@ -1,8 +1,10 @@
 package lk.rent4u.service;
 
 import lk.rent4u.dto.CarDTO;
+import lk.rent4u.entity.Car;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CarService {
     void addCar(CarDTO dto);
@@ -14,4 +16,7 @@ public interface CarService {
     ArrayList<CarDTO> getAllCars();
 
     void updateCar(CarDTO dto);
+
+    List<CarDTO> readByType(String type);
+
 }

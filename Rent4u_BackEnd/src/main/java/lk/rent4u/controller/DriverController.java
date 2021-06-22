@@ -1,5 +1,6 @@
 package lk.rent4u.controller;
 
+import lk.rent4u.dto.CustomerDTO;
 import lk.rent4u.dto.DriverDTO;
 import lk.rent4u.exception.NotFoundException;
 import lk.rent4u.service.DriverService;
@@ -54,6 +55,11 @@ public class DriverController {
             throw new NotFoundException("No ID provided to update");
         }
         service.updateDriver(dto);
+        return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
+    }
+    @GetMapping(path = "/get/{userName}")
+    public ResponseEntity getDriver(@PathVariable String userName){
+        DriverDTO dto = service.getDriver(userName);
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
     }
 

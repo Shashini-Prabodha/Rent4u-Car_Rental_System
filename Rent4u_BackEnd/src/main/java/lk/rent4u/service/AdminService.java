@@ -1,6 +1,7 @@
 package lk.rent4u.service;
 
 import lk.rent4u.dto.AdminDTO;
+import lk.rent4u.dto.DriverDTO;
 
 import java.util.ArrayList;
 
@@ -18,5 +19,7 @@ public interface AdminService {
     boolean findByUserName(String userName);
 
     boolean findByUserNameAndPassword(String userName, String password);
+
+    AdminDTO getAdmin(String userName);
 
 }

@@ -1,10 +1,8 @@
 package lk.rent4u.service;
 
 import lk.rent4u.dto.DriverDTO;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface DriverService {
@@ -22,4 +20,9 @@ public interface DriverService {
 
     boolean findByUserNameAndPassword(String userName, String password);
 
+    DriverDTO getDriver(String userName);
+
+    List<DriverDTO> readByAvailable(boolean available);
+
+    DriverDTO getRandomDriver();
 }
