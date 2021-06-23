@@ -20,7 +20,8 @@ public interface DriverRepo extends JpaRepository<Driver,String> {
     @Query(value = "SELECT d FROM Driver d WHERE d.userName=:userName")
     Driver getDriver(@Param("userName") String userName);
 
-    List<Driver> readByAvailable(boolean available);
+//    @Query(value = "SELECT d FROM Driver d WHERE d.available=:available")
+    List<Driver> findByAvailable(boolean available);
 
 
 }

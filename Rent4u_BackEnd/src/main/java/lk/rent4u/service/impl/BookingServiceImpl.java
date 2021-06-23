@@ -53,20 +53,6 @@ public class BookingServiceImpl implements BookingService {
         bookingRepo.save(mapper.map(dto,Booking.class));
         System.out.println("After save booking");
 
-//
-//        CarDTO carDTO = dto.getCarDTO();
-//        CustomerDTO customerDTO = dto.getCustomerDTO();
-//        DriverDTO driverDTO = dto.getDriverDTO();
-//
-//
-//        Car car = mapper.map(carDTO, Car.class);
-//        Customer customer = mapper.map(customerDTO, Customer.class);
-//        Driver driver = mapper.map(driverDTO, Driver.class);
-//
-//        Booking booking = new Booking(
-//
-//        );
-//        bookingRepo.save();
     }
 
     @Override
@@ -126,8 +112,20 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> readByStatus(String status) {
+    public List<BookingDTO> readByStatus(String status) {
         List<Booking> bookings = bookingRepo.readByStatus(status);
+        return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<BookingDTO> getBookinginCid(String id) {
+        List<Booking> bookings = bookingRepo.getBookinginCid(id);
+        return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<BookingDTO> getBookingMultiStatus(String id) {
+        List<Booking> bookings = bookingRepo.getBookingMultiStatus("Accept","Reject",id);
         return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
     }
 

@@ -21,7 +21,9 @@ public class BookingReturn {
     @OneToOne(cascade = CascadeType.ALL)
      @JoinColumn(name = "bookingID", referencedColumnName = "bookingID",nullable = false)
     private Booking booking;
-//
-//    @OneToOne(mappedBy = "bookingReturn", cascade = CascadeType.ALL)
-//    private Payment payment;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paymentID", referencedColumnName = "paymentID",nullable = false)
+
+    private Payment payment;
 }

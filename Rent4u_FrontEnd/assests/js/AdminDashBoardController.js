@@ -853,14 +853,14 @@ function loadAllBooking() {
                 let pickupDate = response[i].pickupDate;
                 let returnDate = response[i].returnDate
                 let driverID = response[i].driver.driverID;
+                let d = driverID;
                 if (driverID == "D0") {
-                    driverID = "No Need Driver";
+                    d = "No Need Driver";
                 }
                 let status = response[i].status;
 
-                var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driverID}</td><td>${status}</td></tr>`;
+                var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${d}</td><td>${status}</td></tr>`;
                 $('#bookingTBody').append(row);
-                driverID = response[i].driver.driverID;
 
             }
         }
@@ -890,16 +890,16 @@ function loadAllRBooking() {
                 let pickupDate = response[i].pickupDate;
                 let returnDate = response[i].returnDate
                 let driverID = response[i].driver.driverID;
+                let d = driverID;
                 let status = response[i].status;
                 if (driverID == "D0") {
-                    driverID = "No Need Driver";
+                    d = "No Need Driver";
                 }
 
-                var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${driverID}</td><td>${status}</td>
+                var row = `<tr><td>${bookingID}</td><td>${orddate}</td><td>${customerID}</td><td>${carID}</td><td>${pickupDate}</td><td>${returnDate}</td><td>${d}</td><td>${status}</td>
                             <td><button type="button" class="btn btn-success rounded-pill btn-sm px-3" id="accept"><i class="far fa-check-circle fa-2x"></i></button>
                                 </td><td><button type="button" class="btn btn-danger rounded-pill btn-sm px-3"" id="reject"><i class="fas fa-trash-alt fa-2x"></i></button></td></tr>`;
                 $('#bookingReqTBody').append(row);
-                driverID = response[i].driver.driverID;
 
 
                 $('#tblReqBooking #bookingReqTBody').on('click', "#accept", function () {
@@ -951,6 +951,21 @@ function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, d
         success: function (response) {
             car = response.data;
             console.log("car "+car);
+            // console.log(car.carID+
+            //     "brand"+ car.brand+
+            //     "type"+ car.cType+
+            //     "numberOfPassengers"+ car.noofpsg+
+            //     'transmissionType'+ car.transtype+
+            //     'fuelType'+ car.fueltype+
+            //     'colour'+ car.color+
+            //     'dailyRate'+ car.dailyrate+
+            //     'monthlyRate'+ car.monthlyrate+
+            //     'freeKmforMonth'+ car.fmprice+
+            //     'freeKmforDay'+ car.fdprice+
+            //     'lossDamageWaiver'+ car.lossdamage+
+            //     'priceForExtraKM'+car.priceforexkm+
+            //     'status'+car.status+
+            //     'completeKm'+ car.completeKm);
             // car.status="Booking";
             updateCarAjax(car);
         }
@@ -1037,17 +1052,17 @@ function updateCarAjax(car) {
             {
                 carID: car.carID,
                 brand: car.brand,
-                type: car.cType,
-                numberOfPassengers: car.noofpsg,
-                transmissionType: car.transtype,
-                fuelType: car.fueltype,
+                type: car.type,
+                numberOfPassengers: car.numberOfPassengers,
+                transmissionType: car.transmissionType,
+                fuelType: car.fuelType,
                 colour: car.color,
-                dailyRate: car.dailyrate,
-                monthlyRate: car.monthlyrate,
-                freeKmforMonth: car.fmprice,
-                freeKmforDay: car.fdprice,
-                lossDamageWaiver: car.lossdamage,
-                priceForExtraKM: car.priceforexkm,
+                dailyRate: car.dailyRate,
+                monthlyRate: car.monthlyRate,
+                freeKmforMonth: car.freeKmforMonth,
+                freeKmforDay: car.freeKmforDay,
+                lossDamageWaiver: car.lossDamageWaiver,
+                priceForExtraKM: car.priceForExtraKM,
                 status: "Booking",
                 completeKm: car.completeKm
             }
@@ -1370,7 +1385,7 @@ $('#delDriver').click(function () {
                     async: true,
                     success: function (response) {
                         loadAllDrivers();
-                        clearDriverTextFields();
+                        clearDriverTextFields();0
                         Swal.fire(
                             'Deleted!',
                             'Driver Delete Successfully...',

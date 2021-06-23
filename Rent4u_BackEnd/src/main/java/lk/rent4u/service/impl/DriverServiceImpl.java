@@ -88,30 +88,42 @@ public class DriverServiceImpl implements DriverService {
 
     //
     @Override
-    public List<DriverDTO> readByAvailable(boolean available) {
-        List<Driver> drivers = driverRepo.readByAvailable(true);
+    public List<DriverDTO> readByAvailable() {
+        List<Driver> drivers = driverRepo.findByAvailable(true);
+        for (Driver driverDTO : drivers) {
+            System.out.println(driverDTO);
+        }
+
+        System.out.println(drivers.size() + " size");
         return mapper.map(drivers, new TypeToken<List<DriverDTO>>() {
         }.getType());
     }
 
     @Override
     public DriverDTO getRandomDriver() {
-
-        List<DriverDTO> driverDTOS = readByAvailable(true);
-        Random random = new Random();
-        int i = random.nextInt(driverDTOS.size());
-        System.out.println( driverDTOS.get(i)+" Random dri");
-        return driverDTOS.get(i);
-//        DriverDTO dto = searchDriver("D" + i);
-//        System.out.println("DTO " + dto);
 //
-//            if (dto == null || dto.isAvailable() == false) {
-//                i = random.nextInt(50);
-//                dto = searchDriver("D" + i);
-//                System.out.println("if in ");
-//
-//
+//        List<DriverDTO> driverDTOS = readByAvailable();
+//        for (DriverDTO driverDTO : driverDTOS) {
+//            System.out.println(driverDTO);
 //        }
-    }
+//
+//        System.out.println(driverDTOS.size()+" size");
+        Random random = new Random();
+        int i = random.nextInt(10);
+        System.out.println(i + " Random i");
+//        System.out.println( driverDTOS.get(i)+" Random dri");
+//        return driverDTOS.get(i);
+        DriverDTO dto = searchDriver("D" + i);
+        System.out.println("DTO " + dto);
+        while (true) {
+            if (dto == null || dto.isAvailable() == false) {
+                i = random.nextInt(10);
+                dto = searchDriver("D" + i);
+                System.out.println("if in ");
 
-}
+            }else {
+            return dto;}
+        }
+        }
+
+    }

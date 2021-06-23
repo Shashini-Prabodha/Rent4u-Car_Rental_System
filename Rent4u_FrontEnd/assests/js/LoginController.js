@@ -41,6 +41,7 @@ $('#btnLogin').click(function () {
 });
 //getLastId
 getNewLogID();
+
 function getNewLogID() {
     let LastLoginID=1;
     $.ajax({

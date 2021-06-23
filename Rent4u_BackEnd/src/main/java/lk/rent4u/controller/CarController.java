@@ -63,5 +63,10 @@ public class CarController {
         List<CarDTO> allCars = service.readByType(type);
         return new ResponseEntity(new StandardResponse("200", "Done", allCars), HttpStatus.OK);
     }
+    @GetMapping(path = "/get/{type}/{status}")
+    public ResponseEntity getCarsByTypeandStatus(@PathVariable String type,@PathVariable String status) {
+        List<CarDTO> allCars = service.getFiltingCar(type,status);
+        return new ResponseEntity(new StandardResponse("200", "Done", allCars), HttpStatus.OK);
+    }
 
 }

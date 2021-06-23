@@ -13,4 +13,6 @@ public class PaymentDTO {
     private String paymentID;
     private Date date;
     private double amount;
+    private String description;
+    private BookingDTO bookingDTO;
 }

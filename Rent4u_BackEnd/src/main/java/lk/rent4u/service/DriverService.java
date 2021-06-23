@@ -22,7 +22,7 @@ public interface DriverService {
 
     DriverDTO getDriver(String userName);
 
-    List<DriverDTO> readByAvailable(boolean available);
+    List<DriverDTO> readByAvailable();
 
     DriverDTO getRandomDriver();
 }

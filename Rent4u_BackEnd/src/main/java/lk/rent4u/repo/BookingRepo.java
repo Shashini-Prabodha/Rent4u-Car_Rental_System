@@ -3,6 +3,7 @@ package lk.rent4u.repo;
 import lk.rent4u.entity.Booking;
 import lk.rent4u.entity.Car;
 import lk.rent4u.entity.Customer;
+import lk.rent4u.entity.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,5 +16,16 @@ public interface BookingRepo extends JpaRepository<Booking,String> {
     String getLastID();
 
     List<Booking> readByStatus(String status);
+
+
+    @Query(value = "SELECT b from Booking b where b.customer.customerID=:custId")
+    List<Booking> getBookinginCid(@Param("custId") String custId);
+
+    @Query(value = "SELECT b from Booking b where b.status=:state1 OR b.status=:state2 AND b.customer.customerID=:custId")
+    List<Booking> getBookingMultiStatus(@Param("state1") String state1, @Param("state2") String state2, @Param("custId") String custId);
+
+//
+//    @Query(value = "SELECT b from Booking b where b.customer.customerID=:custId")
+//    Booking getBookingLastBookingInC(@Param("custId") String custId);
 
 }

@@ -15,5 +15,7 @@ public class BookingReturnDTO {
     private String returnID;
     private Date date;
     private double noOfKm;
+    private BookingDTO bookingDTO;
+    private PaymentDTO paymentDTO;
 
 }

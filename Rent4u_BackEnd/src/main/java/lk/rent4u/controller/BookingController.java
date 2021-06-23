@@ -2,6 +2,7 @@ package lk.rent4u.controller;
 
 import lk.rent4u.dto.BookingDTO;
 import lk.rent4u.entity.Booking;
+import lk.rent4u.entity.Customer;
 import lk.rent4u.exception.NotFoundException;
 import lk.rent4u.service.BookingService;
 import lk.rent4u.util.StandardResponse;
@@ -71,7 +72,19 @@ public class BookingController {
 
     @GetMapping(path = "/get/{status}")
     public ResponseEntity getAllBookingsinstatus(@PathVariable String status) {
-        List<Booking> allBookings = service.readByStatus(status);
+        List<BookingDTO> allBookings = service.readByStatus(status);
+        return new ResponseEntity(new StandardResponse("200", "Done", allBookings), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/read/record/{id}")
+    public ResponseEntity getAllBookingsCustomer(@PathVariable String id) {
+        List<BookingDTO> allBookings = service.getBookinginCid(id);
+        return new ResponseEntity(new StandardResponse("200", "Done", allBookings), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/get/adminResp/{id}")
+    public ResponseEntity getAllBookingsMultiStatus(@PathVariable String id) {
+        List<BookingDTO> allBookings = service.getBookingMultiStatus(id);
         return new ResponseEntity(new StandardResponse("200", "Done", allBookings), HttpStatus.OK);
     }
 

@@ -16,8 +16,10 @@ public class Payment {
     private String paymentID;
     private Date date;
     private double amount;
+    private String description;
+
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "returnID", referencedColumnName = "returnID",nullable = false)
-    private BookingReturn bookingReturn;
+    @JoinColumn(name = "bookingID", referencedColumnName = "bookingID",nullable = false)
+    private Booking booking;
 }

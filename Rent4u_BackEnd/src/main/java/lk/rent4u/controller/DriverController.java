@@ -63,9 +63,11 @@ public class DriverController {
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
     }
 
-    @GetMapping(path = "/read/randomDriver")
+    @GetMapping(path = "/get/list/randomDriver")
     public ResponseEntity getRandomDriver(){
+        System.out.println("c68 ");
         DriverDTO dto = service.getRandomDriver();
+        System.out.println("c69 "+dto);
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
     }
 
