@@ -49,9 +49,7 @@ public class BookingServiceImpl implements BookingService {
         }
         dto.setBookingID(getNewID());
 
-        System.out.println(dto.getBookingID()+" Seriml");
         bookingRepo.save(mapper.map(dto,Booking.class));
-        System.out.println("After save booking");
 
     }
 

@@ -938,7 +938,8 @@ function loadAllRBooking() {
 }
 
 function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, driverId, status) {
-    console.log("bookingId "+bookingId+" "+cid+" "+driverId+" "+carid);
+    console.log("bookingId " + bookingId + " " + cid + " " + driverId + " " + carid);
+
 
     let car;
     let driver;
@@ -950,24 +951,10 @@ function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, d
         dataType: 'json',
         success: function (response) {
             car = response.data;
-            console.log("car "+car);
-            // console.log(car.carID+
-            //     "brand"+ car.brand+
-            //     "type"+ car.cType+
-            //     "numberOfPassengers"+ car.noofpsg+
-            //     'transmissionType'+ car.transtype+
-            //     'fuelType'+ car.fueltype+
-            //     'colour'+ car.color+
-            //     'dailyRate'+ car.dailyrate+
-            //     'monthlyRate'+ car.monthlyrate+
-            //     'freeKmforMonth'+ car.fmprice+
-            //     'freeKmforDay'+ car.fdprice+
-            //     'lossDamageWaiver'+ car.lossdamage+
-            //     'priceForExtraKM'+car.priceforexkm+
-            //     'status'+car.status+
-            //     'completeKm'+ car.completeKm);
-            // car.status="Booking";
-            updateCarAjax(car);
+            console.log("car " + car);
+            if (status == "Accept") {
+                updateCarAjax(car);
+            }
         }
     });
     $.ajax({
@@ -977,7 +964,7 @@ function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, d
         dataType: 'json',
         success: function (response) {
             customer = response.data;
-            console.log("cust "+customer);
+            console.log("cust " + customer);
 
         }
     });
@@ -985,13 +972,15 @@ function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, d
     if (driverId != "D0") {
         $.ajax({
             method: "get",
-            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/'+driverId,
+            url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/' + driverId,
             async: false,
             dataType: 'json',
             success: function (response) {
                 driver = response.data;
-                updateDriverAjax(driver);
-                console.log("driver "+driver);
+                if (status == "Accept") {
+
+                    updateDriverAjax(driver);
+                }
             }
         });
 
@@ -1178,22 +1167,6 @@ function checkDriverName() {
 
 $('#drivername').on('keyup', function (event) {
     checkDriverName();
-});
-
-//check contact
-function checkDriverContact() {
-    if (/^[0-9]{10}$/.test($('#driverContact').val())) {//  ("^\\d{10}$")
-        $('#driverContact').css('border', '3px solid #0eab34');
-        return true;
-    } else {
-        $('#driverContact').css('border', '3px solid red');
-    }
-    return false;
-
-}
-
-$('#driverContact').on('keyup', function (event) {
-    checkDriverContact();
 });
 
 //check user nic
@@ -1385,7 +1358,8 @@ $('#delDriver').click(function () {
                     async: true,
                     success: function (response) {
                         loadAllDrivers();
-                        clearDriverTextFields();0
+                        clearDriverTextFields();
+                        0
                         Swal.fire(
                             'Deleted!',
                             'Driver Delete Successfully...',
@@ -1534,4 +1508,196 @@ function clearDriverTextFields() {
     $('#dPassword').val("");
     $('#rbtnIn').attr('checked', false);
     $('#rbtnExit').attr('checked', false);
+}
+
+//......................payment section..................................
+
+//load all payments
+loadAllPayments();
+
+function loadAllPayments() {
+    $('#adminPaymentTBody').empty();
+    $.ajax({
+        method: 'GET',
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment",
+        dataType: 'json',
+        async: true,
+        success: function (resp) {
+            let response = resp.data;
+            for (var i in response) {
+
+                let pid = response[i].paymentID;
+                let orddate = response[i].date;
+                let amount = response[i].amount;
+                let description = response[i].description;
+                let bookingID = response[i].booking.bookingID;
+
+                var row = `<tr><td>${pid}</td><td>${orddate}</td><td>${amount}</td><td>${description}</td><td>${bookingID}</td></tr>`;
+                $('#adminPaymentTBody').append(row);
+
+            }
+        }
+    });
+}
+
+//...................booking return section......................
+
+function getCurrentDate() {
+
+    let today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //As January is 0.
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    return (yyyy + '-' + mm + '-' + dd);
+}
+
+$('#today').val(getCurrentDate());
+
+let book = null;
+//search payment
+$('#btnSearchPid').click(function () {
+    let pid = $('#searchPid').val();
+    let today = $('#today').val();
+
+
+    if (pid != "") {
+
+        $.ajax({
+            method: 'GET',
+            url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment/" + pid,
+            dataType: 'json',
+            async: true,
+            success: function (resp) {
+                let response = resp.data;
+
+                let payid = response.paymentID;
+                let orddate = response.date;
+                let amount = response.amount;
+                let description = response.description;
+                let booking = response.booking;
+                book = booking;
+                $('#paylastAmount').val(amount);
+                $('#paylastDesc').val(description);
+                $('#bookingId').val(booking.bookingID);
+                $('#pickup').val(booking.pickupDate);
+                $('#returnDate').val(booking.returnDate);
+                $('#driver').val(booking.driver.driverID);
+
+                let dateDiff = getDateDiff(today, $('#pickup').val());
+
+                let dailyRate = booking.car.dailyRate;
+                let prcexkm = booking.car.priceForExtraKM;
+                let freekmd = booking.car.freeKmforDay;
+
+
+                $('#rentforusingDate').val(dailyRate * dateDiff);
+
+                if ($('#driver').val() == "No") {
+                    $('#driverpayment').val(0);
+                    $('#driverpayment').attr("disabled", true);
+
+                } else {
+                    $('#driverpayment').val(dateDiff * 1000);
+
+                }
+            }
+        });
+
+    }
+});
+
+
+function getDateDiff(today, pick) {
+
+    const date1 = new Date(today);
+    const date2 = new Date(pick);
+    const diffTime = Math.abs(date1 - date2);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    console.log(diffDays + " diffDays");
+    return diffDays;
+}
+
+function calPriceforExtrakm(freekmd, prcexkm, dateDiff) {
+    let totkm = $('#totkm').val();
+    freekmd = freekmd * dateDiff;
+    if (freekmd >= totkm) {
+        $('#priceExkm').val("00");
+    } else {
+        let km = totkm - freekmd;
+        $('#priceExkm').val(km * prcexkm);
+    }
+}
+
+
+$('#calPayment').click(function () {
+    let today = $('#today').val();
+
+    let lastPayment = $('#paylastAmount').val();
+    let driverPay = $('#driverpayment').val();
+    let dmg = $('#dmgPayment').val();
+    let rentforDate = $('#rentforusingDate').val();
+    let totkm = $('#totkm').val();
+
+    let booking = book;
+    let dateDiff = getDateDiff(today, $('#pickup').val());
+
+    let prcexkm = booking.car.priceForExtraKM;
+    console.log("prcexkm - "+prcexkm)
+    let freekmd = booking.car.freeKmforDay;
+
+    calPriceforExtrakm(freekmd, prcexkm, dateDiff);
+
+    let pcekm = $('#priceExkm').val();
+
+
+    if (checkDmgPay() && dmg != "") {
+        if (checkTotKm() && totkm != "") {
+            let tot=parseFloat(driverPay)+parseFloat(dmg)+parseFloat(rentforDate)+parseFloat(pcekm);
+            console.log(tot+ " tot");
+            $('#total').val(tot);
+            $('#balance').val(parseFloat(lastPayment)-parseFloat(tot));
+
+        } else {
+            $('#dmgPayment').css('border', '3px solid red');
+        }
+    } else {
+        $('#dmgPayment').css('border', '3px solid red');
+    }
+
+
+
+
+});
+
+//loose damage waiver payment
+$('#dmgPayment').on('keyup', function (event) {
+    checkDmgPay();
+});
+
+function checkDmgPay() {
+    if (/^[0-9.]{1,}$/.test($('#dmgPayment').val())) {
+        $('#dmgPayment').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#dmgPayment').css('border', '3px solid red');
+    }
+    return false;
+}
+
+//totle km
+$('#totkm').on('keyup', function (event) {
+    checkTotKm();
+});
+
+function checkTotKm() {
+    if (/^[0-9.]{1,}$/.test($('#dmgPayment').val())) {
+        $('#totkm').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#totkm').css('border', '3px solid red');
+    }
+    return false;
 }

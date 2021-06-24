@@ -1,5 +1,6 @@
 package lk.rent4u.dto;
 
+import lk.rent4u.entity.Booking;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import java.util.Date;
 @Data
 public class PaymentDTO {
     private String paymentID;
-    private Date date;
+    private String date;
     private double amount;
     private String description;
-    private BookingDTO bookingDTO;
+    private BookingDTO booking;
 }

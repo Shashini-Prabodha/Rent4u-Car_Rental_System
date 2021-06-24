@@ -13,6 +13,8 @@
     <link href="assests/mdb/css/mdb.min.css" rel="stylesheet">
     <script src="assests/mdb/js/mdb.min.js"></script>
     <link href="assests/sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="assests/alertjs/alertify.min.css" rel="stylesheet">
+
 
     <script>
         AOS.init({
@@ -20,6 +22,8 @@
             once: true,
         });
     </script>
+    <script src="assests/alertjs/alertify.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <!--
@@ -87,7 +91,7 @@
                     <i class="fas fa-archive"></i> BOOKING REQUEST</a>
                 <a class="nav-link" id="v-tabs-order-tab" data-mdb-toggle="tab" href="#v-tabs-order" role="tab"
                    aria-controls="v-tabs-order" aria-selected="false" id="custOrderTab">
-                    <i class="fas fa-list-ul" ></i> BOOKING RESPONSE</a>
+                    <i class="fas fa-list-ul"></i> BOOKING RESPONSE</a>
                 <a class="nav-link" id="v-tabs-payment-tab" data-mdb-toggle="tab" href="#v-tabs-payment" role="tab"
                    aria-controls="v-tabs-payment" aria-selected="false">
                     <i class="fas fa-money-bill-wave"></i> PAYMENT</a>
@@ -115,13 +119,15 @@
                             <div class="col-4 ">
 
                                 <div class="form-floating mb-3 ">
-                                    <input type="text" class="form-control   rounded-7 " id="custName" placeholder="Name : ">
+                                    <input type="text" class="form-control   rounded-7 " id="custName"
+                                           placeholder="Name : ">
                                     <label for="custName" class="overflow-hidden">Full Name</label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="contact" placeholder="Contact">
+                                    <input type="text" class="form-control  rounded-7" id="contact"
+                                           placeholder="Contact">
                                     <label for="contact" class="overflow-hidden">Contact No</label>
                                 </div>
                             </div>
@@ -138,7 +144,8 @@
                         <div class="row ml-0 mr-0">
                             <div class="col-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="address" placeholder="Address">
+                                    <input type="text" class="form-control  rounded-7" id="address"
+                                           placeholder="Address">
                                     <label for="address" class="overflow-hidden">Address</label>
 
                                 </div>
@@ -222,24 +229,28 @@
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="carRegNo" placeholder="Reg No : "
+                                    <input type="text" class="form-control  rounded-7" id="carRegNo"
+                                           placeholder="Reg No : "
                                            readonly>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="brand" placeholder="Brand" readonly>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="noofpsg" placeholder="No of Passengers"
+                                    <input type="text" class="form-control  rounded-7" id="brand" placeholder="Brand"
                                            readonly>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="transtype" placeholder="Transmi: Type "
+                                    <input type="text" class="form-control  rounded-7" id="noofpsg"
+                                           placeholder="No of Passengers"
+                                           readonly>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="transtype"
+                                           placeholder="Transmi: Type "
                                            readonly>
                                 </div>
                             </div>
@@ -251,12 +262,14 @@
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="fuel" placeholder="Fuel Type " readonly>
+                                    <input type="text" class="form-control  rounded-7" id="fuel"
+                                           placeholder="Fuel Type " readonly>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="color" placeholder="Colour " readonly>
+                                    <input type="text" class="form-control  rounded-7" id="color" placeholder="Colour "
+                                           readonly>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -292,7 +305,8 @@
                             </div>
                             <div class="col-2">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control  rounded-7" id="freekmd" placeholder="Free km for day "
+                                    <input type="text" class="form-control  rounded-7" id="freekmd"
+                                           placeholder="Free km for day "
                                            readonly>
                                 </div>
                             </div>
@@ -310,19 +324,22 @@
                         <div class="row ml-0 mr-0 m-2">
                             <div class="col-3">
                                 <div class="form-floating mb-3 ">
-                                    <input type="text" class="form-control  rounded-7" id="cdate" placeholder="Name : " readonly>
+                                    <input type="text" class="form-control  rounded-7" id="cdate" placeholder="Name : "
+                                           readonly>
                                     <label for="cdate" class="overflow-hidden">Today</label>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-floating mb-3 ">
-                                    <input type="date" class="form-control  rounded-7" id="pickupDate" placeholder="Name : ">
+                                    <input type="date" class="form-control  rounded-7" id="pickupDate"
+                                           placeholder="Name : ">
                                     <label for="pickupDate" class="overflow-hidden">Pickup Date</label>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-floating mb-3 ">
-                                    <input type="date" class="form-control  rounded-7" id="returnDate" placeholder="Name : ">
+                                    <input type="date" class="form-control  rounded-7" id="returnDate"
+                                           placeholder="Name : ">
                                     <label for="returnDate" class="overflow-hidden">Return Date</label>
                                 </div>
                             </div>
@@ -339,7 +356,8 @@
                                         style="font-size:15px "><i
                                         class="fas fa-paper-plane"></i> Send Booking Request
                                 </button>
-                                <input type="text" class="form-control  rounded-7" id="bookingId" placeholder="Name : " hidden>
+                                <input type="text" class="form-control  rounded-7" id="bookingId" placeholder="Name : "
+                                       hidden>
 
                             </div>
                         </div>
@@ -356,16 +374,18 @@
 
                     <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Booking Response</h1></div>
-                        <div class="row m-3"><div class="col-2">
-                            <input type="text" class="form-control  rounded-7" id="cbookingID">
+                        <div class="row m-3">
+                            <div class="col-2">
+                                <input type="text" class="form-control  rounded-7" id="cbookingID">
 
-                        </div></div>
-                        <input type="text" class="form-control  rounded-7" id="hiddnCar"  hidden>
-                        <input type="text" class="form-control  rounded-7" id="hiddnCust"  hidden>
-                        <input type="text" class="form-control  rounded-7" id="hiddnDriver"  hidden>
-                        <input type="text" class="form-control  rounded-7" id="hiddnord"  hidden>
-                        <input type="text" class="form-control  rounded-7" id="hiddnpick"  hidden>
-                        <input type="text" class="form-control  rounded-7" id="hiddnReturn"  hidden>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control  rounded-7" id="hiddnCar" hidden>
+                        <input type="text" class="form-control  rounded-7" id="hiddnCust" hidden>
+                        <input type="text" class="form-control  rounded-7" id="hiddnDriver" hidden>
+                        <input type="text" class="form-control  rounded-7" id="hiddnord" hidden>
+                        <input type="text" class="form-control  rounded-7" id="hiddnpick" hidden>
+                        <input type="text" class="form-control  rounded-7" id="hiddnReturn" hidden>
 
                         <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
                                width="100%" id="ctblBooking">
@@ -392,16 +412,26 @@
                                         data-target="#exampleModalCenter">
                                     <i class="fas fa-car"></i> Paid for Car
                                 </button>
-                                <button type="button" class="btn btn-danger mt-3 " id="btnDeleteOrder" style="font-size:15px">
-                                <i class="fas fa-car"></i> Delete Order
+                                <button type="button" class="btn btn-danger mt-3 " id="btnDeleteOrder"
+                                        style="font-size:15px">
+                                    <i class="fas fa-car"></i> Delete Order
                                 </button>
+
+
+                                <button type="button" class="btn btn-success mt-3 " id="btntse" style="font-size:15px"
+                                        data-toggle="modal"
+                                        data-target="#exampleModalCenter">
+                                    <i class="fas fa-car"></i> test
+                                </button>
+
+
                             </div>
                         </div>
                         <div class="row ml-0 mr-0 m-3">
                             <div class="col-1">
                                 <button
-                                       id="msg"
-                                       type="button"
+                                        id="msg"
+                                        type="button"
                                         class="btn btn-lg btn-danger"
                                         data-mdb-toggle="popover"
                                         title="Admin Message"
@@ -419,7 +449,20 @@
                     <div class="tab-pane fade" id="v-tabs-payment" role="tabpanel"
                          aria-labelledby="v-tabs-payment-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblPayment">
+                            <thead class="text-light bg-success">
+                            <tr class="border-bottom-secondary" >
+                                <th>Payment ID</th>
+                                <th>Amount(Rs.)</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Booking ID</th>
+                            </tr>
+                            </thead>
+                            <tbody id= "paymentTBody">
 
+                            </tbody>
+                        </table>
 
                     </div>
 
@@ -436,127 +479,100 @@
                     <!-- Setting section end-->
 
                 </div>
-                <!--                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"-->
-                <!--                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-                <!--                    <div class="modal-dialog modal-dialog-centered" role="document">-->
-                <!--                        <div class="modal-content">-->
-                <!--                            <div class="modal-header">-->
-                <!--                                <h5 class="modal-title" id="exampleModalLongTitle">Sign Up</h5>-->
-                <!--                                <div class="form-row align-content-end">-->
-                <!--                                    <input type="text" class="form-control  rounded-7" id="custID" hidden>-->
-                <!--                                </div>-->
-                <!--                                <button type="button" class="close" data-dismiss="modal"-->
-                <!--                                        aria-label="Close">-->
-                <!--                                    <span aria-hidden="true">&times;</span>-->
-                <!--                                </button>-->
-                <!--                            </div>-->
-                <!--                            <div class="modal-body">-->
-                <!--                                <form>-->
+                <!--paid payment in model-->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <i class="fas fa-money-bill-wave fa-2x" ></i>
+                                <h3 class="modal-title" style="font-family: 'Dancing Script SemiBold'" id="exampleModalLongTitle"><b><u>  Payment</u></b></h3>
 
-                <!--                                    <div class="form-row">-->
+                                <div class="form-row align-content-end">
+                                    <input type="text" class="form-control  rounded-7" id="payID" hidden>
+                                </div>
 
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputName">Name</label>-->
-                <!--                                            <input type="text" class="form-control  rounded-7" id="inputName"-->
-                <!--                                                   placeholder="Kamal Manamperi" required>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputContactNo">Contact No</label>-->
-                <!--                                            <input type="text" class="form-control  rounded-7"-->
-                <!--                                                   id="inputContactNo"-->
-                <!--                                                   placeholder="0712345678" required>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                    <div class="form-row m-0">-->
-                <!--                                        <label for="inputAddress">Address</label>-->
-                <!--                                        <input type="text" class="form-control  rounded-7" id="inputAddress"-->
-                <!--                                               placeholder="No:32/67, Matara" required>-->
-                <!--                                    </div>-->
+                            </div>
+                            <div class="modal-body">
+                                <form>
 
-                <!--                                    <div class="form-row m-0 mt-1">-->
-                <!--                                        <label for="inputEmail">Email</label>-->
-                <!--                                        <input type="email" class="form-control  rounded-7" id="inputEmail"-->
-                <!--                                               placeholder="Email"-->
-                <!--                                               required>-->
-                <!--                                    </div>-->
+                                    <div class="form-row">
 
-                <!--                                    <div class="form-row">-->
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputDrivingLicence">Driving Licence No</label>-->
-                <!--                                            <input type="text" class="form-control  rounded-7"-->
-                <!--                                                   id="inputDrivingLicence"-->
-                <!--                                                   placeholder="B1234567" required>-->
-                <!--                                        </div>-->
+                                        <div class="form-row m-1">
+                                            <label for="inputLossdmg">Loss Damage Waiver Payment(Rs.) </label>
+                                            <input type="text" class="form-control  rounded-7" id="inputLossdmg"
+                                                   placeholder="10000" required readonly>
+                                        </div>
+                                        <div class="form-row m-1">
+                                            <label for="inputDeposite">Your Deposite(Rs.)</label>
+                                            <input type="text" class="form-control  rounded-7"
+                                                   id="inputDeposite"
+                                                   placeholder="5000" required>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row m-1">
+                                        <i class="fas fa-university fa-2x"></i>
+                                        <h3 class="h3" style="font-family: 'Dancing Script SemiBold'"> <b><u>  Bank Details</u></b></h3>
+                                    </div>
+                                    <hr>
+                                    <div class="form-row m-1">
 
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputNIC">NIC No</label>-->
-                <!--                                            <input type="text" class="form-control  rounded-7" id="inputNIC"-->
-                <!--                                                   placeholder="984545415V" required>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                    <div class="form-row">-->
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputUserName">Username</label>-->
-                <!--                                            <input type="text" class="form-control  rounded-7" id="inputUserName"-->
-                <!--                                                   placeholder="kamal" required>-->
-                <!--                                        </div>-->
-                <!--                                        <div class="form-group col-md-6">-->
-                <!--                                            <label for="inputPassword">Password</label>-->
-                <!--                                            <input type="password" class="form-control  rounded-7"-->
-                <!--                                                   id="inputPassword"-->
-                <!--                                                   placeholder="" required>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                    <div class="input-group mb-3">-->
-                <!--                                        <div class="input-group-prepend">-->
-                <!--                                        <span class="input-group-text"-->
-                <!--                                              id="inputGroupFileAddon01">Upload NIC (Front)</span>-->
-                <!--                                        </div>-->
-                <!--                                        &lt;!&ndash;                            <div class="custom-file">&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                <input type="file" class="custom-file-input"&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                       id="inputfile1"&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                       aria-describedby="inputGroupFileAddon01">&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                <label class="custom-file-label" for="inputfile1">Choose&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                    file</label>&ndash;&gt;-->
+                                        <label for="inputBankName">Bank Name</label>
+                                        <input type="text" class="form-control  rounded-7" id="inputBankName"
+                                               placeholder="People's Bank" required>
+                                    </div>
+                                    <div class="form-row m-1">
+                                        <label for="inputBankBranch">Branch</label>
+                                        <input type="text" class="form-control  rounded-7"
+                                               id="inputBankBranch"
+                                               placeholder="Dharmapala Mawatha-Matara" required>
+                                    </div>
+                                    <div class="form-row m-1">
+                                        <label for="inputAccHolderName">Acc: Holder Name</label>
+                                        <input type="text" class="form-control  rounded-7" id="inputAccHolderName"
+                                               placeholder="Nimal Perera" required>
+                                    </div>
 
-                <!--                                        &lt;!&ndash;                            </div>&ndash;&gt;-->
-                <!--                                        <div>-->
-                <!--                                            <input class="form-control  rounded-7 w-100" id="inputfile1" type="file">-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
+                                    <div class="form-row m-1 mb-2">
+                                        <label for="inputAccNo">Acc: No</label>
+                                        <input type="email" class="form-control  rounded-7" id="inputAccNo"
+                                               placeholder="152454542030112"
+                                               required>
+                                    </div>
 
-                <!--                                    <div class="input-group mb-3">-->
+                                    <div class="input-group m-1">
+                                        <div class="input-group-prepend">
+                                                        <span class="input-group-text"
+                                                              id="inputfile">Upload Bank Slip</span>
+                                        <!--                            <div class="custom-file">-->
+                                        <!--                                <input type="file" class="custom-file-input"-->
+                                        <!--                                       id="inputfile1"-->
+                                        <!--                                       aria-describedby="inputGroupFileAddon01">-->
+                                        <!--                                <label class="custom-file-label" for="inputfile1">Choose-->
+                                        <!--                                    file</label>-->
 
-                <!--                                        <div class="input-group-prepend">-->
-                <!--                                        <span class="input-group-text"-->
-                <!--                                              id="inputGroupFileAddon02">Upload NIC (Back)</span>-->
-                <!--                                        </div>-->
-                <!--                                        &lt;!&ndash;                            <div class="custom-file">&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                <input type="file" class="custom-file-input"&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                       id="inputfile2"&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                       aria-describedby="inputGroupFileAddon02">&ndash;&gt;-->
-                <!--                                        &lt;!&ndash;                                <label class="custom-file-label" for="inputfile2">Choose file</label>&ndash;&gt;-->
-
-                <!--                                        &lt;!&ndash;                            </div>&ndash;&gt;-->
-                <!--                                        <div>-->
-                <!--                                            <input class="form-control  rounded-7 w-100" id="inputfile2" type="file">-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
+                                        <!--                            </div>-->
+                                        <div>
+                                            <input class="form-control  rounded-7 w-100" id="inputBankSlip" type="file">
+                                        </div>
+                                        </div>
+                                    </div>
 
 
-                <!--                                    <div class="modal-footer">-->
-                <!--                                        <div style="width: 100%; text-align: center">-->
-                <!--                                            <button type="button" class="btn btn-success"-->
-                <!--                                                    id="btncreate">Create Account-->
-                <!--                                            </button>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                </form>-->
-                <!--                            </div>-->
+                                    <div class="modal-footer">
+                                        <div style="width: 100%; text-align: center">
+                                            <button type="button" class="btn btn-success"
+                                                    id="btnPay">Pay
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
+                        </div>
+                    </div>
+                </div>
 
             </div>            <!-- Tab content -->
         </div>

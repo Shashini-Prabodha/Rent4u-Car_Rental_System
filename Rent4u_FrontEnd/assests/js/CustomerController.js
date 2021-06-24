@@ -58,13 +58,7 @@ function getCurrentDate() {
 
 $("#cdate").val(getCurrentDate());
 
-//
-// const date1 = new Date('7/13/2010');
-// const date2 = new Date('12/15/2010');
-// const diffTime = Math.abs(date2 - date1);
-// const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-// console.log(diffTime + " milliseconds");
-// console.log(diffDays + " days");
+
 
 //get car type
 function getSelectedCType() {
@@ -557,9 +551,10 @@ function loadAllCRBooking() {
                     $('#hiddnpick').val(pickup);
                     $('#hiddnReturn').val(rtndate);
 
+
                     if (status == "Accept") {
                         $("#btnRent").attr("disabled", false);
-
+                        setLoosDmg();
                         if (drvid != "No Need Driver") {
                             $('#msg').click(function () {
                                 let dname;
@@ -574,7 +569,7 @@ function loadAllCRBooking() {
                                         var data = response.data;
                                         dname = data.name;
                                         dcontact = data.contactNo;
-                                        let text = ("------------Your Reqeust Accepted!------------\n * Your Driver Name - " + dname + "\n* Driver Contact - " + dcontact);
+                                        let text = ("------------Your Reqeust Accepted!------------\n * Your Driver Name - " + dname + "\n* Driver Contact - " + dcontact + "Please Deposite paymnet for.........>Acc no : 152-3-999-3-025466 , Bank- People's Bank-Matara , Acc: Holder : A.G. Pethum Nuwanga");
                                         if ($('.popover').hasClass('in')) {
                                             $('#msg').popover('hide');
                                         } else {
@@ -586,7 +581,7 @@ function loadAllCRBooking() {
 
                             });
                         } else {
-                            let text = ("...............Your Reqeust Accepted!.................\n Enjoy tour!");
+                            let text = ("...............Your Reqeust Accepted!.................\n Please Deposite paymnet for.........>Acc no : 152-3-999-3-025466 , Bank- People's Bank-Matara , Acc: Holder : A.G. Pethum Nuwanga. Enjoy tour!");
                             $('#msg').click(function () {
 
                                 if ($('.popover').hasClass('in')) {
@@ -622,6 +617,24 @@ function loadAllCRBooking() {
     });
 }
 
+
+function setLoosDmg() {
+
+    let carid = $('#hiddnCar').val();
+
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
+        async: false,
+        dataType: 'json',
+        success: function (response) {
+            let loos = response.data.lossDamageWaiver;
+            $('#inputLossdmg').val(loos);
+
+        }
+    });
+}
+
 $('#btnDeleteOrder').click(function () {
 
 
@@ -632,7 +645,7 @@ $('#btnDeleteOrder').click(function () {
     let ordDate = $('#hiddnord').val();
     let pickupdate = $('#hiddnpick').val();
     let returnDate = $('#hiddnReturn').val();
-console.log('driverId'+driverId+'book'+bookingId+'car'+carid+'cid'+cid);
+
     let car;
     let driver;
     let customer;
@@ -733,6 +746,7 @@ console.log('driverId'+driverId+'book'+bookingId+'car'+carid+'cid'+cid);
 
 });
 
+
 function updateCarinAjax(car) {
     $.ajax({
         method: "put",
@@ -787,3 +801,320 @@ function updateDriAjax(driver) {
     });
 }
 
+// check pay model
+
+// check deposite
+$('#inputDeposite').on('keyup', function (event) {
+    checkDepositeField();
+});
+
+function checkDepositeField() {
+    if (/^[0-9.]{1,}$/.test($('#inputDeposite').val())) {
+        $('#inputDeposite').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#inputDeposite').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+// checkBankName
+$('#inputBankName').on('keyup', function (event) {
+    checkBankName();
+});
+
+function checkBankName() {
+    if (/^[A-z ]{1,}$/.test($('#inputBankName').val())) {
+        $('#inputBankName').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#inputBankName').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+// check Bank Branch
+$('#inputBankBranch').on('keyup', function (event) {
+    checkBankBranch();
+});
+
+function checkBankBranch() {
+    if (/^[A-z || -,.]{1,}$/.test($('#inputBankBranch').val())) {
+        $('#inputBankBranch').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#inputBankBranch').css('border', '3px solid red');
+    }
+    return false;
+}
+
+// check Acc holder name
+$('#inputAccHolderName').on('keyup', function (event) {
+    checkAccHolderName();
+});
+
+function checkAccHolderName() {
+    if (/^[A-z ]{1,}$/.test($('#inputAccHolderName').val())) {
+        $('#inputAccHolderName').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#inputAccHolderName').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//check acc no
+function checkAccNo() {
+    if (/^[0-9]{1,15}$/.test($('#inputAccNo').val())) {
+        $('#inputAccNo').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#inputAccNo').css('border', '3px solid red');
+    }
+    return false;
+
+}
+
+$('#inputAccNo').on('keyup', function (event) {
+    checkAccNo();
+});
+
+
+//check file input slip
+$('#inputBankSlip').on('keyup', function (event) {
+    checkSlipUpload();
+});
+
+function checkSlipUpload() {
+    console.log($('#inputBankSlip').val());
+
+    if ($('#inputBankSlip').val() == '') {
+        $('#inputBankSlip').css('border', '3px solid red');
+        alertify.warning('Upload Bank Slip');
+
+    } else {
+        $('#inputBankSlip').css('border', '3px solid #0eab34');
+
+    }
+    return true;
+
+}
+
+$('#btnPay').click(function () {
+
+    let bookingId = $('#cbookingID').val();
+    let carid = $('#hiddnCar').val();
+    let cid = $('#hiddnCust').val();
+    let driverId = $('#hiddnDriver').val();
+    let ordate = $('#hiddnord').val();
+    let pick = $('#hiddnpick').val();
+    let rtndate = $('#hiddnReturn').val();
+
+
+    let lossdmg = parseFloat($('#inputLossdmg').val());
+    let deposite =parseFloat($('#inputDeposite').val());
+    let bank = $('#inputBankName').val();
+    let branch = $('#inputBankBranch').val();
+    let accHolder = $('#inputAccHolderName').val();
+    let accNo = $('#inputAccNo').val();
+    let bankSlip = $('#inputBankSlip').val();
+
+    let today = $('#cdate').val();
+
+    var b=null;
+
+    let car;
+    let driver;
+    let customer;
+
+    let amount=parseFloat(lossdmg);
+    if(deposite>0){
+        amount=deposite+lossdmg;
+    }
+
+    if(checkDepositeField() && deposite!=""){
+        if(checkBankName() && bank!=""){
+            if(checkBankBranch() && branch!=""){
+                if(checkAccHolderName() && accHolder!=""){
+                    if(checkAccNo() && accNo!=""){
+                        if(checkSlipUpload() && bankSlip!=""){
+
+                            // $.ajax({
+                            //     method: "get",
+                            //     url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking/' + bookingId,
+                            //     async: false,
+                            //     dataType: 'json',
+                            //     success: function (response) {
+                            //         b = response.data;
+                            //
+                            //     }
+                            // });
+                            // console.log("booking"+ b+" "+ bookingId+" booking "+ today+" amount "+ amount);
+                            // $.ajax({
+                            //     method: "get",
+                            //     url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
+                            //     async: false,
+                            //     dataType: 'json',
+                            //     success: function (response) {
+                            //         car = response.data;
+                            //         console.log("car " + car);
+                            //     }
+                            // });
+                            // $.ajax({
+                            //     method: "get",
+                            //     url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer/' + cid,
+                            //     async: false,
+                            //     dataType: 'json',
+                            //     success: function (response) {
+                            //         customer = response.data;
+                            //         console.log("cust " + customer);
+                            //
+                            //     }
+                            // });
+                            //
+                            // if (driverId != "No Need Driver") {
+                            //     $.ajax({
+                            //         method: "get",
+                            //         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/' + driverId,
+                            //         async: false,
+                            //         dataType: 'json',
+                            //         success: function (response) {
+                            //             driver = response.data;
+                            //             console.log("driver " + driver);
+                            //             updateDriAjax(driver);
+                            //         }
+                            //     });
+
+                            // } else {
+                            //     $.ajax({
+                            //         method: "get",
+                            //         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/driver/' + "D0",
+                            //         async: false,
+                            //         dataType: 'json',
+                            //         success: function (response) {
+                            //             driver = response.data;
+                            //
+                            //         }
+                            //     });
+                            // }
+                            //
+                            $.ajax({
+                                method: "post",
+                                url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment",
+                                async: false,
+                                contentType: "application/json",
+                                data: JSON.stringify(
+                                    {
+                                        paymentID:"P",
+                                        date:today,
+                                        amount:amount,
+                                        description:"Pay advance payment",
+                                        booking:b
+                                    }
+                                ),
+                                success: function (response) {
+                                    let pid = response.data.paymentID;
+                                    $('#inputDeposite').val("");
+
+                                    $.ajax({
+                                        method: "put",
+                                        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking",
+                                        contentType: "application/json",
+                                        async: false,
+                                        data: JSON.stringify(
+                                            {
+                                                bookingID: bookingId,
+                                                date: ordate,
+                                                pickupDate: pick,
+                                                returnDate: rtndate,
+                                                status: "Rent",
+                                                customer: customer,
+                                                car: car,
+                                                driver: driver
+                                            }
+                                        ),
+                                        success: function (data) {
+                                            loadAllCRBooking();
+                                            // Swal.fire({
+                                            //     position: 'top-end',
+                                            //     icon: 'success',
+                                            //     title: 'Upadeted !',
+                                            //     showConfirmButton: false,
+                                            //     timer: 1500
+                                            // })
+
+                                            alertify.success('Request Sent', 'success', 2);
+
+                                        }
+                                    });
+
+                                    alertify.success('Payment success!', 'success', 2);
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        html: "Payment ID : <br />" + pid + "<br />Date : " + today + "<br />Your ID : " +cid+ "<br />Total Payment(Rs.) : " + amount,
+                                        title: 'Payment - Receipt',
+                                        footer: "IMPORTANT : Use the same Payment ID ("+pid+") for payments when you return the car",
+                                        confirmButtonText: 'Ok',
+
+                                    });
+                                }
+                            });
+
+
+                        }else{
+                            $('#inputBankName').css('border', '3px solid red');
+                        }
+
+                    }else{
+                        $('#inputAccNo').css('border', '3px solid red');
+                    }
+                }else{
+                    $('#inputAccHolderName').css('border', '3px solid red');
+                }
+            }else{
+                $('#inputBankBranch').css('border', '3px solid red');
+            }
+        }else{
+            $('#inputBankName').css('border', '3px solid red');
+        }
+    }else{
+        $('#inputDeposite').css('border', '3px solid red');
+    }
+
+
+});
+
+
+
+loadAllCPayments();
+
+function loadAllCPayments(){
+let cid = $('#hiddnCust').val();
+
+    $('#paymentTBody').empty();
+    $.ajax({
+        method: 'GET',
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment"+cid,
+        dataType: 'json',
+        async: true,
+        success: function (resp) {
+            let response = resp.data;
+            for (var i in response) {
+
+                let pid = response[i].paymentID;
+                let orddate = response[i].date;
+                let amount = response[i].amount;
+                let description = response[i].description;
+                let bookingID = response[i].booking.bookingID;
+
+                var row = `<tr><td>${pid}</td><td>${orddate}</td><td>${amount}</td><td>${description}</td><td>${bookingID}</td></tr>`;
+                $('#paymentTBody').append(row);
+
+            }
+        }
+    });
+}

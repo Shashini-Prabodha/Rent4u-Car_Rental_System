@@ -124,7 +124,7 @@
 }
 
 .adminContent #v-tabs-dash-tab, #v-tabs-car-tab, #v-tabs-customer-tab, #v-tabs-driver-tab, #v-tabs-order-tab, #v-tabs-payment-tab ,#v-tabs-request-tab ,
-#v-tabs-profile-tab,#v-tabs-setting-tab{
+#v-tabs-profile-tab,#v-tabs-setting-tab,#v-tabs-bookingreturn-tab,#v-tabs-maintaince-tab{
     padding: 25px;
     font-size: 15px;
     text-shadow: #c7c7c7 5px 5px 5px;
@@ -132,7 +132,7 @@
 }
 
 #v-tabs-dash > div > h1, #v-tabs-car > div > h1, #v-tabs-customer > div > h1, #v-tabs-driver > div > h1, #v-tabs-order > div > h1, #v-tabs-payment > div > h1 ,#v-tabs-request > div > h1 ,
-#v-tabs-profile > div > h1, #v-tabs-setting > div > h1{
+#v-tabs-profile > div > h1, #v-tabs-setting > div > h1,#v-tabs-bookingreturn > div > h1,#v-tabs-maintaince > div > h1{
     text-shadow: #c0c0c0 5px 5px 5px;
 }
 

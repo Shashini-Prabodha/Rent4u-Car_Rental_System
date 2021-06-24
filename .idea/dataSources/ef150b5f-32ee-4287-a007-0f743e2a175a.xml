@@ -1291,7 +1291,7 @@ SELECT|sys.sys_config
     </column>
     <column id="378" parent="300" name="date">
       <Position>3</Position>
-      <DataType>datetime(6)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="379" parent="300" name="description">
       <Position>4</Position>

@@ -1,6 +1,8 @@
 package lk.rent4u.service.impl;
 
+import lk.rent4u.dto.BookingDTO;
 import lk.rent4u.dto.PaymentDTO;
+import lk.rent4u.entity.Booking;
 import lk.rent4u.entity.Payment;
 import lk.rent4u.exception.ValidateException;
 import lk.rent4u.repo.PaymentRepo;
@@ -29,6 +31,8 @@ public class PaymentServiceImpl implements PaymentService {
         if (repo.existsById(dto.getPaymentID())) {
             throw new ValidateException("Payment Already Exists");
         }
+        dto.setPaymentID(getNewID());
+        System.out.println("ser 33 "+dto.getPaymentID());
         repo.save(mapper.map(dto, Payment.class));
     }
 
@@ -52,6 +56,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public ArrayList<PaymentDTO> getAllPayments() {
         List<Payment> all = repo.findAll();
+        for (Payment payment : all) {
+            System.out.println("***"+payment.getPaymentID());
+        }
         return mapper.map(all,new TypeToken<ArrayList<PaymentDTO>>(){}.getType());
     }
 
@@ -60,5 +67,35 @@ public class PaymentServiceImpl implements PaymentService {
         if(repo.existsById(dto.getPaymentID())){
             repo.save(mapper.map(dto,Payment.class));
         };
+    }
+
+    @Override
+    public String getLastID() {
+        return repo.getLastID();
+    }
+
+    @Override
+    public String getNewID() {
+        String lastID = getLastID();
+        if (lastID != null) {
+            String[] s = lastID.split("P");
+            int value = Integer.parseInt(s[1]);
+            value++;
+            if (value < 10) {
+                return "P00" + value;
+            } else if (value < 100) {
+                return "P0" + value;
+            } else {
+                return "P" + value;
+            }
+        } else {
+            return "P001";
+        }
+    }
+
+    @Override
+    public List<PaymentDTO> getPaymentCid(String custId) {
+        List<Payment> all = repo.getPaymentCid(custId);
+        return mapper.map(all,new TypeToken<ArrayList<PaymentDTO>>(){}.getType());
     }
 }

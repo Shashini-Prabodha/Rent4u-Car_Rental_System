@@ -14,10 +14,9 @@ import java.util.Date;
 public class Payment {
     @Id
     private String paymentID;
-    private Date date;
+    private String date;
     private double amount;
     private String description;
-
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bookingID", referencedColumnName = "bookingID",nullable = false)

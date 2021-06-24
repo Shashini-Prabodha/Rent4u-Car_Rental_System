@@ -52,8 +52,10 @@
 
                             <h4 class="h4 align-self-center" id="comName">Rent<span class="l4"> 4</span> u</h4>
                         </div>
-                        <li class="nav-item "><a class="nav-link " aria-current="page" href="index.html"><i class="fas fa-home fa-2x" style="position: absolute"></i></a></li>
-                        <li class="nav-item"><a class="nav-link " aria-current="page" href="#" style="font-family: 'Dancing Script SemiBold'">Admin</a></li>
+                        <li class="nav-item "><a class="nav-link " aria-current="page" href="index.html"><i
+                                class="fas fa-home fa-2x" style="position: absolute"></i></a></li>
+                        <li class="nav-item"><a class="nav-link " aria-current="page" href="#"
+                                                style="font-family: 'Dancing Script SemiBold'">Admin</a></li>
 
 
                     </ul>
@@ -98,6 +100,14 @@
                 <a class="nav-link" id="v-tabs-request-tab" data-mdb-toggle="tab" href="#v-tabs-request" role="tab"
                    aria-controls="v-tabs-request" aria-selected="false">
                     <i class="fas fa-archive"></i> REQUEST</a>
+                <a class="nav-link" id="v-tabs-bookingreturn-tab" data-mdb-toggle="tab" href="#v-tabs-bookingreturn"
+                   role="tab"
+                   aria-controls="v-tabs-bookingreturn" aria-selected="false">
+                    <i class="fas fa-file-invoice-dollar"></i> BOOKING RETURN</a>
+                <a class="nav-link" id="v-tabs-maintaince-tab" data-mdb-toggle="tab" href="#v-tabs-maintaince"
+                   role="tab"
+                   aria-controls="v-tabs-maintaince" aria-selected="false">
+                    <i class="fas fa-tools"></i> MAINTAINCE</a>
             </div>
             <!-- Tab navs -->
         </div>
@@ -155,7 +165,7 @@
                             <div class="col-lg-7 col-xl-8">
                                 <div class="card shadow mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h6 class="text-primary font-weight-bold m-0">Earnings Overview</h6>
+                                        <h6 class="text-primary font-weight-bold m-0">Monthly Income</h6>
                                         <div class="dropdown no-arrow">
                                             <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown"
                                                     aria-expanded="false" type="button"><i
@@ -331,7 +341,9 @@
                                     <button type="button" class="btn btn-danger mt-3" id="delCar">Delete</button>
                                     <button type="button" class="btn btn-warning mt-3" id="updateCar">Update</button>
                                     <button type="button" class="btn btn-secondary mt-3" id="clearCar">Clear</button>
-                                    <button type="button" class="btn btn-info mt-3 " id="addToMaintaince">Add To Maintaince</button>
+                                    <button type="button" class="btn btn-info mt-3 " id="addToMaintaince">Add To
+                                        Maintaince
+                                    </button>
 
                                 </div>
                             </div>
@@ -351,12 +363,12 @@
                                     </button>
                                 </div>
                             </div>
-
-
                         </div>
+
                         <!--                        car table-->
                         <div class="row overflow-scroll" style="height: 200px">
-                            <table id="tblCar" class="table table-hover table-striped table-bordered table-sm" cellspacing="0" width="100%"  >
+                            <table id="tblCar" class="table table-hover table-striped table-bordered table-sm"
+                                   cellspacing="0" width="100%">
                                 <thead>
                                 <tr class="border-bottom-secondary">
                                     <th>Reg No.</th>
@@ -520,9 +532,10 @@
                         <!-- driver table-->
                         <div class="row overflow-scroll">
 
-                            <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblDriver">
+                            <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                                   width="100%" id="tblDriver">
                                 <thead class="text-light" style="background: #2d35ff">
-                                <tr class="border-bottom-secondary" >
+                                <tr class="border-bottom-secondary">
                                     <th>Driver ID</th>
                                     <th>Name</th>
                                     <th>Contact</th>
@@ -548,9 +561,10 @@
 
                     <div class="tab-pane fade" id="v-tabs-order" role="tabpanel" aria-labelledby="v-tabs-order-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Order Details</h1></div>
-                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblBooking">
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                               width="100%" id="tblBooking">
                             <thead class="text-light bg-success">
-                            <tr class="border-bottom-secondary" >
+                            <tr class="border-bottom-secondary">
                                 <th>Booking ID</th>
                                 <th>Order Date</th>
                                 <th>Customer ID</th>
@@ -572,7 +586,21 @@
 
                     <div class="tab-pane fade" id="v-tabs-payment" role="tabpanel" aria-labelledby="v-tabs-payment-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                               width="100%" id="tblPayment">
+                            <thead class="text-light bg-success">
+                            <tr class="border-bottom-secondary">
+                                <th>Payment ID</th>
+                                <th>Amount(Rs.)</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Booking ID</th>
+                            </tr>
+                            </thead>
+                            <tbody id="adminPaymentTBody">
 
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Payment details section end-->
@@ -581,9 +609,10 @@
 
                     <div class="tab-pane fade" id="v-tabs-request" role="tabpanel" aria-labelledby="v-tabs-request-tab">
                         <div class="row text-center"><h1 class="h1 display-5">Booking Request</h1></div>
-                        <table class="table table-striped table-bordered table-sm " cellspacing="0" width="100%" id="tblReqBooking">
+                        <table class="table table-striped table-bordered table-sm " cellspacing="0" width="100%"
+                               id="tblReqBooking">
                             <thead class="text-light bg-secondary">
-                            <tr class="border-bottom-secondary" >
+                            <tr class="border-bottom-secondary">
                                 <th>Booking ID</th>
                                 <th>Order Date</th>
                                 <th>Customer ID</th>
@@ -603,10 +632,175 @@
                     </div>
                     <!-- Request section end-->
 
+                    <!-- bookingreturn details section start-->
+
+                    <div class="tab-pane fade" id="v-tabs-bookingreturn" role="tabpanel"
+                         aria-labelledby="v-tabs-bookingreturn-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Booking Return</h1></div>
+
+                        <!--                        search payment id-->
+                        <div class="row m-4 align-content-end">
+                            <div class="col-md-4 offset-md-4">
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                        <input type="search" id="searchPid" class="form-control"/>
+                                        <label class="form-label" for="searchPid">Search Payment ID</label>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="btnSearchPid">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ml-0 mr-0 ">
+
+                            <div class="col-3 ">
+
+                                <div class="form-floating mb-3 ">
+                                    <input type="text" class="form-control   rounded-7 " id="paylastAmount" readonly>
+                                    <label for="paylastAmount" class="overflow-hidden">Last paid amount(Rs.)</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="paylastDesc" readonly>
+                                    <label for="paylastDesc" class="overflow-hidden">Last Description about
+                                        payment</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="bookingId" readonly>
+                                    <label for="bookingId" class="overflow-hidden">Booking ID</label>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="today" readonly>
+                                    <label for="today" class="overflow-hidden">Today</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row ml-0 mr-0 ">
+
+                            <div class="col-3 ">
+
+                                <div class="form-floating mb-3 ">
+                                    <input type="text" class="form-control  rounded-7 " id="pickup" readonly>
+                                    <label for="pickup" class="overflow-hidden">Pickup Date</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="returnDate" readonly>
+                                    <label for="returnDate" class="overflow-hidden">Return Date</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="driver" readonly>
+                                    <label for="driver" class="overflow-hidden">Driver</label>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="driverpayment" readonly>
+                                    <label for="driverpayment" class="overflow-hidden">Driver Payment</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row ml-0 mr-0 ">
+
+                            <div class="col-3 ">
+
+                                <div class="form-floating mb-3 ">
+                                    <input type="text" class="form-control  rounded-7 " id="dmgPayment">
+                                    <label for="dmgPayment" class="overflow-hidden">Damage Payment(Rs.)</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="rentforusingDate" readonly>
+                                    <label for="rentforusingDate" class="overflow-hidden">Rent For Using Dates</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="totkm">
+                                    <label for="totkm" class="overflow-hidden">Total km</label>
+
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="priceExkm" readonly>
+                                    <label for="priceExkm" class="overflow-hidden">Total Price for Extra km</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <button type="button" class="btn btn-warning mt-3 " id="calPayment">Calculate
+                                    Payment
+                                </button>
+
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row ml-0 mr-0 ">
+                            <div class="col-4 ">
+                                <div class="form-floating mb-3 ">
+                                    <input type="text" class="form-control  rounded-7 " id="total">
+                                    <label for="total" class="overflow-hidden">Total Payment(Rs.)</label>
+                                </div>
+                            </div>
+<!--                            <div class="col-3">-->
+<!--                                <div class="form-floating mb-3">-->
+<!--                                    <input type="text" class="form-control  rounded-7" id="cash">-->
+<!--                                    <label for="cash" class="overflow-hidden">Cash(Rs.)</label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control  rounded-7" id="balance">
+                                    <label for="balance" class="overflow-hidden">Balance(Rs.)</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row ml-0 mr-0 ">
+
+                            <button type="button" class="btn btn-secondary mt-3 " id="submitPayment">Payment Submit
+                            </button>
+                        </div>
+                    </div>
+
+
+                <!-- bookingreturn details section end-->
+
+                <!-- maintaince details section start-->
+
+                <div class="tab-pane fade" id="v-tabs-maintaince" role="tabpanel"
+                     aria-labelledby="v-tabs-maintaince-tab">
+                    <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
 
                 </div>
-            </div>            <!-- Tab content -->
-        </div>
+
+                <!-- maintaince details section end-->
+
+            </div>
+        </div>            <!-- Tab content -->
+    </div>
     </div>
 
 </main>
