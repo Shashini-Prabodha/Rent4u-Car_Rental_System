@@ -127,5 +127,12 @@ public class BookingServiceImpl implements BookingService {
         return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
     }
 
+    @Override
+    public List<BookingDTO> getBookinginId(String driverId) {
+        List<Booking> bookings = bookingRepo.getBookinginId("Accept", driverId);
+        return mapper.map(bookings,new TypeToken<ArrayList<BookingDTO>>(){}.getType());
+
+    }
+
 
 }

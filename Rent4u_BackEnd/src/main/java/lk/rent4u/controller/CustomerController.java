@@ -52,7 +52,7 @@ public class CustomerController {
             throw new NotFoundException("No ID provided to update");
         }
         service.updateCustomer(dto);
-        return new ResponseEntity(new StandardResponse("200", "Done", null), HttpStatus.OK);
+        return new ResponseEntity(new StandardResponse("200", "Done", dto), HttpStatus.OK);
     }
 
     @GetMapping(path = "lastId")

@@ -29,6 +29,7 @@ public interface BookingService {
 
     List<BookingDTO> getBookingMultiStatus(String id);
 
+    List<BookingDTO> getBookinginId(String driverId);
 
 
 }

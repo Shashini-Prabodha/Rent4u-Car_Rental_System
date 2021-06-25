@@ -170,19 +170,37 @@ function searchCar(id) {
 }
 
 
-// //get Booking ID
-//
-// function getNewBookingID() {
-//     $.ajax({
-//         method: "get",
-//         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/booking/newBookingId',
-//         async: false,
-//         success: function (response) {
-//             $('#bookingId').val(response.data);
-//
-//         }
-//     });
-// }
+//update customer
+$('#btnupdateCustomer').click(function () {
+    updateCustomer();
+    }
+);
+
+function updateCustomer() {
+    $.ajax({
+        method: "put",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer',
+        contentType: "application/json",
+        async: true,
+        data:JSON.stringify({
+            customerID:$('#custID').val(),
+            name:$('#custName').val(),
+            contact:$('#contact').val(),
+            email:$('#email').val(),
+            address:$('#address').val(),
+            drivingLicenceNo:$('#licence').val(),
+            nicNo:$('#nic').val(),
+            userName:$('#userName').val(),
+            password:$('#hiddnPassword').val()
+        }),
+        success: function (response) {
+            getAllCustomerData(response.data.userName);
+            alertify.success('Request Sent', 'success', 2);
+
+        }
+    });
+}
+
 
 
 //check pickup date
@@ -233,7 +251,7 @@ function checkDriverNeed() {
         return false;
     }
 }
-
+// updateCustomer
 console.log("$('#custID').val() - " + $('#custID').val());
 
 //send req btn

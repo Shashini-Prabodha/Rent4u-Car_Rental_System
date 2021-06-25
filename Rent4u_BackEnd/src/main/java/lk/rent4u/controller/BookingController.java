@@ -88,4 +88,9 @@ public class BookingController {
         return new ResponseEntity(new StandardResponse("200", "Done", allBookings), HttpStatus.OK);
     }
 
+    @GetMapping(path="/get/list/{id}")
+    public ResponseEntity getBookingsinID(@PathVariable String id) {
+        List<BookingDTO> bookingins = service.getBookinginId(id);
+        return new ResponseEntity(new StandardResponse("200", "Done", bookingins), HttpStatus.OK);
+    }
 }
