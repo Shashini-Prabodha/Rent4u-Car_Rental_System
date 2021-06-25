@@ -18,5 +18,8 @@ public interface CarRepo extends JpaRepository<Car,String> {
     @Query(value = "SELECT c from Car c where c.type=:type AND c.status=:status")
     List<Car> getFiltingCar(@Param("type") String type, @Param("status") String status);
 
+    @Query(value = "SELECT c FROM Car c where c.completeKm>=5000 AND c.status!=:status")
+    List<Car> getNeedMaintainceCar( @Param("status") String status);
+
 
 }

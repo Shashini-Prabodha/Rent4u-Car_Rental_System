@@ -153,7 +153,8 @@
                                     <div class="card-body">
                                         <h6 class="card-title text-primary text-center"><i class="fas fa-car"></i>
                                             MAINTENANCE CAR</h6>
-                                        <h6 class="card-subtitle display-6 mb-2 text-center" id="countNeedMaintainceC">08</h6>
+                                        <h6 class="card-subtitle display-6 mb-2 text-center" id="countNeedMaintainceC">
+                                            08</h6>
                                     </div>
                                 </div>
                             </div>
@@ -765,12 +766,12 @@
                                     <label for="total" class="overflow-hidden">Total Payment(Rs.)</label>
                                 </div>
                             </div>
-<!--                            <div class="col-3">-->
-<!--                                <div class="form-floating mb-3">-->
-<!--                                    <input type="text" class="form-control  rounded-7" id="cash">-->
-<!--                                    <label for="cash" class="overflow-hidden">Cash(Rs.)</label>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                            <div class="col-3">-->
+                            <!--                                <div class="form-floating mb-3">-->
+                            <!--                                    <input type="text" class="form-control  rounded-7" id="cash">-->
+                            <!--                                    <label for="cash" class="overflow-hidden">Cash(Rs.)</label>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <div class="col-4">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control  rounded-7" id="balance">
@@ -788,21 +789,86 @@
                     </div>
 
 
-                <!-- bookingreturn details section end-->
+                    <!-- bookingreturn details section end-->
 
-                <!-- maintaince details section start-->
+                    <!-- maintaince details section start-->
 
-                <div class="tab-pane fade" id="v-tabs-maintaince" role="tabpanel"
-                     aria-labelledby="v-tabs-maintaince-tab">
-                    <div class="row text-center"><h1 class="h1 display-5">Payment Details</h1></div>
+                    <div class="tab-pane fade" id="v-tabs-maintaince" role="tabpanel"
+                         aria-labelledby="v-tabs-maintaince-tab">
+                        <div class="row text-center"><h1 class="h1 display-5">Maintaince Details</h1></div>
+                        <div class="row ml-0 mr-0 ">
+                            <h3 class="h3  p-2 m-3 maintainceTitle">Need Maintaince</h3>
+
+                        </div>
+                        <div class="row m-3">
+
+                            <div class="col-2">
+                                <input type="text" class="form-control  rounded-7" id="carid">
+                                <input type="text" class="form-control  rounded-7" id="maintainceid" hidden>
+
+                            </div>
+                        </div>
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                               width="100%" id="tblNeedMaintaince">
+                            <thead>
+                            <tr class="border-bottom-secondary">
+                                <th>Car ID</th>
+                                <th>Brand</th>
+                                <th>Complete Km</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody id="needMaintainceTBody">
+
+                            </tbody>
+                        </table>
+                        <div class="row ml-0 mr-0 ">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+
+                                <button type="button" class="btn btn-warning mt-3" id="btnaddMaintaince">Add To
+                                    Maintaince
+                                </button>
+
+                            </div>
+                        </div>
+<!--.............................................-->
+                        <div class="row ml-0 mr-0 ">
+                            <h3 class="h3  p-2 m-3 maintainceTitle">Maintaince Car</h3>
+                            <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                                   width="100%" id="tblMaintaince">
+                                <thead>
+                                <tr class="border-bottom-secondary">
+                                    <th>Maintaince ID</th>
+                                    <th>Date</th>
+                                    <th>Car ID</th>
+                                    <th>Details</th>
+                                </tr>
+                                </thead>
+                                <tbody id="maintainceTBody">
+
+                                </tbody>
+                            </table>
+                            <div class="row ml-0 mr-0 ">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                    <input type="text" class="form-control  rounded-7" id="oldmid" hidden>
+
+                                    <button type="button" class="btn btn-success mt-3" id="btnMaintainceDone">Add To
+                                        Maintaince Done
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- maintaince details section end-->
 
                 </div>
-
-                <!-- maintaince details section end-->
-
-            </div>
-        </div>            <!-- Tab content -->
-    </div>
+            </div>            <!-- Tab content -->
+        </div>
     </div>
 
 </main>

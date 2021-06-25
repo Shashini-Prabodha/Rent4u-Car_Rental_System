@@ -84,4 +84,11 @@ public class CarServiceImpl implements CarService {
     public int countByCarinStauts(String status) {
         return repo.countByCarinStauts(status);
     }
+
+    @Override
+    public List<CarDTO> getNeedMaintainceCar() {
+        List<Car> all = repo.getNeedMaintainceCar("maintaince");
+        return mapper.map(all, new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
+    }
 }

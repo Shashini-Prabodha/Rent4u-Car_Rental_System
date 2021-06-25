@@ -24,5 +24,8 @@ public interface CarService {
 
     int countByCarinStauts(String status);
 
+    List<CarDTO> getNeedMaintainceCar();
+
+
 
 }

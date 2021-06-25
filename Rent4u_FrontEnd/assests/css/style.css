@@ -178,6 +178,15 @@
     box-shadow: #bcbcbc 5px 0px 13px;
     color: white;
 }
+
+.maintainceTitle{
+    font-family: Dancing Script SemiBold;
+    border-radius: 20px 0 0px;
+    background: #c039e5;
+    box-shadow: #bcbcbc 5px 0px 13px;
+    color: white;
+}
+
 #tblDriver #driverTbody tr{
     background: white;
 }

@@ -75,4 +75,10 @@ public class CarController {
         int count = service.countByCarinStauts(status);
         return new ResponseEntity(new StandardResponse("200", "Done", count), HttpStatus.OK);
     }
+
+    @GetMapping(path = "/needmaintaince")
+    public ResponseEntity getNeddMaintanceCar() {
+        List<CarDTO> needMaintainceCar = service.getNeedMaintainceCar();
+        return new ResponseEntity(new StandardResponse("200", "Done", needMaintainceCar), HttpStatus.OK);
+    }
 }

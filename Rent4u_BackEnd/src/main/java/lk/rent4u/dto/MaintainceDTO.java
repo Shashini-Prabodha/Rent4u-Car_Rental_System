@@ -16,8 +16,8 @@ import java.sql.Date;
 @Data
 public class MaintainceDTO {
     private String maintainceID;
-    private Date date;
+    private String date;
     private String details;
-    private Car car;
+    private CarDTO car;
 
 }

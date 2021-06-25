@@ -34,7 +34,7 @@ function getAllCustomerData(userName) {
             $('#licence').val(data.drivingLicenceNo);
             $('#nic').val(data.nicNo);
             $('#userName').val(data.userName);
-            // $('#userName').val(data.password);
+            $('#hiddnPassword').val(data.password);
 
             customer = data;
 
@@ -58,6 +58,105 @@ function getCurrentDate() {
 
 $("#cdate").val(getCurrentDate());
 
+//..............................checking profile field
+
+
+//check customer name
+
+$('#custName').on('keyup', function (event) {
+    checkCustName();
+});
+
+function checkCustName() {
+    if (/^[A-z ]{1,}$/.test($('#custName').val())) {
+        $('#custName').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#custName').css('border', '3px solid red');
+    }
+    return false;
+}
+
+//check contact
+$('#contact').on('keyup', function (event) {
+    checkCustomerContact();
+});
+
+function checkCustomerContact() {
+    if (/^[0-9]{10}$/.test($('#contact').val())) {
+        $('#contact').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#contact').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//check address
+$('#address').on('keyup', function (event) {
+    checkAddress();
+});
+
+function checkAddress() {
+    if (/^[A-z, |0-9:./]*\b$/.test($('#address').val())) {
+        $('#address').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#address').css('border', '3px solid red');
+    }
+    return false;
+}
+
+//check email
+$('#email').on('keyup', function (event) {
+    checkEmail();
+});
+
+function checkEmail() {
+    if (/^[A-z, |0-9]{1,}(@gmail.com)$/.test($('#email').val())) {
+        $('#email').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#email').css('border', '3px solid red');
+    }
+    return false;
+}
+
+
+//check customer nic
+
+$('#nic').on('keyup', function (event) {
+    checkCustomerNic();
+});
+
+function checkCustomerNic() {
+    if (/^[0-9]{9}(V)$/.test($('#nic').val())) {
+        $('#nic').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#nic').css('border', '3px solid red');
+    }
+    return false;
+
+}
+
+//check customer lienceid
+
+$('#licence').on('keyup', function (event) {
+    checkCustomerLicenceId();
+});
+
+function checkCustomerLicenceId() {
+    if (/^(B)[0-9]{7}$/.test($('#licence').val())) {
+        $('#licence').css('border', '3px solid #0eab34');
+        return true;
+    } else {
+        $('#licence').css('border', '3px solid red');
+    }
+    return false;
+
+}
 
 
 //get car type
@@ -172,7 +271,43 @@ function searchCar(id) {
 
 //update customer
 $('#btnupdateCustomer').click(function () {
-    updateCustomer();
+        let id = $('#custID').val();
+        let name = $('#custName').val();
+        let contact = $('#contact').val();
+        let email = $('#email').val();
+        let address = $('#address').val();
+        let licence = $('#licence').val();
+        let nic = $('#nic').val();
+
+        if (id != "") {
+            if (checkCustName() && name != "") {
+                if (checkCustomerContact() && contact != "") {
+                    if (checkAddress() && address != "") {
+                        if (checkEmail() && email != "") {
+                            if (checkCustomerLicenceId() && licence != "") {
+                                if (checkCustomerNic() && nic != "") {
+                                    updateCustomer();
+
+                                } else {
+                                    console.log("save error");
+                                    $('#nic').css('border', '3px solid red');
+                                }
+                            } else {
+                                $('#licence').css('border', '3px solid red');
+                            }
+                        } else {
+                            $('#address').css('border', '3px solid red');
+                        }
+                    } else {
+                        $('#email').css('border', '3px solid red');
+                    }
+                } else {
+                    $('#contact').css('border', '3px solid red');
+                }
+            } else {
+                $('#custName').css('border', '3px solid red');
+            }
+        }
     }
 );
 
@@ -182,16 +317,16 @@ function updateCustomer() {
         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer',
         contentType: "application/json",
         async: true,
-        data:JSON.stringify({
-            customerID:$('#custID').val(),
-            name:$('#custName').val(),
-            contact:$('#contact').val(),
-            email:$('#email').val(),
-            address:$('#address').val(),
-            drivingLicenceNo:$('#licence').val(),
-            nicNo:$('#nic').val(),
-            userName:$('#userName').val(),
-            password:$('#hiddnPassword').val()
+        data: JSON.stringify({
+            customerID: $('#custID').val(),
+            name: $('#custName').val(),
+            contact: $('#contact').val(),
+            email: $('#email').val(),
+            address: $('#address').val(),
+            drivingLicenceNo: $('#licence').val(),
+            nicNo: $('#nic').val(),
+            userName: $('#userName').val(),
+            password: $('#hiddnPassword').val()
         }),
         success: function (response) {
             getAllCustomerData(response.data.userName);
@@ -200,7 +335,6 @@ function updateCustomer() {
         }
     });
 }
-
 
 
 //check pickup date
@@ -251,6 +385,7 @@ function checkDriverNeed() {
         return false;
     }
 }
+
 // updateCustomer
 console.log("$('#custID').val() - " + $('#custID').val());
 
@@ -933,7 +1068,7 @@ $('#btnPay').click(function () {
 
 
     let lossdmg = parseFloat($('#inputLossdmg').val());
-    let deposite =parseFloat($('#inputDeposite').val());
+    let deposite = parseFloat($('#inputDeposite').val());
     let bank = $('#inputBankName').val();
     let branch = $('#inputBankBranch').val();
     let accHolder = $('#inputAccHolderName').val();
@@ -942,23 +1077,23 @@ $('#btnPay').click(function () {
 
     let today = $('#cdate').val();
 
-    var b=null;
+    var b = null;
 
     let car;
     let driver;
     let customer;
 
-    let amount=parseFloat(lossdmg);
-    if(deposite>0){
-        amount=deposite+lossdmg;
+    let amount = parseFloat(lossdmg);
+    if (deposite > 0) {
+        amount = deposite + lossdmg;
     }
 
-    if(checkDepositeField() && deposite!=""){
-        if(checkBankName() && bank!=""){
-            if(checkBankBranch() && branch!=""){
-                if(checkAccHolderName() && accHolder!=""){
-                    if(checkAccNo() && accNo!=""){
-                        if(checkSlipUpload() && bankSlip!=""){
+    if (checkDepositeField() && deposite != "") {
+        if (checkBankName() && bank != "") {
+            if (checkBankBranch() && branch != "") {
+                if (checkAccHolderName() && accHolder != "") {
+                    if (checkAccNo() && accNo != "") {
+                        if (checkSlipUpload() && bankSlip != "") {
 
                             // $.ajax({
                             //     method: "get",
@@ -1026,11 +1161,11 @@ $('#btnPay').click(function () {
                                 contentType: "application/json",
                                 data: JSON.stringify(
                                     {
-                                        paymentID:"P",
-                                        date:today,
-                                        amount:amount,
-                                        description:"Pay advance payment",
-                                        booking:b
+                                        paymentID: "P",
+                                        date: today,
+                                        amount: amount,
+                                        description: "Pay advance payment",
+                                        booking: b
                                     }
                                 ),
                                 success: function (response) {
@@ -1073,9 +1208,9 @@ $('#btnPay').click(function () {
                                     Swal.fire({
                                         position: 'center',
                                         icon: 'success',
-                                        html: "Payment ID : <br />" + pid + "<br />Date : " + today + "<br />Your ID : " +cid+ "<br />Total Payment(Rs.) : " + amount,
+                                        html: "Payment ID : <br />" + pid + "<br />Date : " + today + "<br />Your ID : " + cid + "<br />Total Payment(Rs.) : " + amount,
                                         title: 'Payment - Receipt',
-                                        footer: "IMPORTANT : Use the same Payment ID ("+pid+") for payments when you return the car",
+                                        footer: "IMPORTANT : Use the same Payment ID (" + pid + ") for payments when you return the car",
                                         confirmButtonText: 'Ok',
 
                                     });
@@ -1083,23 +1218,23 @@ $('#btnPay').click(function () {
                             });
 
 
-                        }else{
+                        } else {
                             $('#inputBankName').css('border', '3px solid red');
                         }
 
-                    }else{
+                    } else {
                         $('#inputAccNo').css('border', '3px solid red');
                     }
-                }else{
+                } else {
                     $('#inputAccHolderName').css('border', '3px solid red');
                 }
-            }else{
+            } else {
                 $('#inputBankBranch').css('border', '3px solid red');
             }
-        }else{
+        } else {
             $('#inputBankName').css('border', '3px solid red');
         }
-    }else{
+    } else {
         $('#inputDeposite').css('border', '3px solid red');
     }
 
@@ -1107,16 +1242,15 @@ $('#btnPay').click(function () {
 });
 
 
-
 loadAllCPayments();
 
-function loadAllCPayments(){
-let cid = $('#hiddnCust').val();
+function loadAllCPayments() {
+    let cid = $('#hiddnCust').val();
 
     $('#paymentTBody').empty();
     $.ajax({
         method: 'GET',
-        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment"+cid,
+        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/payment" + cid,
         dataType: 'json',
         async: true,
         success: function (resp) {

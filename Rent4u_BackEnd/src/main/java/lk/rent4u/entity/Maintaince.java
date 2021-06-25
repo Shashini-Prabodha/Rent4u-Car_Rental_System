@@ -17,7 +17,7 @@ import java.sql.Date;
 public class Maintaince {
     @Id
     private String maintainceID;
-    private Date date;
+    private String date;
     private String details;
 
     @ManyToOne

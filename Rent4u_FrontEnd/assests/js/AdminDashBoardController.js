@@ -973,9 +973,9 @@ function updateBooking(bookingId, ordDate, cid, carid, pickupdate, returnDate, d
     console.log("bookingId " + bookingId + " " + cid + " " + driverId + " " + carid);
 
 
-    let car=null;
-    let driver=null;
-    let customer=null;
+    let car = null;
+    let driver = null;
+    let customer = null;
     $.ajax({
         method: "get",
         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
@@ -1619,9 +1619,9 @@ $('#btnSearchPid').click(function () {
                 $('#returnDate').val(booking.returnDate);
 
                 let did = booking.driver.driverID;
-                if(did=="No Need Driver"){
+                if (did == "No Need Driver") {
                     $('#driver').val("No");
-                }else{
+                } else {
                     $('#driver').val(did);
                 }
 
@@ -1758,9 +1758,9 @@ $('#submitPayment').click(function () {
     let newDriver = null;
     let lastCkm = car.completeKm;
 
-    let lcompletekm= parseFloat(lastCkm) + parseFloat(totkm);
+    let lcompletekm = parseFloat(lastCkm) + parseFloat(totkm);
 
-    console.log('driverid'+driverid);
+    console.log('driverid' + driverid);
 
     $.ajax({
         method: "put",
@@ -1793,7 +1793,7 @@ $('#submitPayment').click(function () {
 
 
     if (driverid != "No") {
-        console.log('driverid2'+driverid);
+        console.log('driverid2' + driverid);
 
         $.ajax({
             method: "put",
@@ -1812,9 +1812,8 @@ $('#submitPayment').click(function () {
                 }
             ),
             success: function (data) {
-                console.log('driverid2'+driver.driverID);
-                newDriver=data.data;
-
+                console.log('driverid2' + driver.driverID);
+                newDriver = data.data;
 
 
                 loadAllDrivers();
@@ -1879,5 +1878,252 @@ $('#submitPayment').click(function () {
     // }
 
 
-
 });
+
+// ..................................................Maintaince Section Start..............
+getneedMaintainceCar();
+getNEwMaintainceID();
+getMaintainceCar();
+
+function getneedMaintainceCar() {
+    $('#needMaintainceTBody').empty();
+    $('#btnaddMaintaince').attr("disabled", true);
+
+
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/needmaintaince',
+        async: false,
+        dataType: 'json',
+        success: function (resp) {
+            let response = resp.data;
+            for (var i in response) {
+                let id = (response[i].carID);
+                let brand = (response[i].brand);
+                let status = response[i].status;
+                let completeKm = response[i].completeKm;
+
+                var row = `<tr><td>${id}</td><td>${brand}</td><td>${completeKm}</td><td>${status}</td></tr>`;
+                $('#needMaintainceTBody').append(row);
+
+                $('#needMaintainceTBody tr').css({"cursor": "pointer"});
+                $('#needMaintainceTBody tr').click(function () {
+
+                        let id = $(this).children('td:eq(0)').text();
+                        let st = $(this).children('td:eq(3)').text();
+
+                        $('#carid').val(id);
+
+                    if (st == "in") {
+                            $('#btnaddMaintaince').attr("disabled", false);
+
+                        } else {
+                            $('#btnaddMaintaince').attr("disabled", true);
+                        alertify.warning('This car is'+st);
+
+                    }
+
+                    }
+                );
+
+            }
+        }
+    });
+}
+
+
+$('#btnaddMaintaince').click(function () {
+    let carid = $('#carid').val();
+    let mid = $('#maintainceid').val();
+
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
+        async: true,
+        dataType: 'json',
+        success: function (resp) {
+            let car = resp.data;
+
+
+            $.ajax({
+                method: "post",
+                url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/maintaince",
+                contentType: "application/json",
+                async: false,
+                data: JSON.stringify(
+                    {
+                        maintainceID: mid,
+                        date: getCurrentDate(),
+                        details: "repairing",
+                        car: car
+                    }
+                ),
+                success: function (data) {
+                    $.ajax({
+                        method: "put",
+                        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car",
+                        contentType: "application/json",
+                        async: false,
+                        data: JSON.stringify(
+                            {
+                                carID: car.carID,
+                                brand: car.brand,
+                                type: car.type,
+                                numberOfPassengers: car.numberOfPassengers,
+                                transmissionType: car.transmissionType,
+                                fuelType: car.fuelType,
+                                colour: car.colour,
+                                dailyRate: car.dailyRate,
+                                monthlyRate: car.monthlyRate,
+                                freeKmforMonth: car.freeKmforMonth,
+                                freeKmforDay: car.freeKmforDay,
+                                lossDamageWaiver: car.lossDamageWaiver,
+                                priceForExtraKM: car.priceForExtraKM,
+                                status: "maintaince",
+                                completeKm: car.completeKm
+                            }
+                        ),
+                        success: function (data) {
+                            getNEwMaintainceID();
+                            getMaintainceCar();
+                            getneedMaintainceCar();
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+function getNEwMaintainceID() {
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/maintaince/newMaintainceId',
+        async: true,
+        dataType: 'json',
+        success: function (resp) {
+            $('#maintainceid').val(resp.data);
+
+        }
+    });
+}
+
+
+
+function getMaintainceCar() {
+    $('#maintainceTBody').empty();
+    $('#btnMaintainceDone').attr("disabled", true);
+
+
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/maintaince/get/repairing',
+        async: true,
+        dataType: 'json',
+        success: function (resp) {
+            let response = resp.data;
+            for (var i in response) {
+
+                let id = response[i].maintainceID;
+                let date = response[i].date;
+                let detail = response[i].details;
+                let carid = response[i].car.carID;
+
+
+                var row = `<tr><td>${id}</td><td>${date}</td><td>${carid}</td><td>${detail}</td></tr>`;
+                $('#maintainceTBody').append(row);
+
+                $('#maintainceTBody tr').css({"cursor": "pointer"});
+                $('#maintainceTBody tr').click(function () {
+                        $('#btnMaintainceDone').attr("disabled", false);
+
+                        let id = $(this).children('td:eq(0)').text();
+                        let cid = $(this).children('td:eq(2)').text();
+
+                        $('#carid').val(cid);
+                        $('#oldmid').val(id);
+
+                }
+                );
+
+            }
+        }
+    });
+}
+
+$('#btnMaintainceDone').click(function () {
+    let carid = $('#carid').val();
+    let mid = $('#oldmid').val();
+
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/' + carid,
+        async: true,
+        dataType: 'json',
+        success: function (resp) {
+            let car = resp.data;
+
+
+            $.ajax({
+                method: "put",
+                url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/maintaince",
+                contentType: "application/json",
+                async: false,
+                data: JSON.stringify(
+                    {
+                        maintainceID: mid,
+                        date: getCurrentDate(),
+                        details: "complete",
+                        car: car
+                    }
+                ),
+                success: function (data) {
+                    $.ajax({
+                        method: "put",
+                        url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car",
+                        contentType: "application/json",
+                        async: false,
+                        data: JSON.stringify(
+                            {
+                                carID: car.carID,
+                                brand: car.brand,
+                                type: car.type,
+                                numberOfPassengers: car.numberOfPassengers,
+                                transmissionType: car.transmissionType,
+                                fuelType: car.fuelType,
+                                colour: car.colour,
+                                dailyRate: car.dailyRate,
+                                monthlyRate: car.monthlyRate,
+                                freeKmforMonth: car.freeKmforMonth,
+                                freeKmforDay: car.freeKmforDay,
+                                lossDamageWaiver: car.lossDamageWaiver,
+                                priceForExtraKM: car.priceForExtraKM,
+                                status: "in",
+                                completeKm: 0
+                            }
+                        ),
+                        success: function (data) {
+                            getMaintainceCar();
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
