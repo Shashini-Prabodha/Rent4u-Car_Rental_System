@@ -1,6 +1,8 @@
 package lk.rent4u.service;
 
 import lk.rent4u.dto.DriverDTO;
+import org.springframework.data.repository.query.Param;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,4 +27,7 @@ public interface DriverService {
     List<DriverDTO> readByAvailable();
 
     DriverDTO getRandomDriver();
+
+    int countByDriverinStatus( boolean status);
+
 }

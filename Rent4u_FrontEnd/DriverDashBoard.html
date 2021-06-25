@@ -34,17 +34,124 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 
 </head>
-<body>
+<body onscroll="myFunction()">
+
+<section class="container-fluid  align-items-center " style=" z-index: 999;padding: 0" id="navSection">
+
+    <nav class="navbar navbar-expand-lg navbar-light d-flex ">
+        <div class="container-fluid  ">
+
+            <div class="collapse navbar-collapse  "
+                 id="navbarNavDropdown">
+                <ul class="nav  ">
+                    <div class="lpack d-inline-flex">
+                        <li class="nav-item"><img src="assests/images/lg.png" alt="" width="120" height="64"
+                                                  class="d-inline-block align-text-top" id="comLogo"></li>
+
+                        <h4 class="h4 align-self-center" id="comName">Rent<span class="l4"> 4</span> u</h4>
+                    </div>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="index.html"><i
+                            class="fas fa-home fa-2x"></i></a></li>
+                    <li class="nav-item align-content-end"><a class="nav-link " aria-current="page" href="#"
+                                                              style="font-family: 'Dancing Script SemiBold'">Driver</a>
+
+                    </li>
 
 
+                </ul>
+                <div class="menu_button">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+</section>
 
 
+<main class="customerContent container-fluid">
+    <div class="row">
+        <div class="col-2 " id="leftDash">
+            <div class="row justify-content-around p-5">
+                <div class="custPic"></div>
 
+            </div>
+            <!-- Tab navs -->
+            <div class="nav flex-column nav-tabs text-center overflow-hidden" id="v-tabs-tab" role="tablist"
+                 aria-orientation="vertical">
+                <a class="nav-link active" id="v-tabs-profile-tab" data-mdb-toggle="tab" href="#v-tabs-profile"
+                   role="tab" aria-controls="v-tabs-profile" aria-selected="true">
+                    <i class="fas fa-user-circle"></i> SCHEDULE</a>
+
+            </div>
+            <!-- Tab navs -->
+        </div>
+        <div class="col-10 p-3">
+            <!-- Tab content -->
+            <div class="container-fluid">
+                <div class="tab-content" id="v-tabs-tabContent">
+
+                    <!--Profile section start-->
+                    <div class="tab-pane fade show active" id="v-tabs-profile" role="tabpanel"
+                         aria-labelledby="v-tabs-profile-tab">
+
+                        <div class="row m-3 text-center"><h1 class="h1 display-5">My Schedule</h1></div>
+                        <input type="text" class="form-control" id="driverID" hidden>
+
+                        <table class="table table-hover table-striped table-bordered table-sm " cellspacing="0"
+                               width="100%" id="tblDriverSheduleBooking">
+                            <thead>
+                            <tr class="border-bottom-secondary">
+                                <th>Customer Name</th>
+                                <th>Customer Contact</th>
+                                <th>Car ID</th>
+                                <th>Pickup Date</th>
+                                <th>Return Date</th>
+
+                            </tr>
+                            </thead>
+                            <tbody id="driverSheduleTBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <!-- Profile details section end-->
+
+
+                </div>            <!-- Tab content -->
+            </div>
+        </div>
+    </div>
+
+</main>
 
 <script src="assests/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"></script>
 <script src="assests/js/bootstrap.min.js"></script>
-<script src="assests/js/"></script>
+<script src="assests/js/DriverController.js"></script>
 <script src="assests/sweetalert/sweetalert2.all.min.js"></script>
+<script>
+
+
+    var navbar = document.getElementById("navSection");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+
+        if (window.pageYOffset >= sticky) {
+            console.log(sticky + 'in');
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+            console.log(sticky);
+
+        }
+
+    }
+
+</script>
+
+
 </body>
 </html>

@@ -65,6 +65,8 @@ public class DriverServiceImpl implements DriverService {
     public void updateDriver(DriverDTO dto) {
         if (driverRepo.existsById(dto.getDriverID())) {
             driverRepo.save(mapper.map(dto, Driver.class));
+
+            System.out.println(dto.isAvailable()+"c58");
         }
     }
 
@@ -126,4 +128,9 @@ public class DriverServiceImpl implements DriverService {
         }
         }
 
+    @Override
+    public int countByDriverinStatus(boolean status) {
+        return driverRepo.countByDriverinStatus(status);
     }
+
+}

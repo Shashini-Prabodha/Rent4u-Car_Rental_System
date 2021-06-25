@@ -54,7 +54,9 @@ public class DriverController {
         if(dto.getDriverID().trim().length() <=0){
             throw new NotFoundException("No ID provided to update");
         }
+        System.out.println(dto.isAvailable()+" c57");
         service.updateDriver(dto);
+        System.out.println(dto.getDriverID()+"c58");
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
     }
     @GetMapping(path = "/get/{userName}")
@@ -69,6 +71,12 @@ public class DriverController {
         DriverDTO dto = service.getRandomDriver();
         System.out.println("c69 "+dto);
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/count/{status}")
+    public ResponseEntity getDriverCountinStatus(@PathVariable boolean status){
+        int count = service.countByDriverinStatus(status);
+        return new ResponseEntity(new StandardResponse("200","Done",count),HttpStatus.OK);
     }
 
 }

@@ -22,4 +22,7 @@ public interface CarService {
 
     List<CarDTO> getFiltingCar(String type,String status);
 
+    int countByCarinStauts(String status);
+
+
 }

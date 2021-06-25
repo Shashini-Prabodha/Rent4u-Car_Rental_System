@@ -135,7 +135,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title text-success text-center"><i class="fas fa-car"></i>
                                             AVAILABLE CARS</h6>
-                                        <h6 class="card-subtitle  display-6 mb-2 text-center">08</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center" id="countAcars">08</h6>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title text-warning text-center"><i class="fas fa-user"></i>
                                             AVAILABLE DRIVERS</h6>
-                                        <h6 class="card-subtitle  display-6 mb-2 text-center">23</h6>
+                                        <h6 class="card-subtitle  display-6 mb-2 text-center" id="countADrivers">23</h6>
                                     </div>
                                 </div>
                             </div>
@@ -153,10 +153,11 @@
                                     <div class="card-body">
                                         <h6 class="card-title text-primary text-center"><i class="fas fa-car"></i>
                                             MAINTENANCE CAR</h6>
-                                        <h6 class="card-subtitle display-6 mb-2 text-center">08</h6>
+                                        <h6 class="card-subtitle display-6 mb-2 text-center" id="countNeedMaintainceC">08</h6>
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
                         <div class="row"></div>
@@ -746,17 +747,18 @@
                             </div>
 
                         </div>
-                        <div class="col-3">
-                            <div class="form-floating mb-3">
-                                <button type="button" class="btn btn-warning mt-3 " id="calPayment">Calculate
-                                    Payment
-                                </button>
 
-                            </div>
-                        </div>
                         <hr>
 
                         <div class="row ml-0 mr-0 ">
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <button type="button" class="btn btn-warning mt-3 " id="calPayment">Calculate
+                                        Payment
+                                    </button>
+
+                                </div>
+                            </div>
                             <div class="col-4 ">
                                 <div class="form-floating mb-3 ">
                                     <input type="text" class="form-control  rounded-7 " id="total">

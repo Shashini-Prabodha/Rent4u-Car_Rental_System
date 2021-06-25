@@ -16,6 +16,9 @@ public interface DriverRepo extends JpaRepository<Driver,String> {
 
     Optional<Driver> findByUserNameAndPassword(String userName, String password);
 
+    @Query(value = "SELECT COUNT(d.driverID) FROM Driver d where d.available=:status")
+    int countByDriverinStatus( @Param("status") boolean status);
+
 
     @Query(value = "SELECT d FROM Driver d WHERE d.userName=:userName")
     Driver getDriver(@Param("userName") String userName);
