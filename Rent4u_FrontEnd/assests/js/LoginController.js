@@ -43,14 +43,14 @@ $('#btnLogin').click(function () {
 getNewLogID();
 
 function getNewLogID() {
-    let LastLoginID=1;
+    let LastLoginID = 1;
     $.ajax({
         method: "get",
         url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/login/newLogId',
         async: false,
         success: function (response) {
             LastLoginID = response.data;
-            console.log(LastLoginID+" login 52");
+            console.log(LastLoginID + " login 52");
         }
     });
     return LastLoginID;
@@ -66,16 +66,17 @@ function loginSave(role) {
         async: false,
         data: JSON.stringify(
             {
-                loginID:getNewLogID(),
-                userName:userName,
-                password:password,
-               role:role
+                loginID: getNewLogID(),
+                userName: userName,
+                password: password,
+                role: role
             }
         ),
         success: function (response) {
             console.log("login save method done");
 
-        }});
+        }
+    });
 }
 
 
@@ -256,6 +257,25 @@ function checkFileChoose2() {
     return true;
 }
 
+
+//check file input 3
+$('#inputfile3').on('keyup', function (event) {
+    checkFileChoose3();
+});
+
+function checkFileChoose3() {
+    console.log($('#inputfile3').val());
+    if ($('#inputfile3').val() == '') {
+        $('#inputfile3').css('border', '3px solid red');
+        alertify.warning('Upload Driving License');
+
+    } else {
+        $('#inputfile3').css('border', '3px solid #0eab34');
+
+    }
+    return true;
+}
+
 //signup
 $('#btncreate').click(function () {
         getLastCustID();
@@ -271,6 +291,7 @@ $('#btncreate').click(function () {
         let password = $("#inputPassword").val();
         let file1 = $("#inputfile1").val();
         let file2 = $("#inputfile2").val();
+        let file3 = $("#inputfile3").val();
 
         if (id != "") {
             if (checkCustName() && name != "") {
@@ -279,34 +300,39 @@ $('#btncreate').click(function () {
                         if (checkEmail() && email != "") {
                             if (checkCustomerLicenceId() && licence != "") {
                                 if (checkCustomerNic() && nic != "") {
-                                    console.log("check - "+checkCustomerUserNameValidity());
+                                    console.log("check - " + checkCustomerUserNameValidity());
                                     if (checkCustomerUserNameValidity()) {
                                         if (password != null) {
                                             if (checkFileChoose1() && file1 != "") {
                                                 if (checkFileChoose2() && file2 != "") {
+                                                    if (checkFileChoose3() && file3 != "") {
 
-                                            $.ajax({
-                                                method: "post",
-                                                url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer",
-                                                contentType: "application/json",
-                                                async: false,
-                                                data: JSON.stringify(
-                                                    {
-                                                        customerID: id,
-                                                        name: name,
-                                                        contact: contact,
-                                                        email: email,
-                                                        address: address,
-                                                        drivingLicenceNo: licence,
-                                                        nicNo: nic,
-                                                        userName: userName,
-                                                        password: password
+                                                        $.ajax({
+                                                            method: "post",
+                                                            url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer",
+                                                            contentType: "application/json",
+                                                            async: false,
+                                                            data: JSON.stringify(
+                                                                {
+                                                                    customerID: id,
+                                                                    name: name,
+                                                                    contact: contact,
+                                                                    email: email,
+                                                                    address: address,
+                                                                    drivingLicenceNo: licence,
+                                                                    nicNo: nic,
+                                                                    userName: userName,
+                                                                    password: password
+                                                                }
+                                                            ),
+                                                            success: function (data) {
+                                                                uploadFiles();
+                                                                alertify.success('Account Created! Please Login!', 'success', 2);
+                                                            }
+                                                        });
+                                                    } else {
+                                                        $('#inputfile3').css('border', '3px solid red');
                                                     }
-                                                ),
-                                                success: function (data) {
-                                                    alertify.success('Account Created! Please Login!', 'success', 2);
-                                                }
-                                            });
                                                 } else {
                                                     $('#inputfile2').css('border', '3px solid red');
                                                 }
@@ -345,6 +371,44 @@ $('#btncreate').click(function () {
     }
 );
 getLastCustID();
+
+
+//upload files
+function uploadFiles() {
+    let id = $("#custID").val();
+
+    var fileObjectNic1 = $("#inputfile1")[0].files[0];//access file object from input field
+    // var fileNameNic1 = $("#inputfile1")[0].files[0].name; //get file name
+    var fileNameNic1 = id + "-nicfront"; //get file name
+
+    var fileObjectNic2 = $("#inputfile2")[0].files[0];//access file object from input field
+    // var fileNameNic2 = $("#inputfile2")[0].files[0].name; //get file name
+    var fileNameNic2 = id + "-nicback"; //get file name
+
+    var fileObjectLicense = $("#inputfile1")[0].files[0];//access file object from input field
+    // var fileNameLicense = $("#inputfile1")[0].files[0].name; //get file name
+    var fileNameLicense = id + "-license"; //get file name
+
+    var data = new FormData(); //setup form data object to send file data
+    console.log(fileNameNic1);
+    data.append("nic1", fileObjectNic1, fileNameNic1); //append data
+    data.append("nic2", fileObjectNic2, fileNameNic2); //append data
+    data.append("license", fileObjectLicense, fileNameLicense); //append data
+
+    $.ajax({
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/login/up',
+        method: 'post',
+        async: true,
+        processData: false, //stop processing data of request body
+        contentType: false, // stop setting content type by jQuery
+        data: data,
+        success: function () {
+            alert("File Uploaded");
+        }
+    });
+
+}
+
 
 //getLastId
 function getLastCustID() {
@@ -404,4 +468,5 @@ $("#btnClose").click(function () {
     $("#inputPassword").val("");
     $("#inputfile1").val("");
     $("#inputfile2").val("");
+    $("#inputfile3").val("");
 });
