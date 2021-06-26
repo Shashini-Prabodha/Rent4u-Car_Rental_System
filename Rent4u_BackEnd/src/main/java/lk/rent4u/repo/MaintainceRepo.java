@@ -13,4 +13,7 @@ public interface MaintainceRepo extends JpaRepository<Maintaince,String> {
 
     @Query(value = "SELECT m FROM Maintaince m where m.details=:details")
     List<Maintaince> getMaintainingDetail(@Param("details") String details);
+
+    @Query(value = "SELECT COUNT(maintainceID) FROM Maintaince where details!='repairing'",nativeQuery = true)
+    int getCountMaintainigCar();
 }

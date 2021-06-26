@@ -72,4 +72,10 @@ public class MaintainceController {
         return new ResponseEntity(new StandardResponse("200","Done",list),HttpStatus.OK);
     }
 
+    @GetMapping(path = "/count")
+    public ResponseEntity getCountMCar() {
+        int count = service.getCountMaintainigCar();
+        return new ResponseEntity(new StandardResponse("200", "Done", count), HttpStatus.OK);
+    }
+
 }

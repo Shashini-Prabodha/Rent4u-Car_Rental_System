@@ -9,7 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -74,5 +78,24 @@ public class CustomerController {
         CustomerDTO dto = service.getuCustomer(userName);
         System.out.println(dto.getCustomerID());
         return new ResponseEntity(new StandardResponse("200","Done",dto),HttpStatus.OK);
+    }
+
+
+    @PostMapping(path = "/up",consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean saveFile(@RequestPart("slip") MultipartFile slipFile) {
+
+        try {
+            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+            File uploadsDir = new File(projectPath + "/customer/slip");
+            uploadsDir.mkdir();
+            slipFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + slipFile.getOriginalFilename()));
+            return true;
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

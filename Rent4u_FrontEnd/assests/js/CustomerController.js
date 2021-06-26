@@ -1191,6 +1191,7 @@ $('#btnPay').click(function () {
                                         ),
                                         success: function (data) {
                                             loadAllCRBooking();
+                                            uploadFiles();
                                             // Swal.fire({
                                             //     position: 'top-end',
                                             //     icon: 'success',
@@ -1240,6 +1241,32 @@ $('#btnPay').click(function () {
 
 
 });
+
+
+function uploadFiles() {
+    let cid = $('#hiddnCust').val();
+    let bookingId = $('#cbookingID').val();
+
+
+    var file = $("#inputBankSlip")[0].files[0];//access file object from input field
+    var fileName= cid + "- slip ("+bookingId+")"; //get file name
+
+    var data = new FormData(); //setup form data object to send file data
+    data.append("slip", file, fileName); //append data
+
+    $.ajax({
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/customer/up',
+        method: 'post',
+        async: true,
+        processData: false, //stop processing data of request body
+        contentType: false, // stop setting content type by jQuery
+        data: data,
+        success: function () {
+            alert("File Uploaded");
+        }
+    });
+
+}
 
 
 loadAllCPayments();

@@ -3,6 +3,7 @@ $(document).ready(function () {
     getCountRegCust();
     getCountACars();
     getCountAvailDrivers();
+    getCountMaintainceCar();
 });
 
 $('#adminOrdTab').click(function () {
@@ -55,7 +56,26 @@ function getCountAvailDrivers() {
 }
 
 
+//get count maintanice cars
+function getCountMaintainceCar() {
+    $.ajax({
+        method: "get",
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/maintaince/count',
+        async: true,
+        success: function (response) {
+            var resp = response.data;
+            console.log(resp);
+            $('#countNeedMaintainceC').text(resp);
+        }
+
+    });
+}
+
+
+
 // ..............Car section..........//
+
+
 
 //check carID
 $('#carRegNo').on('keyup', function (event) {
@@ -375,6 +395,7 @@ function loadAllCars() {
                     $('#priceforextrakm').val(priceForExtraKM)
                     $("#addToMaintaince").attr("disabled", true);
                     checkMaintaince(status, completeKm);
+                    getCarImg();
 
                 });
 
@@ -425,6 +446,25 @@ function setFuelType(type) {
     return 2;
 }
 
+//check file input car
+$('#formFile').on('keyup', function (event) {
+    checkCarUpload();
+});
+
+function checkCarUpload() {
+    console.log($('#formFile').val());
+
+    if ($('#formFile').val() == '') {
+        $('#formFile').css('border', '3px solid red');
+        alertify.warning('Upload Car photo');
+
+    } else {
+        $('#formFile').css('border', '3px solid #0eab34');
+
+    }
+    return true;
+
+}
 
 //set color type
 function setColor(type) {
@@ -524,6 +564,8 @@ $("#saveCar").click(function () {
             let priceforexkm = $('#priceforextrakm').val();
             let status = "in";
             let completeKm = 0;
+            let file = $('#formFile').val();
+
 
 
             if (checkCarID() && carReg != "") {
@@ -539,6 +581,7 @@ $("#saveCar").click(function () {
                                                     if (checkFMforDay() && fdprice != "") {
                                                         if (checkLossDm() && lossdamage != "") {
                                                             if (checkExtraPforkm() && priceforexkm != "") {
+                                                                if(checkCarUpload() && file!=""){
                                                                 $.ajax({
                                                                     method: "post",
                                                                     url: "http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car",
@@ -564,6 +607,7 @@ $("#saveCar").click(function () {
                                                                         }
                                                                     ),
                                                                     success: function (data) {
+                                                                        uploadFiles();
                                                                         loadAllCars();
                                                                         Swal.fire({
                                                                             position: 'top-end',
@@ -575,7 +619,9 @@ $("#saveCar").click(function () {
                                                                         clearCarTextFields();
                                                                     }
                                                                 });
-
+                                                                } else {
+                                                                    $('#formFile').css('border', '3px solid red');
+                                                                }
                                                             } else {
                                                                 $('#priceforextrakm').css('border', '3px solid red');
                                                             }
@@ -621,6 +667,36 @@ $("#saveCar").click(function () {
     })
 });
 
+function uploadFiles() {
+    let carReg = $('#carRegNo').val();
+
+    var file = $("#formFile")[0].files[0];//access file object from input field
+    var fileName= carReg+"."+($("#formFile")[0].files[0].name).split('.')[1]; //get file name
+
+    var data = new FormData(); //setup form data object to send file data
+    data.append("car", file, fileName); //append data
+
+    $.ajax({
+        url: 'http://localhost:8080/Rent4u_BackEnd_war_exploded/api/v1/car/up',
+        method: 'post',
+        async: true,
+        processData: false, //stop processing data of request body
+        contentType: false, // stop setting content type by jQuery
+        data: data,
+        success: function () {
+            // alert("File Uploaded");
+        }
+    });
+
+}
+
+function getCarImg() {
+    let carReg = $('#carRegNo').val();
+let path='../car/'+carReg+'.png';
+console.log(path);
+    $("#output").attr("src",path);
+}
+
 //search
 $('#btnSearchCar').click(function () {
     //alertProsDone("Get all click");
@@ -650,7 +726,7 @@ $('#btnSearchCar').click(function () {
                 $('#priceforextrakm').val(data.priceForExtraKM)
                 $("#addToMaintaince").attr("disabled", true);
                 checkMaintaince(data.status, data.completeKm);
-
+                getCarImg();
                 loadAllCars();
             }
         });

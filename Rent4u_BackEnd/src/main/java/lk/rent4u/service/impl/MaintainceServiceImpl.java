@@ -92,4 +92,9 @@ public class MaintainceServiceImpl implements MaintainceService {
         List<Maintaince> all = repo.getMaintainingDetail("repairing");
         return mapper.map(all,new TypeToken<ArrayList<MaintainceDTO>>(){}.getType());
     }
+
+    @Override
+    public int getCountMaintainigCar() {
+        return repo.getCountMaintainigCar();
+    }
 }

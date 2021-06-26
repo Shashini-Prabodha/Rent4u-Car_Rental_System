@@ -24,5 +24,7 @@ public interface MaintainceService {
 
     List<MaintainceDTO> getMaintainingDetail();
 
+    int getCountMaintainigCar();
+
 
 }
