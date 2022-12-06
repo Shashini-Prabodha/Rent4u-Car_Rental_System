@@ -5,7 +5,7 @@ Car Rental System
 <table>
 
   <tr>
-    <td><img src="https://drive.google.com/uc?export=view&id=1pS8TIBnVoKSG1IgEHowSZbNiNFt6uWrl" width=270 height=480></td>
+    <td><img src="https://drive.google.com/uc?export=view&id=1pS8TIBnVoKSG1IgEHowSZbNiNFt6uWrl" width=400 height=380></td>
     <td><img src="https://drive.google.com/uc?export=view&id=1EYyL9GS1x_sNmmWwP2MuI0YHbY8gm_td" width=270 height=480></td>
     <td><img src="https://drive.google.com/uc?export=view&id=1v-24Iu6iGKSlno7_rY-jWEiwERYKNpi3" width=270 height=480></td>
   </tr>
